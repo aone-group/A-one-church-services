@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A-one Church Services | Stoelen, LED-borden &amp; Kerkadvies</title>
+<meta name="description" content="A-one Church Services. Kerkstoelen op maat, LED-borden en digitaal advies voor kerken in Europa. Betaalbaar, kwalitatief, persoonlijk.">
+<link rel="icon" href="images/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A84C;--gold-light:#E8C96B;--gold-pale:#F5EDD6;
+  --charcoal:#141414;--warm-white:#FAF8F4;--mid-gray:#6B6B6B;
+  --light-gray:#E8E5E0;--font-d:'Fraunces',Georgia,serif;
+  --font-b:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-b);background:var(--warm-white);color:var(--charcoal);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none}
+
+/* ===== CURSOR (instant, no delay) ===== */
+@media(hover:hover) and (pointer:fine){
+  body{cursor:none}
+  .cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+  .cursor-ring{width:32px;height:32px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.55;transition:width .2s,height .2s,opacity .2s}
+  a,button,input,select,textarea,[data-cursor]{cursor:none}
+  a:hover~.cursor,.cursor.hover{width:14px;height:14px}
+}
+@media not all and (hover:hover){.cursor,.cursor-ring{display:none}}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;background:rgba(14,14,14,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.12)}
+.logo-link{display:flex;align-items:center;gap:.75rem}
+.logo-img{height:32px;width:auto;filter:brightness(0) invert(1)}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-name{font-family:var(--font-d);font-size:1.05rem;color:white;font-weight:700;letter-spacing:.02em}
+.logo-sub{font-size:.56rem;color:rgba(255,255,255,.45);letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
+
+/* Language dropdown */
+.lang-wrap{position:relative}
+.lang-btn{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:.4rem .75rem;color:white;font-size:.8rem;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;white-space:nowrap}
+.lang-btn:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.08)}
+.lang-btn svg{width:14px;height:14px;opacity:.6;transition:transform .25s}
+.lang-wrap.open .lang-btn svg{transform:rotate(180deg)}
+.lang-flag{font-size:1rem}
+.lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:#1a1a1a;border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;min-width:160px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .2s,transform .2s;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.lang-wrap.open .lang-dropdown{opacity:1;pointer-events:all;transform:translateY(0)}
+.lang-option{display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;color:rgba(255,255,255,.75);font-size:.82rem;font-weight:500;cursor:pointer;transition:background .15s,color .15s}
+.lang-option:hover{background:rgba(201,168,76,.1);color:var(--gold)}
+.lang-option.active{color:var(--gold);font-weight:600}
+.lang-option-flag{font-size:1.1rem}
+
+.nav-right{display:flex;align-items:center;gap:1.4rem}
+.nav-links{display:flex;gap:1.6rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,.6);font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-lang-mobile{display:none}
+.nav-lang-opt{display:none}
+.cta-top{background:var(--gold);color:var(--charcoal);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1.2rem;border-radius:4px;transition:background .2s,transform .15s;white-space:nowrap}
+.cta-top:hover{background:var(--gold-light);transform:translateY(-1px)}
+.menu-toggle{display:none;background:none;border:none;width:32px;height:28px;position:relative;flex-direction:column;justify-content:space-between;padding:4px 0}
+.menu-toggle span{display:block;height:2px;background:white;transition:all .3s var(--ease);transform-origin:center}
+.menu-toggle.active span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.menu-toggle.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.menu-toggle.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
+@media(max-width:900px){
+  .nav{height:60px}
+  .nav-links{position:fixed;top:60px;left:0;right:0;background:rgba(14,14,14,.98);backdrop-filter:blur(16px);flex-direction:column;gap:0;padding:.5rem 0 1rem;transform:translateY(-100%);visibility:hidden;transition:transform .4s var(--ease),visibility .4s;border-bottom:1px solid rgba(201,168,76,.12);z-index:999}
+  .nav-links.open{transform:translateY(0);visibility:visible}
+  .nav-links a{padding:.9rem 4vw;width:100%;border-bottom:1px solid rgba(255,255,255,.04);font-size:.85rem}
+  .nav-lang-mobile{display:flex;gap:.6rem;padding:.9rem 4vw;flex-wrap:wrap}
+  .nav-lang-opt{color:rgba(255,255,255,.55);font-size:.82rem;cursor:pointer;padding:.3rem .5rem;border-radius:4px;transition:color .2s,background .2s}
+  .nav-lang-opt:hover{color:var(--gold);background:rgba(201,168,76,.08)}
+  .menu-toggle{display:flex}
+  .nav-right .lang-wrap{display:flex}
+  .nav-right .lang-wrap .lang-btn svg{display:none}
+  .nav-right .lang-wrap .lang-btn{padding:.35rem .45rem;gap:.1rem;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+  .nav-right .cta-top{display:inline-flex;font-size:.7rem;padding:.45rem .95rem;letter-spacing:.06em}
+  .nav-right{gap:.45rem}
+  .lang-name{display:none}
+}
+@media(max-width:960px){
+  .prod-card{height:380px}
+}
+@media(max-width:900px){
+  .hero{padding-top:60px}
+}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;background:var(--charcoal);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:66px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 30% 40%,rgba(201,168,76,.08) 0%,transparent 70%),radial-gradient(ellipse 40% 35% at 80% 70%,rgba(45,74,138,.10) 0%,transparent 60%),linear-gradient(180deg,#0d0d0d 0%,#181818 50%,#0a0a0a 100%)}
+.hero-image{position:absolute;top:0;right:0;bottom:0;width:55%;background-image:url('images/church-interior-modern.jpg');background-size:cover;background-position:center top;opacity:.35;mask-image:linear-gradient(to right,transparent 0%,black 35%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 35%);transform:rotate(-1.5deg) scale(1.1)}
+.hero-content{position:relative;z-index:2;max-width:1280px;margin:0 auto;width:100%;padding:4rem 4vw}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.7rem;font-size:.68rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;opacity:0;animation:fadeUp .7s .15s var(--ease) forwards}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.hero-h1{font-family:var(--font-d);font-size:clamp(2.5rem,6vw,5rem);color:var(--warm-white);font-weight:600;line-height:1.06;letter-spacing:-.015em;margin-bottom:1.5rem;max-width:15ch;opacity:0;animation:fadeUp .9s .3s var(--ease) forwards}
+.hero-h1 em{font-style:italic;color:var(--gold);font-weight:500}
+.hero-sub{font-size:clamp(.95rem,1.5vw,1.12rem);color:rgba(250,248,244,.68);font-weight:300;line-height:1.72;max-width:500px;margin-bottom:2.4rem;opacity:0;animation:fadeUp .9s .5s var(--ease) forwards}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .7s var(--ease) forwards}
+.btn-p{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--charcoal);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:.95rem 2rem;border-radius:4px;transition:background .2s,transform .15s;border:none}
+.btn-p:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-s{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:rgba(250,248,244,.82);font-weight:500;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:.95rem 2rem;border-radius:4px;border:1px solid rgba(250,248,244,.2);transition:border-color .2s,color .2s}
+.btn-s:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:3.5rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.08);max-width:600px;opacity:0;animation:fadeUp .9s .9s var(--ease) forwards}
+.stat-num{font-family:var(--font-d);font-size:1.9rem;font-weight:600;color:var(--gold);line-height:1}
+.stat-lbl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-top:.3rem}
+
+/* ===== TRUST BAR ===== */
+.trust-bar{background:var(--gold);padding:.9rem 4vw;display:flex;align-items:center;justify-content:center;gap:2.2rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.55rem;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--charcoal)}
+.trust-icon{width:16px;height:16px;flex-shrink:0}
+
+/* ===== SECTION BASICS ===== */
+section{padding:6.5rem 4vw}
+.mw{max-width:1280px;margin:0 auto}
+.lbl{font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.9rem;margin-bottom:1.1rem}
+.lbl::before{content:'';width:28px;height:1px;background:var(--gold)}
+.lbl.lt{color:rgba(255,255,255,.5)}.lbl.lt::before{background:rgba(255,255,255,.4)}
+.h2{font-family:var(--font-d);font-size:clamp(1.9rem,4vw,2.85rem);font-weight:600;line-height:1.1;letter-spacing:-.01em;margin-bottom:1.3rem;color:var(--charcoal)}
+.h2 em{font-style:italic;color:var(--gold);font-weight:500}
+.h2.lt{color:var(--warm-white)}
+.lead{font-size:1rem;color:var(--mid-gray);line-height:1.75;max-width:560px}
+.lead.lt{color:rgba(255,255,255,.58)}
+
+/* ===== STORY ===== */
+.story-section{background:var(--warm-white)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.story-quote{font-family:var(--font-d);font-size:clamp(1.25rem,2vw,1.6rem);font-style:italic;color:var(--charcoal);line-height:1.5;border-left:3px solid var(--gold);padding-left:1.5rem;margin:1.8rem 0}
+.story-visual{position:relative;height:520px}
+.story-img-big{position:absolute;right:0;top:0;width:78%;height:420px;object-fit:cover;border-radius:6px;box-shadow:-20px 20px 55px rgba(0,0,0,.17)}
+.story-img-sm{position:absolute;left:0;bottom:0;width:48%;height:230px;object-fit:cover;border-radius:6px;box-shadow:16px 16px 40px rgba(0,0,0,.18);border:5px solid var(--warm-white)}
+
+/* ===== PRODUCTS ===== */
+.products-section{background:linear-gradient(180deg,#1c1c1c 0%,var(--charcoal) 100%);padding:6.5rem 4vw}
+.prod-header{max-width:1280px;margin:0 auto 3.5rem}
+.prod-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.prod-card{position:relative;height:500px;overflow:hidden;background:#1a1a1a}
+.prod-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .65s var(--ease)}
+.prod-card:hover .prod-card-bg{transform:scale(1.05)}
+.prod-card-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(8,8,8,.95) 0%,rgba(8,8,8,.35) 55%,transparent 100%);transition:background .35s}
+.prod-card:hover .prod-card-ov{background:linear-gradient(to top,rgba(8,8,8,.97) 0%,rgba(8,8,8,.6) 60%,rgba(8,8,8,.15) 100%)}
+.prod-card.t .prod-card-ov{background:linear-gradient(to top,rgba(6,6,6,.98) 0%,rgba(6,6,6,.82) 50%,rgba(6,6,6,.55) 100%)}
+.prod-card-body{position:absolute;bottom:0;left:0;right:0;padding:2.2rem 1.8rem;z-index:2}
+.prod-cat{font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.prod-title{font-family:var(--font-d);font-size:1.45rem;font-weight:600;color:white;line-height:1.2;margin-bottom:.7rem}
+.prod-desc{font-size:.86rem;color:rgba(255,255,255,.68);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .45s var(--ease),opacity .35s,margin .35s;opacity:0}
+.prod-card:hover .prod-desc,.prod-card.t .prod-desc{max-height:150px;opacity:1;margin-top:.4rem}
+.prod-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--gold);font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:1rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s}
+.prod-card:hover .prod-link,.prod-card.t .prod-link{opacity:1;transform:translateY(0)}
+
+/* ===== CHAIR CONFIGURATOR SECTION ===== */
+.chair-section{background:#F2EFE9;padding:6.5rem 4vw}
+.chair-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4.5rem;align-items:start}
+
+/* Chair variants gallery */
+.variants-gallery{display:flex;flex-direction:column;gap:1.2rem}
+.variants-main{border-radius:6px;overflow:hidden;background:white;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.variants-main img{width:100%;height:300px;object-fit:contain;object-position:center;background:#f0ede7}
+.variants-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.variants-row .var-img{border-radius:6px;overflow:hidden;background:white;box-shadow:0 6px 20px rgba(0,0,0,.07);cursor:pointer;position:relative}
+.variants-row .var-img img{width:100%;height:160px;object-fit:contain;object-position:center;background:#f0ede7;transition:transform .45s var(--ease)}
+.variants-row .var-img:hover img{transform:scale(1.04)}
+
+/* Swatch picker */
+.swatch-section{margin-top:2.5rem}
+.swatch-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.swatch-tab{padding:.5rem 1.1rem;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;background:rgba(0,0,0,.06);color:var(--mid-gray);cursor:pointer;transition:background .2s,color .2s;border:none;font-family:var(--font-b)}
+.swatch-tab.active{background:var(--charcoal);color:white}
+.swatch-panel{display:none}
+.swatch-panel.active{display:block}
+.swatch-img-wrap{border-radius:6px;overflow:hidden;cursor:pointer;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.swatch-img-wrap img{width:100%;display:block;transition:transform .4s var(--ease)}
+.swatch-img-wrap:hover img{transform:scale(1.02)}
+.swatch-zoom-hint{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.65);color:white;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .6rem;border-radius:3px;pointer-events:none}
+.quality-list{display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem}
+.q-item{display:flex;align-items:flex-start;gap:.9rem}
+.q-check{width:26px;height:26px;flex-shrink:0;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.q-check svg{width:12px;height:12px;color:white}
+.q-content h4{font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--charcoal);margin-bottom:.25rem}
+.q-content p{font-size:.86rem;color:var(--mid-gray);line-height:1.58}
+
+/* ===== OPTIONS ===== */
+.options-section{background:var(--warm-white)}
+.options-header{max-width:1280px;margin:0 auto 3.5rem}
+.opt-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.opt-card{background:white;border:1px solid var(--light-gray);border-radius:6px;padding:1.8rem;transition:transform .35s var(--ease),box-shadow .35s,border-color .25s;cursor:default}
+.opt-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,.08);border-color:var(--gold)}
+.opt-icon{width:44px;height:44px;margin-bottom:1rem;color:var(--gold)}
+.opt-icon svg{width:100%;height:100%}
+.opt-title{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--charcoal);margin-bottom:.5rem}
+.opt-text{font-size:.84rem;color:var(--mid-gray);line-height:1.62}
+
+/* ===== LED ===== */
+.led-section{background:#0A0A0A;padding:6.5rem 4vw}
+.led-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center}
+.led-types{margin-top:1.8rem;display:flex;flex-direction:column;gap:.7rem}
+.led-type{display:flex;align-items:center;gap:.9rem;padding:.9rem 1.2rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;color:rgba(255,255,255,.82);font-size:.86rem;transition:background .2s,border-color .2s}
+.led-type:hover{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.25)}
+.led-type-ico{color:var(--gold);flex-shrink:0;width:18px;font-size:1rem;display:flex;align-items:center}
+.led-visual{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5;background:#111;box-shadow:0 0 70px rgba(45,74,138,.2)}
+.led-visual img{width:100%;height:100%;object-fit:cover}
+.led-tag{position:absolute;top:1rem;right:1rem;background:var(--gold);color:#000;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .75rem;border-radius:2px}
+
+/* ===== FEATURES ===== */
+.features-section{background:var(--warm-white)}
+.feat-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2.2rem}
+.feat-num{font-family:var(--font-d);font-size:4rem;font-weight:500;color:var(--gold-pale);line-height:1;margin-bottom:-.8rem;font-style:italic}
+.feat-title{font-family:var(--font-d);font-size:1.12rem;font-weight:600;color:var(--charcoal);margin-bottom:.6rem;position:relative;z-index:1}
+.feat-text{font-size:.84rem;color:var(--mid-gray);line-height:1.7}
+
+/* ===== DIGITAL CONSULTING ===== */
+.consult-section{background:linear-gradient(135deg,#0f1923 0%,#1a2535 50%,#0a1018 100%);padding:6.5rem 4vw;position:relative;overflow:hidden}
+.consult-section::before{content:'';position:absolute;top:-40%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);pointer-events:none}
+.consult-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.consult-services{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.cs-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:1.4rem;transition:border-color .2s,background .2s}
+.cs-item:hover{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.05)}
+.cs-icon{width:32px;height:32px;color:var(--gold);margin-bottom:.8rem}
+.cs-icon svg{width:100%;height:100%}
+.cs-title{font-family:var(--font-d);font-size:.95rem;font-weight:600;color:white;margin-bottom:.35rem}
+.cs-text{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6}
+.consult-visual{position:relative}
+.consult-img-wrap{border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:#111}
+.consult-img-wrap img{width:100%;height:100%;object-fit:cover;opacity:.9}
+.consult-badge{position:absolute;bottom:-1.2rem;left:1.5rem;background:var(--gold);color:var(--charcoal);padding:1rem 1.5rem;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.consult-badge-num{font-family:var(--font-d);font-size:1.8rem;font-weight:700;line-height:1}
+.consult-badge-lbl{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem;opacity:.8}
+
+/* ===== PROCESS ===== */
+.process-section{background:var(--warm-white)}
+.process-steps{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.process-steps::before{content:'';position:absolute;top:31px;left:32px;right:32px;height:1px;background:var(--gold);opacity:.2}
+.proc-step{padding:0 1.2rem 0 0;position:relative}
+.proc-num{width:62px;height:62px;border-radius:50%;background:var(--charcoal);color:var(--gold);font-family:var(--font-d);font-size:1.35rem;font-weight:600;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;margin-bottom:1.4rem}
+.proc-title{font-family:var(--font-d);font-size:1.05rem;font-weight:600;color:var(--charcoal);margin-bottom:.5rem}
+.proc-text{font-size:.84rem;color:var(--mid-gray);line-height:1.68}
+
+/* ===== TESTIMONIALS ===== */
+.test-section{background:var(--charcoal);padding:6.5rem 0;overflow:hidden}
+.test-header{max-width:1280px;padding:0 4vw}
+.test-track{display:flex;gap:1.4rem;margin-top:3rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-left:max(4vw,calc((100vw - 1260px)/2));padding-right:max(4vw,calc((100vw - 1260px)/2));padding-bottom:1.2rem}
+.test-track::-webkit-scrollbar{height:2px}
+.test-track::-webkit-scrollbar-track{background:rgba(255,255,255,.04)}
+.test-track::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+.test-card{min-width:400px;max-width:400px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:2.2rem;scroll-snap-align:start}
+.test-qm{font-family:var(--font-d);font-size:3.8rem;color:var(--gold);line-height:.8;margin-bottom:-1.2rem;font-weight:600}
+.test-stars{color:var(--gold);font-size:.82rem;letter-spacing:.1em;font-weight:600;margin-bottom:.4rem}
+.test-text{font-family:var(--font-d);font-size:.96rem;color:rgba(255,255,255,.83);line-height:1.68;font-style:italic;margin-bottom:1.6rem}
+.test-author{display:flex;align-items:center;gap:.85rem;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.07)}
+.test-av{width:42px;height:42px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;color:var(--charcoal);flex-shrink:0}
+.test-name{font-weight:600;font-size:.88rem;color:white}
+.test-church{font-size:.75rem;color:rgba(255,255,255,.48);margin-top:1px}
+.test-flag{font-size:1.15rem;margin-left:auto}
+
+/* ===== MISSION ===== */
+.mission-section{background:var(--gold-pale);padding:5.5rem 4vw;text-align:center}
+.mission-content{max-width:680px;margin:0 auto}
+.mission-icon{width:28px;height:28px;margin:0 auto 1.4rem;color:var(--gold)}
+.mission-h2{font-family:var(--font-d);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--charcoal);font-weight:600;font-style:italic;margin-bottom:1.3rem;line-height:1.25}
+.mission-text{font-size:.98rem;color:#555;line-height:1.8;margin-bottom:1.8rem}
+.mission-sig{font-family:var(--font-d);font-style:italic;font-size:1.1rem;color:var(--charcoal);opacity:.65}
+
+/* ===== CONTACT ===== */
+.contact-section{background:var(--charcoal);padding:6.5rem 4vw}
+.contact-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start}
+.contact-info{margin-top:2.2rem;display:flex;flex-direction:column;gap:1.3rem}
+.c-item{display:flex;align-items:flex-start;gap:.9rem}
+.c-ico{width:42px;height:42px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.28);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold)}
+.c-ico svg{width:17px;height:17px}
+.c-lbl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;font-weight:600}
+.c-val{color:rgba(255,255,255,.82);font-size:.92rem;line-height:1.48}
+.c-val a{color:rgba(255,255,255,.82);transition:color .2s}
+.c-val a:hover{color:var(--gold)}
+.contact-form{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:2.4rem;display:flex;flex-direction:column;gap:1.1rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.fgroup{display:flex;flex-direction:column;gap:.35rem}
+.flbl{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.finput,.fselect,.ftextarea{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:4px;color:white;font-family:var(--font-b);font-size:.88rem;padding:.8rem .95rem;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none}
+.finput::placeholder,.ftextarea::placeholder{color:rgba(255,255,255,.26)}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:var(--gold);background:rgba(201,168,76,.055)}
+.fselect{color:rgba(255,255,255,.82)}
+.fselect option{background:#1a1a1a;color:white}
+.ftextarea{resize:vertical;min-height:100px}
+.fcheck{display:flex;align-items:flex-start;gap:.65rem}
+.fcheck input{margin-top:3px;accent-color:var(--gold);flex-shrink:0}
+.fcheck-lbl{font-size:.75rem;color:rgba(255,255,255,.46);line-height:1.52}
+.fcheck-lbl a{color:var(--gold)}
+.btn-submit{background:var(--gold);color:var(--charcoal);font-family:var(--font-b);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:1.05rem 2rem;border:none;border-radius:4px;transition:background .2s,transform .15s;align-self:flex-start;margin-top:.4rem}
+.btn-submit:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-submit:disabled{opacity:.55}
+
+/* ===== LEGAL PAGES ===== */
+.legal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.legal-overlay.open{opacity:1;pointer-events:all}
+.legal-modal{background:#111;border:1px solid rgba(255,255,255,.1);border-radius:12px;width:100%;max-width:720px;max-height:90vh;overflow-y:auto;padding:2.5rem;position:relative;transform:translateY(20px);transition:transform .3s var(--ease)}
+.legal-overlay.open .legal-modal{transform:translateY(0)}
+.legal-modal::-webkit-scrollbar{width:4px}
+.legal-modal::-webkit-scrollbar-thumb{background:rgba(201,168,76,.4);border-radius:2px}
+.legal-close{position:absolute;top:1.2rem;right:1.2rem;background:rgba(255,255,255,.08);border:none;color:white;width:32px;height:32px;border-radius:50%;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.legal-close:hover{background:rgba(255,255,255,.15)}
+.legal-modal h2{font-family:var(--font-d);font-size:1.8rem;color:var(--gold);margin-bottom:1.5rem}
+.legal-modal h3{font-family:var(--font-d);font-size:1.1rem;color:white;margin:1.5rem 0 .6rem}
+.legal-modal p,.legal-modal li{font-size:.88rem;color:rgba(255,255,255,.68);line-height:1.75;margin-bottom:.7rem}
+.legal-modal ul{padding-left:1.2rem;margin-bottom:.7rem}
+.legal-modal a{color:var(--gold)}
+
+/* ===== FOOTER ===== */
+footer{background:#080808;padding:3rem 4vw 1.8rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:1.8rem}
+.footer-brand{display:flex;flex-direction:column;gap:.9rem}
+.footer-brand-row{display:flex;align-items:center;gap:.7rem}
+.footer-logo{height:36px;filter:brightness(0) invert(1)}
+.footer-brand-name{font-family:var(--font-d);font-size:1.1rem;color:var(--gold);font-weight:700}
+.footer-tagline{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.58;max-width:300px}
+.footer-col h4{font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1rem}
+.footer-col a{display:block;color:rgba(255,255,255,.55);font-size:.84rem;margin-bottom:.58rem;transition:color .2s}
+.footer-col a:hover{color:var(--gold)}
+.footer-col button.legal-link{display:block;background:none;border:none;color:rgba(255,255,255,.55);font-size:.84rem;font-family:var(--font-b);cursor:pointer;padding:0;margin-bottom:.58rem;text-align:left;transition:color .2s}
+.footer-col button.legal-link:hover{color:var(--gold)}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem}
+.footer-legal{font-size:.73rem;color:rgba(255,255,255,.28);line-height:1.65;max-width:680px}
+.footer-legal a{color:rgba(255,255,255,.4)}
+.footer-legal a:hover{color:var(--gold)}
+
+/* ===== IMAGE LIGHTBOX ===== */
+.lightbox{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:1.5rem}
+.lightbox.open{opacity:1;pointer-events:all}
+.lightbox img{max-width:100%;max-height:90vh;object-fit:contain;border-radius:4px;box-shadow:0 0 100px rgba(0,0,0,.6);transform:scale(.96);transition:transform .35s var(--ease)}
+.lightbox.open img{transform:scale(1)}
+.lb-close{position:absolute;top:1.2rem;right:1.2rem;background:rgba(255,255,255,.1);border:none;color:white;width:44px;height:44px;border-radius:50%;font-size:1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.lb-close:hover{background:rgba(255,255,255,.2)}
+
+/* ===== NOTIFICATION ===== */
+.notif{position:fixed;top:78px;right:1rem;z-index:1100;background:var(--gold);color:var(--charcoal);padding:.9rem 1.3rem;border-radius:4px;font-weight:600;font-size:.84rem;transform:translateX(150%);transition:transform .4s var(--ease);box-shadow:0 8px 28px rgba(0,0,0,.3);max-width:340px}
+.notif.show{transform:translateX(0)}
+
+/* ===== COOKIE BANNER ===== */
+.cookie{position:fixed;bottom:0;left:0;right:0;z-index:900;background:#151515;border-top:1px solid rgba(201,168,76,.25);padding:1.1rem 4vw;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;transform:translateY(100%);transition:transform .5s var(--ease)}
+.cookie.show{transform:translateY(0)}
+.cookie-text{font-size:.8rem;color:rgba(255,255,255,.65);max-width:600px;line-height:1.58}
+.cookie-text a{color:var(--gold);text-decoration:underline;cursor:pointer}
+.cookie-btns{display:flex;gap:.7rem}
+.btn-ca{background:var(--gold);color:var(--charcoal);font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.65rem 1.3rem;border:none;border-radius:3px;cursor:pointer}
+.btn-cd{background:transparent;color:rgba(255,255,255,.45);font-size:.74rem;font-weight:500;padding:.65rem .95rem;border:1px solid rgba(255,255,255,.12);border-radius:3px;cursor:pointer}
+
+/* ===== SCROLL REVEAL ===== */
+.rev{opacity:0;transform:translateY(24px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.rev.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== MULTILINGUAL ===== */
+[data-t]{display:none}
+[data-t].on{display:inline-block}
+span[data-t].on,p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t].on,em[data-t].on,a[data-t].on,label[data-t].on,button[data-t].on,blockquote[data-t].on,li[data-t].on{display:inline}
+p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t].on,blockquote[data-t].on,ul[data-t].on{display:block}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:960px){
+  .story-grid,.chair-grid,.led-grid,.contact-grid,.consult-grid{grid-template-columns:1fr;gap:2.5rem}
+  .story-visual{height:280px}
+  .story-img-big{width:80%;height:260px}
+  .story-img-sm{width:46%;height:170px}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .opt-grid,.feat-grid,.process-steps{grid-template-columns:repeat(2,1fr)}
+  .process-steps::before{display:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .hero-image{width:100%;opacity:.18}
+  section{padding:5rem 4vw}
+  .chair-grid{padding-top:0}
+}
+@media(max-width:620px){
+  .prod-grid,.opt-grid,.feat-grid,.process-steps,.consult-services{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .hero-stats{gap:1.8rem}
+  .test-card{min-width:290px;max-width:290px;padding:1.8rem}
+  .logo-sub{font-size:.5rem;letter-spacing:.14em}
+  .pa-chair-photo{background-position:center 20% !important}
+  .pa-led-photo{background-position:center 8% !important}
+  .variants-row{grid-template-columns:1fr 1fr}
+  .hero-h1{font-size:clamp(2rem,7vw,2.8rem)}
+  .swatch-section{margin-top:1.2rem}
+  .trust-bar{gap:.5rem 1.5rem;padding:.8rem 4vw;justify-content:center}
+  .trust-item{font-size:.67rem}
+  .prod-card{height:300px}
+  .nav-links a{font-size:.82rem;padding:.75rem 4vw}
+  section{padding:4rem 5vw}
+  .variants-main img{height:220px}
+  .variants-row .var-img img{height:130px}
+  .test-section{padding:4rem 0}
+  .footer-top{gap:1.5rem}
+  .opt-grid{gap:1rem}
+  .process-steps{gap:1.5rem}
+  .consult-grid{gap:2rem}
+  .led-grid{gap:2rem}
+  .chair-cfg-grid{gap:1.5rem}
+  .chair-spec-panel{position:static;padding:1.4rem}
+  .chair-extras-grid{grid-template-columns:repeat(2,1fr)}
+  .story-grid{gap:2rem}
+  .story-visual{height:240px}
+  .story-img-big{width:82%;height:210px}
+  .story-img-sm{width:44%;height:140px}
+  .contact-grid{gap:2rem}
+  .feat-grid{gap:1.2rem}
+}
+@media(max-width:480px){
+  .hero{padding-top:60px}
+  .hero-h1{font-size:clamp(1.8rem,8vw,2.4rem)}
+  .hero-sub{font-size:.88rem}
+  .stat-num{font-size:1.5rem}
+  .prod-card{height:270px}
+  .chair-main-photo img{height:220px}
+  .chair-spec-panel{padding:1.1rem .9rem}
+  .led-grid{gap:1.5rem}
+  .mission-h2{font-size:1.35rem}
+  .lbl{font-size:.6rem}
+  section{padding:3.5rem 5vw}
+  .h2{font-size:clamp(1.65rem,5.5vw,2.2rem)}
+  .footer-top{gap:1rem}
+  .test-card{min-width:270px;max-width:270px}
+  .hero-stats{gap:1.2rem;margin-top:2rem}
+  .trust-bar{display:grid;grid-template-columns:1fr 1fr;gap:.6rem 1rem;justify-items:center;text-align:center;padding:.9rem 5vw}
+  .trust-item{justify-content:center;font-size:.65rem}
+  .lang-name{display:none}
+  .lang-btn{padding:.35rem .5rem;gap:.25rem}
+  .logo-name{font-size:.88rem}
+}
+@media(max-width:400px){
+  .hero-h1{font-size:1.9rem}
+  .hero-btns .btn-p,.hero-btns .btn-s{padding:.8rem 1.4rem;font-size:.76rem}
+  .test-card{min-width:260px;max-width:260px;padding:1.5rem}
+}
+
+/* ===== WORD ROTATOR ===== */
+.hero-rw{display:inline-block;font-style:italic;color:var(--gold);font-weight:500}
+@keyframes rwFlip{0%{opacity:1;transform:translateY(0)}25%{opacity:0;transform:translateY(-10px)}75%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
+.hero-rw.flip{animation:rwFlip .65s var(--ease) both}
+
+/* ===== WEB MOCKUP (consulting) ===== */
+.web-mockup{background:#131a24;border-radius:10px;overflow:hidden;box-shadow:0 0 60px rgba(45,74,138,.3),0 0 0 1px rgba(255,255,255,.1);width:100%;aspect-ratio:4/3;display:flex;flex-direction:column;position:relative}
+.wm-bar{display:flex;align-items:center;gap:.4rem;padding:.55rem .8rem;background:#1d2535;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.wm-dot{width:10px;height:10px;border-radius:50%}
+.wm-dot:nth-child(1){background:#FF5F57}.wm-dot:nth-child(2){background:#FFBD2E}.wm-dot:nth-child(3){background:#28CA41}
+.wm-url{background:rgba(255,255,255,.1);border-radius:4px;height:18px;flex:1;max-width:220px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:rgba(255,255,255,.5);letter-spacing:.04em}
+.wm-body{flex:1;overflow:hidden;padding:.8rem;display:flex;flex-direction:column;gap:.5rem}
+.wm-hero-blk{height:36%;background:linear-gradient(135deg,rgba(201,168,76,.28),rgba(45,74,138,.38));border-radius:5px;position:relative;overflow:hidden;flex-shrink:0}
+.wm-hero-blk::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.06) 50%,transparent 100%);animation:wm-shimmer 2.8s ease-in-out infinite}
+.wm-rows{display:flex;flex-direction:column;gap:.35rem}
+.wm-ln{height:7px;border-radius:4px;background:rgba(255,255,255,.22)}
+.wm-ln.h{width:48%;background:rgba(201,168,76,.7)}
+.wm-ln.m{width:80%;animation-delay:.2s}
+.wm-ln.s{width:62%;animation-delay:.4s}
+.wm-cards-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;flex-shrink:0}
+.wm-crd{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:.4rem;display:flex;flex-direction:column;gap:.25rem}
+.wm-crd-img{height:26px;background:rgba(201,168,76,.3);border-radius:3px;margin-bottom:.15rem}
+.wm-crd div{height:5px;border-radius:3px;background:rgba(255,255,255,.22)}
+.wm-crd div:last-child{width:55%;background:rgba(201,168,76,.55)}
+.wm-cursor{width:10px;height:10px;border-radius:50%;background:var(--gold);opacity:.85;position:absolute;pointer-events:none;animation:wm-cur 5s ease-in-out infinite}
+@keyframes wm-shimmer{0%,100%{transform:translateX(-100%)}50%{transform:translateX(250%)}}
+@keyframes wm-cur{0%,100%{top:18%;left:22%;opacity:0}10%{opacity:1}35%{top:58%;left:68%}65%{top:38%;left:82%}88%{opacity:1}95%{opacity:0}}
+
+/* ===== EXTRA REVEAL VARIANTS ===== */
+.rev-l{opacity:0;transform:translateX(-30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rev-l.in{opacity:1;transform:none}
+.rev-r{opacity:0;transform:translateX(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rev-r.in{opacity:1;transform:none}
+.rev-sc{opacity:0;transform:scale(.95);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.rev-sc.in{opacity:1;transform:scale(1)}
+
+/* ===== CHAIRS UNIFIED SECTION ===== */
+.chairs-opts-divider{border:none;border-top:1px solid rgba(0,0,0,.08);margin:3.5rem 0 3rem}
+.chairs-opts-header{max-width:1280px;margin:0 auto 2.5rem}
+
+/* ===== FLOAT BADGE POSITION FIX ===== */
+.consult-badge{bottom:-1rem}
+</style>
+<style>
+/* ===== PRODUCT CARD ANIMATIONS ===== */
+.prod-anim{position:absolute;inset:0;overflow:hidden}
+/* Chair */
+.pa-chair{background:linear-gradient(155deg,#1c1510 0%,#2c1e0e 60%,#1a1208 100%)}
+.pa-seat-rows{position:absolute;top:12%;left:50%;transform:translateX(-50%);width:88%;display:flex;flex-direction:column;gap:10px}
+.pa-row{display:flex;gap:5px;justify-content:center}
+.pa-dot{width:9px;height:15px;background:rgba(201,168,76,.18);border-radius:2px;animation:dotPulse 3.5s ease-in-out infinite}
+.pa-swatch-grid{position:absolute;bottom:8%;right:6%;display:grid;grid-template-columns:repeat(6,20px);gap:3px}
+.pa-sw{width:20px;height:20px;border-radius:2px;animation:swPop 5s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{opacity:.18}50%{opacity:.45}}
+@keyframes swPop{0%,5%{opacity:0;transform:scale(.6)}15%,75%{opacity:1;transform:scale(1)}90%,100%{opacity:0;transform:scale(.7)}}
+/* LED */
+.pa-led-bg{background:linear-gradient(155deg,#030810 0%,#08121e 100%)}
+.pa-led-sign-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%)}
+.pa-led-frame{border:2px solid rgba(201,168,76,.55);border-radius:5px;padding:1.2rem 2.2rem;position:relative;animation:ledFrameGlow 2.2s ease-in-out infinite;text-align:center}
+.pa-led-frame::after{content:'';position:absolute;inset:-5px;border-radius:9px;border:1px solid rgba(201,168,76,.15);animation:ledFrameGlow 2.2s ease-in-out infinite .6s}
+.pa-led-txt{font-family:'Fraunces',Georgia,serif;font-size:1.55rem;font-weight:700;color:#C9A84C;letter-spacing:.14em;animation:ledTxtGlow 2.2s ease-in-out infinite;white-space:nowrap}
+.pa-led-sub-txt{font-size:.5rem;letter-spacing:.22em;color:rgba(201,168,76,.45);text-transform:uppercase;margin-top:.3rem}
+.pa-led-row{display:flex;gap:5px;justify-content:center;margin-top:1rem}
+.pa-led-dot{width:5px;height:5px;border-radius:50%;background:rgba(201,168,76,.45);animation:ldot 1.3s ease-in-out infinite}
+.pa-led-dot:nth-child(2){animation-delay:.2s}.pa-led-dot:nth-child(3){animation-delay:.4s}.pa-led-dot:nth-child(4){animation-delay:.6s}.pa-led-dot:nth-child(5){animation-delay:.8s}
+@keyframes ledFrameGlow{0%,100%{box-shadow:0 0 6px rgba(201,168,76,.15),inset 0 0 6px rgba(201,168,76,.04)}50%{box-shadow:0 0 28px rgba(201,168,76,.55),inset 0 0 16px rgba(201,168,76,.12)}}
+@keyframes ledTxtGlow{0%,100%{text-shadow:0 0 8px rgba(201,168,76,.35)}50%{text-shadow:0 0 18px rgba(201,168,76,.9),0 0 35px rgba(201,168,76,.45)}}
+@keyframes ldot{0%,100%{opacity:.3;transform:scale(.7)}50%{opacity:1;transform:scale(1.3)}}
+/* Other services */
+.pa-other-bg{background:linear-gradient(155deg,#142034 0%,#1e2e48 100%)}
+.pa-svc-grid{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;grid-template-columns:1fr 1fr;gap:10px;width:72%}
+.pa-svc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:.8rem .7rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:svcFloat 4.5s ease-in-out infinite}
+.pa-svc:nth-child(2){animation-delay:.6s}.pa-svc:nth-child(3){animation-delay:1.1s}.pa-svc:nth-child(4){animation-delay:1.6s}
+.pa-svc svg{width:24px;height:24px;color:#C9A84C}
+.pa-svc-lbl{font-size:.52rem;letter-spacing:.1em;color:rgba(255,255,255,.45);text-transform:uppercase;text-align:center;line-height:1.3}
+@keyframes svcFloat{0%,100%{transform:translateY(0);border-color:rgba(255,255,255,.07)}50%{transform:translateY(-5px);border-color:rgba(201,168,76,.3)}}
+
+/* ===== MATERIALS CARD ===== */
+.pa-mat-grid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1.2rem;padding:10% 10% 42%}
+.pa-mat-item{display:flex;align-items:center;gap:1rem;width:100%}
+.pa-mat-item-ico{width:44px;height:44px;flex-shrink:0;border-radius:8px;background:rgba(201,168,76,.25);border:1px solid rgba(201,168,76,.65);display:flex;align-items:center;justify-content:center}
+.pa-mat-item svg{width:20px;height:20px;color:rgba(201,168,76,1)}
+.pa-mat-item-lbl{font-size:.68rem;letter-spacing:.08em;color:rgba(255,255,255,1);text-transform:uppercase;line-height:1.3;font-weight:600}
+
+/* ===== CHAIR SECTION REDESIGN ===== */
+.chair-section{background:#F2EFE9;padding:6.5rem 4vw}
+.chair-hd{max-width:1280px;margin:0 auto 4rem;text-align:center}
+.chair-hd .lead{margin:0 auto;max-width:560px}
+.chair-cfg-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:3.5rem;align-items:start}
+.chair-cfg-left{}
+.chair-spec-panel{background:white;border-radius:10px;padding:2rem 1.8rem;box-shadow:0 6px 28px rgba(0,0,0,.07);position:sticky;top:80px}
+.chair-spec-tag{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem;display:flex;align-items:center;gap:.6rem}
+.chair-spec-tag::before{content:'';width:18px;height:1px;background:var(--gold)}
+.chair-spec-h{font-family:var(--font-d);font-size:1.28rem;font-weight:600;line-height:1.2;color:var(--charcoal);margin-bottom:1.4rem}
+.chair-spec-h em{font-style:italic;color:var(--gold)}
+.chair-spec-cta{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.6rem;background:var(--gold);color:var(--charcoal);font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.7rem 1.4rem;border-radius:4px;transition:background .2s,transform .15s}
+.chair-spec-cta:hover{background:var(--gold-light);transform:translateY(-2px)}
+/* Accessories strip */
+.chair-acc{max-width:1280px;margin:3.5rem auto 0;padding-top:2.5rem;border-top:1px solid rgba(0,0,0,.09)}
+.chair-acc-hd{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.chair-acc-lbl{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.chair-acc-sub{font-family:var(--font-d);font-size:1.15rem;font-weight:600;color:var(--charcoal)}
+.chair-acc-sub em{font-style:italic;color:var(--gold)}
+.chair-acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.chair-acc-item{display:flex;align-items:flex-start;gap:.85rem;background:white;border:1px solid var(--light-gray);border-radius:7px;padding:1.1rem 1.1rem;transition:border-color .25s,transform .3s var(--ease),box-shadow .3s}
+.chair-acc-item:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+.chair-acc-ico{width:38px;height:38px;flex-shrink:0;border-radius:7px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.chair-acc-ico svg{width:18px;height:18px}
+.chair-acc-body strong{display:block;font-size:.88rem;font-weight:600;color:var(--charcoal);margin-bottom:.2rem;font-family:var(--font-d)}
+.chair-acc-body span{font-size:.78rem;color:var(--mid-gray);line-height:1.5}
+@media(max-width:960px){
+  .chair-cfg-grid{grid-template-columns:1fr;gap:2.5rem}
+  .chair-spec-panel{position:static}
+  .chair-acc-grid{grid-template-columns:repeat(2,1fr)}
+  .chair-hd{text-align:left}
+}
+@media(max-width:620px){
+  .chair-acc-grid{grid-template-columns:1fr}
+  .chair-hd{text-align:left}
+}
+
+/* ===== LED SECTION FIX ===== */
+.led-grid{grid-template-columns:1.4fr 1fr}
+.led-visual{aspect-ratio:3/4;max-height:500px}
+@media(max-width:960px){.led-grid{grid-template-columns:1fr}}
+
+/* ===== CONSULTING PASTORAL ===== */
+.cs-pastoral{font-size:.75rem;color:rgba(255,255,255,.4);font-style:italic;margin-top:.3rem}
+
+/* ===== PHOTO PRODUCT CARD ANIMATIONS ===== */
+.pa-hall {
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transform-origin:center 42%;
+  animation:hallZoom 10s ease-in-out infinite;
+}
+@keyframes hallZoom {
+  0%,12% { transform:scale(2.6); filter:brightness(0.25); }
+  42%,58% { transform:scale(1.05); filter:brightness(0.58); }
+  88%,100% { transform:scale(2.6); filter:brightness(0.25); }
+}
+.pa-single-chair {
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  animation:singleFade 10s ease-in-out infinite;
+}
+.pa-single-chair img {
+  width:62%;height:80%;object-fit:contain;
+  filter:drop-shadow(0 30px 60px rgba(0,0,0,.9)) brightness(1.05);
+}
+@keyframes singleFade {
+  0%,14% { opacity:1; }
+  38%,100% { opacity:0; }
+}
+.pa-led-photo {
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  filter:brightness(0.52) saturate(0.85);
+}
+.pa-led-glow {
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 85% 60% at 50% 35%, rgba(201,168,76,.6), transparent 65%);
+  animation:ledGlowPulse2 2.4s ease-in-out infinite;
+}
+@keyframes ledGlowPulse2 {
+  0%,100% { opacity:0.1; }
+  50% { opacity:0.5; }
+}
+.pa-led-scan {
+  position:absolute;left:0;right:0;height:2px;
+  background:linear-gradient(to right, transparent 0%, rgba(201,168,76,.7) 50%, transparent 100%);
+  animation:ledScanLine 3.8s linear infinite;
+  top:0;
+}
+@keyframes ledScanLine {
+  0% { top:10%; opacity:0; }
+  5% { opacity:1; }
+  90% { opacity:0.8; }
+  100% { top:90%; opacity:0; }
+}
+.pa-web-mini {
+  position:absolute;
+  top:30%;left:50%;
+  transform:translate(-50%,-50%);
+  width:80%;
+  max-width:300px;
+}
+.pa-web-mini .web-mockup {
+  aspect-ratio:4/3.2;
+  box-shadow:0 0 50px rgba(45,74,138,.35),0 0 0 1px rgba(255,255,255,.06);
+}
+
+/* ===== HERO AURORA ANIMATION ===== */
+.hero-bg {
+  animation:auroraShift 18s ease-in-out infinite alternate;
+}
+@keyframes auroraShift {
+  0% { background-position:0% 0%; opacity:1; }
+  50% { background-position:5% 3%; opacity:0.88; }
+  100% { background-position:0% 0%; opacity:1; }
+}
+
+/* ===== FLOATING HERO ORBS ===== */
+.hero-orb {
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle, rgba(201,168,76,.07), transparent 70%);
+  animation:orbFloat var(--dur,20s) ease-in-out infinite alternate;
+}
+@keyframes orbFloat {
+  0% { transform:translate(0,0) scale(1); }
+  100% { transform:translate(var(--dx,30px), var(--dy,-20px)) scale(1.1); }
+}
+
+/* ===== DARK SECTION AMBIENT ===== */
+.products-section,.led-section,.contact-section { position:relative; overflow:hidden; }
+.products-section::before,.led-section::before,.contact-section::before {
+  content:'';position:absolute;pointer-events:none;z-index:0;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle, rgba(201,168,76,.035), transparent 65%);
+  top:-200px;right:-200px;
+  animation:ambientOrb 22s ease-in-out infinite;
+}
+@keyframes ambientOrb {
+  0%,100% { transform:translate(0,0); }
+  33% { transform:translate(-60px,80px); }
+  66% { transform:translate(40px,-50px); }
+}
+
+/* ===== STAT COUNTER ===== */
+.stat-num { transition:none; }
+
+/* ===== CHAIR PRODUCT HERO ===== */
+.chair-product-hero {
+  position:relative;border-radius:8px;overflow:hidden;margin-bottom:1.6rem;
+  background:transparent;
+  box-shadow:0 4px 20px rgba(0,0,0,.06);
+}
+.chair-product-hero img {
+  width:100%;height:160px;object-fit:contain;
+  object-position:center;padding:.8rem;
+  background:transparent;
+  transition:transform .6s var(--ease);
+}
+.chair-spec-panel:hover .chair-product-hero img { transform:scale(1.04); }
+.chair-product-badge {
+  position:absolute;top:.7rem;right:.7rem;
+  background:var(--gold);color:var(--charcoal);
+  font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  padding:.3rem .6rem;border-radius:3px;
+}
+
+/* ===== CHAIR ACC FONT FIX ===== */
+.chair-acc-body strong { font-family:var(--font-d); }
+
+/* ===== EM PULSE ON DARK SECTIONS ===== */
+.h2 em, .hero-h1 em {
+  display:inline-block;
+  animation:emPulse 4s ease-in-out infinite;
+}
+@keyframes emPulse {
+  0%,100% { text-shadow:none; }
+  50% { text-shadow:0 0 20px rgba(201,168,76,.4); }
+}
+
+/* ===== MISSION SIG STYLE ===== */
+.mission-sig { opacity:.7; font-size:1rem; }
+
+/* ===== PROD CARD OVERLAY ===== */
+.prod-card-ov{background:linear-gradient(to top,rgba(4,4,4,.92) 0%,rgba(4,4,4,.08) 44%,transparent 100%)}
+.prod-card:hover .prod-card-ov{background:linear-gradient(to top,rgba(4,4,4,.95) 0%,rgba(4,4,4,.32) 58%,rgba(4,4,4,.04) 100%)}
+.prod-card.t .prod-card-ov{background:rgba(4,4,4,.97)!important}
+
+/* ===== CHAIR GRAPHIC CARD (products section) ===== */
+.pa-chair-graphic{position:absolute;inset:0;background:linear-gradient(155deg,#142034 0%,#1e2e48 100%);overflow:hidden}
+.pa-chair-graphic::before{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,248,210,.18) 0%,rgba(255,240,180,.06) 45%,transparent 70%);top:44%;left:50%;transform:translate(-50%,-50%);filter:blur(48px);pointer-events:none}
+.pa-chair-graphic-img{position:absolute;top:38%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 32px rgba(255,248,210,.45)) drop-shadow(0 0 10px rgba(255,244,200,.25)) brightness(1.25) contrast(1.05)}
+
+/* ===== LED PHOTO FIX ===== */
+.pa-led-photo{filter:brightness(0.82) saturate(0.95);background-position:center 12% !important}
+.pa-led-glow{background:radial-gradient(ellipse 80% 50% at 50% 20%,rgba(201,168,76,.15),transparent 60%)}
+.pa-led-scan{display:none}
+
+/* ===== WEB CARD POSITION FIX ===== */
+
+/* ===== LED SECTION OPVALLEN GLOW ===== */
+.led-glow-word{display:inline;animation:ledWordFlicker 2.2s ease-in-out infinite}
+@keyframes ledWordFlicker{
+  0%,100%{text-shadow:0 0 4px rgba(201,168,76,.35),0 0 8px rgba(201,168,76,.12);opacity:.88}
+  20%{text-shadow:0 0 18px rgba(201,168,76,.85),0 0 32px rgba(201,168,76,.5),0 0 55px rgba(201,168,76,.28);opacity:1}
+  35%{text-shadow:0 0 5px rgba(201,168,76,.4);opacity:.82}
+  60%{text-shadow:0 0 22px rgba(201,168,76,.92),0 0 40px rgba(201,168,76,.58),0 0 70px rgba(201,168,76,.32);opacity:1}
+  80%{text-shadow:0 0 3px rgba(201,168,76,.3);opacity:.85}
+}
+
+/* ===== CURSOR DYNAMIC STATES ===== */
+.cursor{transition:width .12s var(--ease),height .12s var(--ease),box-shadow .15s}
+.cursor-ring{transition:width .18s var(--ease),height .18s var(--ease),opacity .18s,background .15s,border-color .15s}
+.cursor.state-btn{width:0 !important;height:0 !important;opacity:0}
+.cursor-ring.state-btn{width:52px !important;height:52px !important;background:rgba(201,168,76,.12) !important;border-color:var(--gold-light) !important;opacity:.65 !important}
+.cursor.state-card{width:11px !important;height:11px !important;box-shadow:0 0 0 3px rgba(201,168,76,.2)}
+.cursor-ring.state-card{width:58px !important;height:58px !important;opacity:.28 !important}
+
+/* ===== CHAIR SECTION - SINGLE PHOTO ===== */
+.chair-main-photo{border-radius:10px;overflow:hidden;background:transparent;box-shadow:0 12px 45px rgba(0,0,0,.11);position:relative;margin-bottom:1.6rem}
+.chair-main-photo img{width:100%;height:320px;object-fit:contain;object-position:center;background:transparent;display:block}
+
+/* ===== CHAIR MATERIALS PRODUCTION VISUAL ===== */
+.chair-materials{margin-bottom:1.6rem}
+.cm-header{margin-bottom:1.2rem}
+.cm-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.6rem}
+.cm-eyebrow::before{content:'';width:18px;height:1px;background:var(--gold)}
+.cm-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cm-item{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:10px;overflow:hidden;transition:box-shadow .25s,transform .25s var(--ease)}
+.cm-item:hover{box-shadow:0 8px 28px rgba(0,0,0,.1);transform:translateY(-2px)}
+.cm-img-wrap{background:#f5f2ed;height:155px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cm-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.cm-item-body{padding:.8rem 1rem}
+.cm-item-title{font-family:var(--font-d);font-size:.9rem;font-weight:600;color:var(--charcoal);margin-bottom:.3rem}
+.cm-item-desc{font-size:.72rem;color:var(--mid-gray);line-height:1.5}
+@media(max-width:620px){.cm-grid{gap:.7rem}.cm-img-wrap{height:120px}.cm-item-body{padding:.6rem .8rem}}
+
+/* ===== INLINE EXTRAS IN SPEC PANEL ===== */
+.chair-spec-extras{margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid rgba(0,0,0,.07)}
+.chair-spec-extras-lbl{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.chair-spec-extras-lbl::before{content:'';width:14px;height:1px;background:var(--gold)}
+.chair-extras-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
+.chair-extra-pill{display:flex;align-items:center;gap:.32rem;padding:.42rem .45rem;background:#f8f5ef;border:1px solid rgba(0,0,0,.07);border-radius:5px;font-size:.68rem;color:var(--mid-gray);font-family:var(--font-d);transition:border-color .2s,background .2s,transform .22s var(--ease);cursor:default}
+.chair-extra-pill:hover{border-color:var(--gold);background:#fff;transform:translateY(-2px)}
+.chair-extra-pill svg{width:12px;height:12px;color:var(--gold);flex-shrink:0}
+
+/* ===== CHAIR ACC STRONG SPAN COLOR FIX ===== */
+.chair-acc-body strong,.chair-acc-body strong span{color:var(--charcoal)}
+
+@media(max-width:960px){.chair-extras-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.pa-chair-model-img{width:88%}.chair-main-photo img{height:240px}}
+
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));z-index:2001;width:0%;pointer-events:none;transition:width .08s linear}
+
+/* ===== MAGNETIC BUTTON FEEL ===== */
+.btn-p,.chair-spec-cta{transition:background .2s,transform .22s cubic-bezier(0.34,1.56,0.64,1),box-shadow .22s}
+.btn-p:hover,.chair-spec-cta:hover{transform:translateY(-3px) scale(1.025);box-shadow:0 10px 30px rgba(201,168,76,.28)}
+.btn-s{transition:border-color .2s,color .2s,transform .22s cubic-bezier(0.34,1.56,0.64,1)}
+.btn-s:hover{transform:translateY(-2px)}
+
+/* ===== FEAT CARD HOVER ===== */
+.feat-item{padding:1.2rem .8rem;border-radius:8px;transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),background .25s,box-shadow .3s}
+.feat-item:hover{transform:translateY(-6px);background:rgba(201,168,76,.04);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+
+/* ===== PROCESS STEP HOVER ===== */
+.proc-step{transition:transform .3s var(--ease)}
+.proc-step:hover{transform:translateY(-4px)}
+.proc-num{transition:transform .3s cubic-bezier(0.34,1.56,0.64,1),background .2s,color .2s}
+.proc-step:hover .proc-num{transform:scale(1.1);background:var(--gold);color:var(--charcoal)}
+
+/* ===== LED VISUAL AMBIENT ===== */
+.led-visual::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 70% 35% at 50% 10%,rgba(201,168,76,.14),transparent 60%);pointer-events:none;animation:ledVisGlow 3.5s ease-in-out infinite}
+@keyframes ledVisGlow{0%,100%{opacity:.4}50%{opacity:.9}}
+
+/* ===== INPUT FOCUS GLOW ===== */
+.finput:focus,.fselect:focus,.ftextarea:focus{box-shadow:0 0 0 3px rgba(201,168,76,.14)}
+
+/* ===== TESTIMONIAL HOVER ===== */
+.test-card{transition:transform .35s var(--ease),border-color .25s,box-shadow .3s}
+.test-card:hover{transform:translateY(-5px);border-color:rgba(201,168,76,.22);box-shadow:0 16px 40px rgba(0,0,0,.28)}
+
+/* ===== GOLD SHIMMER on short labels ===== */
+@keyframes goldShimmer{0%{left:-120%}45%,100%{left:160%}}
+.prod-cat{position:relative;overflow:hidden}
+.prod-cat::after{content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:goldShimmer 4.5s ease-in-out infinite}
+
+/* ===== QUALITY LIST ITEM HOVER ===== */
+.q-item{transition:transform .25s var(--ease)}
+.q-item:hover{transform:translateX(4px)}
+
+/* ===== CS-ITEM HOVER LIFT ===== */
+.cs-item{transition:border-color .2s,background .2s,transform .28s var(--ease)}
+.cs-item:hover{transform:translateY(-3px)}
+
+/* ===== CHAIR EXTRA PILL GOLD GLOW ===== */
+.chair-extra-pill:hover{box-shadow:0 4px 14px rgba(201,168,76,.15)}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- LEGAL MODALS -->
+<div class="legal-overlay" id="modal-privacy">
+  <div class="legal-modal">
+    <button class="legal-close" onclick="closeLegal('privacy')">✕</button>
+    <h2><span data-t="nl" class="on">Privacyverklaring</span><span data-t="en">Privacy Policy</span><span data-t="it">Informativa sulla Privacy</span><span data-t="fr">Politique de Confidentialité</span><span data-t="de">Datenschutzerklärung</span></h2>
+
+    <h3><span data-t="nl" class="on">1. Verwerkingsverantwoordelijke en contactgegevens</span><span data-t="en">1. Data controller and contact details</span><span data-t="it">1. Titolare del trattamento e dati di contatto</span><span data-t="fr">1. Responsable du traitement et coordonnées</span><span data-t="de">1. Verantwortlicher und Kontaktdaten</span></h3>
+    <p><span data-t="nl" class="on">De verwerkingsverantwoordelijke in de zin van Verordening (EU) 2016/679 van het Europees Parlement en de Raad van 27 april 2016 betreffende de bescherming van natuurlijke personen in verband met de verwerking van persoonsgegevens en betreffende het vrije verkeer van die gegevens (hierna: "AVG" of "GDPR") is: A-one, eenmanszaak naar Belgisch recht, ingeschreven onder ondernemingsnummer BE 0768.925.136, BTW-identificatienummer BTW BE0768925136, bereikbaar via <a href="mailto:info@aone-group.com">info@aone-group.com</a> en +32 484 65 46 24.</span><span data-t="en">The data controller within the meaning of Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data (hereinafter: "GDPR") is: A-one, a sole proprietorship under Belgian law, registered under company number BE 0768.925.136, VAT identification number VAT BE0768925136, reachable via <a href="mailto:info@aone-group.com">info@aone-group.com</a> and +32 484 65 46 24.</span><span data-t="it">Il titolare del trattamento è: A-one, ditta individuale di diritto belga, iscritta con il numero BE 0768.925.136, IVA BE0768925136, raggiungibile tramite <a href="mailto:info@aone-group.com">info@aone-group.com</a> e +32 484 65 46 24.</span><span data-t="fr">Le responsable du traitement est: A-one, entreprise individuelle de droit belge, enregistrée sous le numéro BE 0768.925.136, TVA BE0768925136, joignable via <a href="mailto:info@aone-group.com">info@aone-group.com</a> et +32 484 65 46 24.</span><span data-t="de">Der Verantwortliche im Sinne der DSGVO ist: A-one, Einzelunternehmen nach belgischem Recht, eingetragen unter Unternehmensnummer BE 0768.925.136, USt BE0768925136, erreichbar über <a href="mailto:info@aone-group.com">info@aone-group.com</a> und +32 484 65 46 24.</span></p>
+
+    <h3><span data-t="nl" class="on">2. Categorieën van verwerkte persoonsgegevens en doeleinden</span><span data-t="en">2. Categories of processed personal data and purposes</span><span data-t="it">2. Categorie di dati personali trattati e finalità</span><span data-t="fr">2. Catégories de données personnelles traitées et finalités</span><span data-t="de">2. Kategorien verarbeiteter personenbezogener Daten und Zwecke</span></h3>
+    <p><span data-t="nl" class="on">A-one verwerkt uitsluitend persoonsgegevens die de betrokkene vrijwillig meedeelt via het contactformulier van de website, met name: naam, e-mailadres, telefoonnummer (facultatief), organisatienaam en land. Deze gegevens worden verwerkt met als enig doel het beantwoorden van de door de betrokkene ingediende aanvraag of vraag, alsook het opmaken en opvolgen van offertes en overeenkomsten in het kader van de handelsactiviteiten van A-one. A-one verwerkt geen bijzondere categorieën van persoonsgegevens in de zin van artikel 9 AVG. De website maakt gebruik van uitsluitend functionele cookies (opslagsleutels <em>aone-lang</em> en <em>aone-cookies</em> in de lokale opslag van de browser) die noodzakelijk zijn voor de correcte werking van de taalkeuze en het cookiebeheer. Er worden geen tracking-, profiling-, analytische of advertentiecookies van derden geplaatst.</span><span data-t="en">A-one processes only personal data voluntarily provided by the data subject via the website contact form, namely: name, email address, telephone number (optional), organisation name and country. This data is processed for the sole purpose of responding to the request or inquiry submitted by the data subject, as well as drawing up and following up quotes and agreements in the context of A-one's commercial activities. A-one does not process special categories of personal data within the meaning of Article 9 GDPR. The website uses exclusively functional cookies (storage keys <em>aone-lang</em> and <em>aone-cookies</em> in the browser's local storage) that are necessary for the correct functioning of language selection and cookie management. No tracking, profiling, analytical or third-party advertising cookies are placed.</span><span data-t="it">A-one tratta solo dati personali forniti volontariamente tramite il modulo di contatto: nome, email, telefono (facoltativo), organizzazione e paese. Tali dati sono trattati al solo scopo di rispondere alla richiesta del interessato. Il sito utilizza esclusivamente cookie funzionali necessari per la corretta selezione della lingua e la gestione dei cookie.</span><span data-t="fr">A-one traite uniquement les données personnelles fournies volontairement via le formulaire de contact: nom, email, téléphone (facultatif), organisation et pays. Ces données sont traitées dans le seul but de répondre à la demande de la personne concernée. Le site utilise exclusivement des cookies fonctionnels nécessaires au bon fonctionnement de la sélection de langue et de la gestion des cookies.</span><span data-t="de">A-one verarbeitet ausschließlich personenbezogene Daten, die freiwillig über das Kontaktformular der Website übermittelt werden: Name, E-Mail-Adresse, Telefonnummer (optional), Organisationsname und Land. Diese Daten werden ausschließlich zum Zweck der Beantwortung der eingereichten Anfrage verarbeitet. Die Website verwendet ausschließlich funktionale Cookies, die für die korrekte Sprachauswahl und das Cookie-Management erforderlich sind.</span></p>
+
+    <h3><span data-t="nl" class="on">3. Rechtsgrond van de verwerking</span><span data-t="en">3. Legal basis for processing</span><span data-t="it">3. Base giuridica del trattamento</span><span data-t="fr">3. Base juridique du traitement</span><span data-t="de">3. Rechtsgrundlage der Verarbeitung</span></h3>
+    <p><span data-t="nl" class="on">De verwerking van persoonsgegevens via het contactformulier is gebaseerd op de toestemming van de betrokkene overeenkomstig artikel 6, lid 1, sub a) AVG, verleend door het actief aanvinken van het toestemmingsvakje vóór het indienen van het formulier, en/of op de noodzakelijkheid voor de uitvoering van precontractuele maatregelen op verzoek van de betrokkene overeenkomstig artikel 6, lid 1, sub b) AVG. De verwerking van functionele cookies is gebaseerd op de strikt noodzakelijke uitzondering overeenkomstig artikel 5, lid 3 van Richtlijn 2002/58/EG zoals gewijzigd door Richtlijn 2009/136/EG, gezien deze cookies technisch noodzakelijk zijn voor de levering van de uitdrukkelijk door de gebruiker gevraagde dienst.</span><span data-t="en">The processing of personal data via the contact form is based on the consent of the data subject pursuant to Article 6(1)(a) GDPR, granted by actively ticking the consent checkbox prior to submitting the form, and/or on the necessity for the performance of pre-contractual measures at the request of the data subject pursuant to Article 6(1)(b) GDPR. The processing of functional cookies is based on the strictly necessary exception pursuant to Article 5(3) of Directive 2002/58/EC as amended by Directive 2009/136/EC, given that these cookies are technically necessary for the delivery of the service expressly requested by the user.</span><span data-t="it">Il trattamento dei dati del modulo di contatto si basa sul consenso (art. 6(1)(a) GDPR) e/o sulla necessità per misure precontrattuali (art. 6(1)(b) GDPR). I cookie funzionali si basano sull'eccezione strettamente necessaria ai sensi della Direttiva 2002/58/CE modificata.</span><span data-t="fr">Le traitement des données du formulaire de contact est fondé sur le consentement (art. 6(1)(a) RGPD) et/ou la nécessité pour des mesures précontractuelles (art. 6(1)(b) RGPD). Les cookies fonctionnels sont basés sur l'exception strictement nécessaire de la Directive 2002/58/CE modifiée.</span><span data-t="de">Die Verarbeitung der Kontaktformulardaten basiert auf der Einwilligung (Art. 6(1)(a) DSGVO) und/oder der Notwendigkeit für vorvertragliche Maßnahmen (Art. 6(1)(b) DSGVO). Funktionale Cookies basieren auf der strikt notwendigen Ausnahme gemäß der geänderten Richtlinie 2002/58/EG.</span></p>
+
+    <h3><span data-t="nl" class="on">4. Bewaartermijn en beveiligingsmaatregelen</span><span data-t="en">4. Retention period and security measures</span><span data-t="it">4. Periodo di conservazione e misure di sicurezza</span><span data-t="fr">4. Durée de conservation et mesures de sécurité</span><span data-t="de">4. Aufbewahrungsfrist und Sicherheitsmaßnahmen</span></h3>
+    <p><span data-t="nl" class="on">Persoonsgegevens worden bewaard gedurende een termijn van maximaal drie (3) jaar na het laatste contact, behoudens langere bewaartermijnen die worden opgelegd door toepasselijke wettelijke of reglementaire bepalingen, waaronder doch niet beperkt tot de boekhoudkundige en fiscale bewaarverplichtingen. Na het verstrijken van de toepasselijke bewaartermijn worden de persoonsgegevens onherroepelijk vernietigd of geanonimiseerd op een wijze die heridentificatie uitsluit. A-one past passende technische en organisatorische maatregelen toe ter beveiliging van de verwerkte persoonsgegevens tegen verlies, vernietiging, beschadiging, wijziging of ongeoorloofde toegang, rekening houdend met de stand van de techniek, de uitvoeringskosten en de aard, de omvang, de context en de doeleinden van de verwerking.</span><span data-t="en">Personal data is retained for a maximum period of three (3) years after the last contact, except where longer retention periods are imposed by applicable legal or regulatory provisions, including but not limited to accounting and fiscal retention obligations. Upon expiry of the applicable retention period, personal data is irrevocably destroyed or anonymised in a manner that excludes re-identification. A-one applies appropriate technical and organisational measures to secure the processed personal data against loss, destruction, damage, alteration or unauthorised access, taking into account the state of the art, the cost of implementation and the nature, scope, context and purposes of the processing.</span><span data-t="it">I dati personali vengono conservati per un massimo di tre (3) anni dall'ultimo contatto, salvo obblighi legali più lunghi. A-one applica misure tecniche e organizzative adeguate per proteggere i dati personali.</span><span data-t="fr">Les données personnelles sont conservées pendant une durée maximale de trois (3) ans après le dernier contact, sauf obligations légales plus longues. A-one applique des mesures techniques et organisationnelles appropriées pour protéger les données personnelles.</span><span data-t="de">Personenbezogene Daten werden maximal drei (3) Jahre nach dem letzten Kontakt aufbewahrt, sofern keine längeren gesetzlichen Aufbewahrungspflichten bestehen. A-one wendet angemessene technische und organisatorische Maßnahmen zum Schutz personenbezogener Daten an.</span></p>
+
+    <h3><span data-t="nl" class="on">5. Rechten van de betrokkene en uitoefening ervan</span><span data-t="en">5. Rights of the data subject and their exercise</span><span data-t="it">5. Diritti dell'interessato e loro esercizio</span><span data-t="fr">5. Droits de la personne concernée et leur exercice</span><span data-t="de">5. Rechte der betroffenen Person und deren Ausübung</span></h3>
+    <p><span data-t="nl" class="on">Overeenkomstig de AVG beschikt elke betrokkene over de volgende rechten met betrekking tot zijn of haar persoonsgegevens: het recht op inzage (art. 15 AVG), het recht op rectificatie (art. 16 AVG), het recht op gegevenswissing (art. 17 AVG), het recht op beperking van de verwerking (art. 18 AVG), het recht op gegevensoverdraagbaarheid (art. 20 AVG) en het recht van bezwaar (art. 21 AVG). De uitoefening van voormelde rechten geschiedt uitsluitend door middel van een schriftelijk en voldoende gemotiveerd verzoek, gericht aan <a href="mailto:info@aone-group.com">info@aone-group.com</a>, met bijvoeging van een kopie van een geldig identiteitsbewijs ter verificatie van de identiteit van de verzoeker. A-one verbindt er zich toe het verzoek te behandelen binnen de wettelijk voorgeschreven termijn van één (1) maand, verlengbaar met twee (2) bijkomende maanden ingeval van bijzondere complexiteit of een groot aantal verzoeken, onder kennisgeving aan de verzoeker. Het intrekken van toestemming tast de rechtmatigheid van de op die toestemming gebaseerde verwerking vóór de intrekking niet aan.</span><span data-t="en">In accordance with the GDPR, every data subject has the following rights regarding their personal data: the right of access (Art. 15 GDPR), the right to rectification (Art. 16 GDPR), the right to erasure (Art. 17 GDPR), the right to restriction of processing (Art. 18 GDPR), the right to data portability (Art. 20 GDPR) and the right to object (Art. 21 GDPR). The exercise of the aforementioned rights is effected exclusively by means of a written and sufficiently reasoned request, addressed to <a href="mailto:info@aone-group.com">info@aone-group.com</a>, accompanied by a copy of a valid identity document to verify the identity of the applicant. A-one undertakes to handle the request within the legally prescribed period of one (1) month, extendable by two (2) additional months in case of special complexity or a large number of requests, with notification to the applicant. The withdrawal of consent does not affect the lawfulness of processing based on that consent prior to withdrawal.</span><span data-t="it">Ai sensi del GDPR, ogni interessato dispone dei diritti di cui agli artt. 15-21 GDPR. L'esercizio di tali diritti avviene esclusivamente tramite richiesta scritta e motivata a <a href="mailto:info@aone-group.com">info@aone-group.com</a>, con allegata copia di un documento d'identità valido.</span><span data-t="fr">Conformément au RGPD, toute personne concernée dispose des droits prévus aux art. 15 à 21 RGPD. L'exercice de ces droits s'effectue exclusivement par demande écrite et motivée adressée à <a href="mailto:info@aone-group.com">info@aone-group.com</a>, accompagnée d'une copie d'une pièce d'identité valide.</span><span data-t="de">Gemäß DSGVO stehen jeder betroffenen Person die Rechte der Art. 15-21 DSGVO zu. Die Ausübung dieser Rechte erfolgt ausschließlich durch einen schriftlichen, begründeten Antrag an <a href="mailto:info@aone-group.com">info@aone-group.com</a>, dem eine Kopie eines gültigen Ausweisdokuments beizufügen ist.</span></p>
+
+    <h3><span data-t="nl" class="on">6. Toepasselijk recht</span><span data-t="en">6. Applicable law</span><span data-t="it">6. Legge applicabile</span><span data-t="fr">6. Droit applicable</span><span data-t="de">6. Anwendbares Recht</span></h3>
+    <p><span data-t="nl" class="on">Deze privacyverklaring is onderworpen aan en dient te worden geïnterpreteerd overeenkomstig het Belgisch recht, met inbegrip van Verordening (EU) 2016/679 (AVG), de Belgische wet van 30 juli 2018 betreffende de bescherming van natuurlijke personen met betrekking tot de verwerking van persoonsgegevens, alsook Richtlijn 2002/58/EG zoals gewijzigd. Eventuele geschillen met betrekking tot de verwerking van persoonsgegevens zijn onderworpen aan de exclusieve bevoegdheid van de rechtbanken van het arrondissement Hasselt, onverminderd het recht van de betrokkene om zich te wenden tot de bevoegde toezichthoudende autoriteit overeenkomstig artikel 77 AVG.</span><span data-t="en">This privacy policy is governed by and shall be interpreted in accordance with Belgian law, including Regulation (EU) 2016/679 (GDPR), the Belgian Act of 30 July 2018 on the protection of natural persons with regard to the processing of personal data, as well as Directive 2002/58/EC as amended. Any disputes concerning the processing of personal data are subject to the exclusive jurisdiction of the courts of the district of Hasselt, without prejudice to the right of the data subject to address the competent supervisory authority in accordance with Article 77 GDPR.</span><span data-t="it">La presente informativa è disciplinata dalla legge belga, incluso il GDPR (UE) 2016/679 e la legge belga del 30 luglio 2018. Eventuali controversie sono soggette alla giurisdizione esclusiva dei tribunali del distretto di Hasselt.</span><span data-t="fr">La présente politique est régie par le droit belge, y compris le RGPD (UE) 2016/679 et la loi belge du 30 juillet 2018. Tout litige est soumis à la juridiction exclusive des tribunaux de l'arrondissement de Hasselt.</span><span data-t="de">Diese Datenschutzerklärung unterliegt belgischem Recht, einschließlich der DSGVO (EU) 2016/679 und dem belgischen Gesetz vom 30. Juli 2018. Streitigkeiten unterliegen der ausschließlichen Zuständigkeit der Gerichte des Bezirks Hasselt.</span></p>
+  </div>
+</div>
+
+<div class="legal-overlay" id="modal-cookies">
+  <div class="legal-modal">
+    <button class="legal-close" onclick="closeLegal('cookies')">✕</button>
+    <h2><span data-t="nl" class="on">Cookiebeleid</span><span data-t="en">Cookie Policy</span><span data-t="it">Politica sui Cookie</span><span data-t="fr">Politique de Cookies</span><span data-t="de">Cookie-Richtlinie</span></h2>
+    <h3><span data-t="nl" class="on">Welke cookies gebruiken wij?</span><span data-t="en">Which cookies do we use?</span><span data-t="it">Quali cookie utilizziamo?</span><span data-t="fr">Quels cookies utilisons-nous?</span><span data-t="de">Welche Cookies verwenden wir?</span></h3>
+    <p><span data-t="nl" class="on">Wij gebruiken uitsluitend functionele cookies die noodzakelijk zijn voor het correcte werking van de website. Er worden geen tracking-, analytische- of advertentiecookies geplaatst.</span><span data-t="en">We use only functional cookies necessary for the website to work correctly. No tracking, analytical or advertising cookies are placed.</span><span data-t="it">Utilizziamo solo cookie funzionali necessari per il corretto funzionamento del sito web.</span><span data-t="fr">Nous utilisons uniquement des cookies fonctionnels nécessaires au bon fonctionnement du site.</span><span data-t="de">Wir verwenden ausschließlich funktionale Cookies, die für die ordnungsgemäße Funktion der Website erforderlich sind.</span></p>
+    <h3><span data-t="nl" class="on">Overzicht functionele cookies</span><span data-t="en">Functional cookies overview</span><span data-t="it">Panoramica cookie funzionali</span><span data-t="fr">Aperçu des cookies fonctionnels</span><span data-t="de">Übersicht funktionale Cookies</span></h3>
+    <ul>
+      <li><strong>aone-lang</strong>: <span data-t="nl" class="on">Onthoudt uw taalkeuze (maximaal 1 jaar)</span><span data-t="en">Stores your language preference (max 1 year)</span><span data-t="it">Memorizza la preferenza linguistica (max 1 anno)</span><span data-t="fr">Mémorise votre choix de langue (max 1 an)</span><span data-t="de">Speichert Ihre Sprachauswahl (max. 1 Jahr)</span></li>
+      <li><strong>aone-cookies</strong>: <span data-t="nl" class="on">Slaat uw cookievoorkeur op (maximaal 1 jaar)</span><span data-t="en">Stores your cookie consent (max 1 year)</span><span data-t="it">Memorizza il consenso ai cookie (max 1 anno)</span><span data-t="fr">Mémorise votre consentement aux cookies (max 1 an)</span><span data-t="de">Speichert Ihre Cookie-Einwilligung (max. 1 Jahr)</span></li>
+    </ul>
+    <p><span data-t="nl" class="on">U kunt cookies verwijderen via uw browserinstellingen. Dit heeft geen invloed op de functionaliteit van de website, behalve dat uw voorkeur niet meer wordt onthouden.</span><span data-t="en">You can delete cookies via your browser settings. This does not affect website functionality, except that your preferences will no longer be remembered.</span><span data-t="it">Potete eliminare i cookie tramite le impostazioni del browser.</span><span data-t="fr">Vous pouvez supprimer les cookies via les paramètres de votre navigateur.</span><span data-t="de">Sie können Cookies über Ihre Browsereinstellungen löschen.</span></p>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:1.5rem"><span data-t="nl" class="on">Richtlijn 2009/136/EC en AVG 2016/679 zijn van toepassing.</span><span data-t="en">Directive 2009/136/EC and GDPR 2016/679 apply.</span><span data-t="it">Si applicano la Direttiva 2009/136/CE e il GDPR 2016/679.</span><span data-t="fr">La Directive 2009/136/CE et le RGPD 2016/679 s'appliquent.</span><span data-t="de">Richtlinie 2009/136/EG und DSGVO 2016/679 gelten.</span></p>
+  </div>
+</div>
+
+<div class="legal-overlay" id="modal-terms">
+  <div class="legal-modal">
+    <button class="legal-close" onclick="closeLegal('terms')">✕</button>
+    <h2><span data-t="nl" class="on">Algemene Voorwaarden</span><span data-t="en">Terms &amp; Conditions</span><span data-t="it">Termini e Condizioni</span><span data-t="fr">Conditions Générales</span><span data-t="de">Allgemeine Geschäftsbedingungen</span></h2>
+
+    <h3><span data-t="nl" class="on">1. Identiteit en hoedanigheid van de dienstverlener</span><span data-t="en">1. Identity and capacity of the service provider</span><span data-t="it">1. Identità e qualità del fornitore</span><span data-t="fr">1. Identité et qualité du prestataire</span><span data-t="de">1. Identität und Eigenschaft des Dienstleisters</span></h3>
+    <p><span data-t="nl" class="on">De onderhavige algemene voorwaarden (hierna: "AV") zijn opgesteld door en zijn van toepassing op alle rechtsverhoudingen waarbij A-one, eenmanszaak naar Belgisch recht, ingeschreven in de Kruispuntbank van Ondernemingen onder het ondernemingsnummer BE 0768.925.136, BTW-identificatienummer BTW BE0768925136, handelend in de hoedanigheid van dienstverlener, leverancier en/of adviseur (hierna: "A-one" of "de Opdrachtnemer"), partij is. De Opdrachtnemer is bereikbaar via het elektronisch adres <a href="mailto:info@aone-group.com">info@aone-group.com</a> en via het telefoonnummer +32 484 65 46 24. Communicatie langs elektronische weg geldt als rechtsgeldig schriftelijk bewijs voor de toepassing van de onderhavige AV, voor zover de authenticiteit en integriteit ervan aantoonbaar is.</span><span data-t="en">These general terms and conditions (hereinafter: "GTC") are established by and applicable to all legal relationships in which A-one, a sole proprietorship under Belgian law, registered in the Crossroads Bank for Enterprises under company number BE 0768.925.136, VAT identification number VAT BE0768925136, acting as service provider, supplier and/or adviser (hereinafter: "A-one" or "the Contractor"), is a party. The Contractor can be reached via the electronic address <a href="mailto:info@aone-group.com">info@aone-group.com</a> and via telephone number +32 484 65 46 24. Electronic communications shall constitute legally valid written evidence for the purposes of these GTC, insofar as their authenticity and integrity can be demonstrated.</span><span data-t="it">Le presenti condizioni generali (di seguito: "CG") sono redatte da e si applicano a tutti i rapporti giuridici in cui A-one, ditta individuale di diritto belga, iscritta alla Banca Carrefour delle Imprese con il numero BE 0768.925.136, numero di identificazione IVA BE0768925136, agendo in qualità di fornitore di servizi, fornitore e/o consulente (di seguito: "A-one" o "il Contraente"), è parte. Il Contraente è raggiungibile all'indirizzo elettronico <a href="mailto:info@aone-group.com">info@aone-group.com</a> e al numero di telefono +32 484 65 46 24.</span><span data-t="fr">Les présentes conditions générales (ci-après: "CG") sont établies par et applicables à toutes les relations juridiques dans lesquelles A-one, entreprise individuelle de droit belge, enregistrée à la Banque-Carrefour des Entreprises sous le numéro BE 0768.925.136, numéro d'identification TVA BE0768925136, agissant en qualité de prestataire de services, fournisseur et/ou conseiller (ci-après: "A-one" ou "le Prestataire"), est partie. Le Prestataire est joignable à l'adresse électronique <a href="mailto:info@aone-group.com">info@aone-group.com</a> et au numéro de téléphone +32 484 65 46 24.</span><span data-t="de">Die vorliegenden Allgemeinen Geschäftsbedingungen (nachfolgend: "AGB") werden von A-one, einem Einzelunternehmen nach belgischem Recht, eingetragen in der Crossroads Bank for Enterprises unter der Unternehmensnummer BE 0768.925.136, USt-Identifikationsnummer USt BE0768925136, handelnd als Dienstleistungserbringer, Lieferant und/oder Berater (nachfolgend: "A-one" oder "der Auftragnehmer"), aufgestellt und gelten für alle Rechtsverhältnisse, an denen der Auftragnehmer beteiligt ist. Der Auftragnehmer ist unter der elektronischen Adresse <a href="mailto:info@aone-group.com">info@aone-group.com</a> und der Telefonnummer +32 484 65 46 24 erreichbar.</span></p>
+
+    <h3><span data-t="nl" class="on">2. Toepasselijkheid, rangorde en afwijkingen</span><span data-t="en">2. Applicability, hierarchy and derogations</span><span data-t="it">2. Applicabilità, gerarchia e deroghe</span><span data-t="fr">2. Applicabilité, hiérarchie et dérogations</span><span data-t="de">2. Anwendbarkeit, Rangfolge und Abweichungen</span></h3>
+    <p><span data-t="nl" class="on">De onderhavige AV zijn van toepassing op alle offertes, opdrachtbevestigingen, overeenkomsten, leveringen en diensten van A-one, met uitsluiting van de algemene voorwaarden van de Opdrachtgever, tenzij A-one zulks uitdrukkelijk en schriftelijk heeft aanvaard. Het loutere verstrekken van een aanvraag, het aanvaarden van een offerte of het plaatsen van een bestelling impliceert de onherroepelijke, onvoorwaardelijke en integrale aanvaarding van de onderhavige AV. Afwijkingen van de AV zijn slechts rechtsgeldig indien zij het voorwerp uitmaken van een afzonderlijke, door beide partijen ondertekende en gedateerde schriftelijke overeenkomst. De eventuele nietigheid of onafdwingbaarheid van één of meer bepalingen van de AV tast de geldigheid van de overige bepalingen niet aan, overeenkomstig het beginsel van gedeeltelijke nietigheid zoals neergelegd in het Belgisch verbintenissenrecht.</span><span data-t="en">These GTC apply to all quotes, order confirmations, agreements, deliveries and services of A-one, to the exclusion of the general terms and conditions of the Client, unless A-one has expressly and in writing agreed thereto. The mere submission of a request, the acceptance of a quote or the placement of an order implies the irrevocable, unconditional and integral acceptance of these GTC. Derogations from the GTC are only legally valid if they are the subject of a separate, written agreement signed and dated by both parties. The possible nullity or unenforceability of one or more provisions of the GTC does not affect the validity of the remaining provisions, in accordance with the principle of partial nullity as laid down in Belgian contract law.</span><span data-t="it">Le presenti CG si applicano a tutti i preventivi, conferme d'ordine, accordi, consegne e servizi di A-one, con esclusione delle condizioni generali del Cliente, salvo accettazione espressa e scritta da parte di A-one. La semplice presentazione di una richiesta, l'accettazione di un preventivo o il collocamento di un ordine implica l'accettazione irrevocabile, incondizionata e integrale delle presenti CG.</span><span data-t="fr">Les présentes CG s'appliquent à tous les devis, confirmations de commande, accords, livraisons et services d'A-one, à l'exclusion des conditions générales du Client, sauf acceptation expresse et écrite d'A-one. La simple soumission d'une demande, l'acceptation d'un devis ou le passage d'une commande implique l'acceptation irrévocable, inconditionnelle et intégrale des présentes CG.</span><span data-t="de">Die vorliegenden AGB gelten für alle Angebote, Auftragsbestätigungen, Vereinbarungen, Lieferungen und Dienstleistungen von A-one, unter Ausschluss der Allgemeinen Geschäftsbedingungen des Auftraggebers, sofern A-one dem nicht ausdrücklich und schriftlich zugestimmt hat. Die bloße Einreichung einer Anfrage, die Annahme eines Angebots oder die Aufgabe einer Bestellung impliziert die unwiderrufliche, bedingungslose und vollständige Annahme dieser AGB.</span></p>
+
+    <h3><span data-t="nl" class="on">3. Totstandkoming, vorm en bewijskracht van de overeenkomst</span><span data-t="en">3. Formation, form and evidentiary value of the agreement</span><span data-t="it">3. Formazione, forma e valore probatorio dell'accordo</span><span data-t="fr">3. Formation, forme et force probante de l'accord</span><span data-t="de">3. Zustandekommen, Form und Beweiskraft der Vereinbarung</span></h3>
+    <p><span data-t="nl" class="on">Een overeenkomst komt tot stand op het ogenblik dat A-one een schriftelijke opdrachtbevestiging verstrekt dan wel de uitvoering van de opdracht aanvangt, ongeacht de wijze van communicatie. Mondelinge afspraken binden A-one slechts na schriftelijke bevestiging. A-one behoudt zich het recht voor een aanvraag zonder opgave van redenen te weigeren. Alle offertes zijn vrijblijvend en gelden gedurende een termijn van dertig (30) kalenderdagen te rekenen vanaf de datum van verzending, tenzij uitdrukkelijk anders vermeld. Na het verstrijken van deze termijn vervalt de offerte van rechtswege en zonder voorafgaande ingebrekestelling.</span><span data-t="en">An agreement is concluded at the moment A-one provides a written order confirmation or commences execution of the assignment, regardless of the mode of communication. Oral agreements are binding on A-one only after written confirmation. A-one reserves the right to refuse a request without stating reasons. All quotes are non-binding and valid for a period of thirty (30) calendar days from the date of dispatch, unless expressly stated otherwise. Upon expiry of this period, the quote lapses by operation of law and without prior notice of default.</span><span data-t="it">Un accordo si conclude nel momento in cui A-one fornisce una conferma d'ordine scritta o inizia l'esecuzione dell'incarico. Gli accordi orali vincolano A-one solo dopo conferma scritta. Tutti i preventivi sono non vincolanti e validi per trenta (30) giorni dalla data di invio.</span><span data-t="fr">Un accord est conclu au moment où A-one fournit une confirmation de commande écrite ou commence l'exécution de la mission. Les accords oraux ne lient A-one qu'après confirmation écrite. Tous les devis sont sans engagement et valables trente (30) jours à compter de la date d'envoi.</span><span data-t="de">Eine Vereinbarung kommt zustande, wenn A-one eine schriftliche Auftragsbestätigung erteilt oder mit der Ausführung des Auftrags beginnt. Mündliche Absprachen binden A-one nur nach schriftlicher Bestätigung. Alle Angebote sind unverbindlich und gelten dreißig (30) Kalendertage ab Versanddatum.</span></p>
+
+    <h3><span data-t="nl" class="on">4. Prijzen, facturatie en betalingsmodaliteiten</span><span data-t="en">4. Prices, invoicing and payment modalities</span><span data-t="it">4. Prezzi, fatturazione e modalità di pagamento</span><span data-t="fr">4. Prix, facturation et modalités de paiement</span><span data-t="de">4. Preise, Rechnungsstellung und Zahlungsmodalitäten</span></h3>
+    <p><span data-t="nl" class="on">Alle vermelde prijzen zijn exclusief BTW en eventuele andere wettelijk verschuldigde heffingen, tenzij uitdrukkelijk anders aangegeven. A-one behoudt zich het recht voor de overeengekomen prijs eenzijdig aan te passen ingeval van substantiële schommelingen in grondstofprijzen, wisselkoersen, invoerrechten of andere externe factoren die buiten de wil van A-one liggen en die de kostprijsstructuur materieel beïnvloeden. Facturen zijn betaalbaar binnen veertien (14) kalenderdagen na factuurdatum op het rekeningnummer vermeld op de factuur, zonder enige korting, schuldvergelijking of opschorting, tenzij schriftelijk anders overeengekomen. Bij gehele of gedeeltelijke niet-betaling op de vervaldag is, van rechtswege en zonder voorafgaande ingebrekestelling, een verwijlinterest verschuldigd gelijk aan de referentie-interestvoet verhoogd met zeven (7) procentpunten overeenkomstig de Wet van 2 augustus 2002 betreffende de bestrijding van de betalingsachterstand bij handelstransacties, alsmede een forfaitaire schadevergoeding van tien procent (10%) van het onbetaalde factuurbedrag, met een minimum van vijfenzeventig euro (€ 75,00), onverminderd het recht van A-one op vergoeding van alle bijkomende gerechtelijke en buitengerechtelijke kosten. In geval van betwisting van een factuur dient de Opdrachtgever deze betwisting gemotiveerd per aangetekend schrijven kenbaar te maken aan A-one binnen een vervaltermijn van acht (8) kalenderdagen na ontvangst van de factuur, bij gebreke waarvan de factuur als onherroepelijk aanvaard wordt beschouwd.</span><span data-t="en">All stated prices are exclusive of VAT and any other legally required levies, unless expressly stated otherwise. A-one reserves the right to unilaterally adjust the agreed price in the event of substantial fluctuations in raw material prices, exchange rates, import duties or other external factors beyond A-one's control that materially affect the cost structure. Invoices are payable within fourteen (14) calendar days of invoice date to the account number stated on the invoice, without any discount, set-off or suspension, unless otherwise agreed in writing. In the event of full or partial non-payment on the due date, by operation of law and without prior notice of default, late payment interest shall be due equal to the reference interest rate increased by seven (7) percentage points in accordance with the Act of 2 August 2002 on combating late payment in commercial transactions, as well as a flat-rate compensation of ten percent (10%) of the unpaid invoice amount, with a minimum of seventy-five euros (€ 75.00), without prejudice to A-one's right to compensation for all additional judicial and extrajudicial costs. In the event of a dispute regarding an invoice, the Client must notify A-one of this dispute with reasons by registered letter within a limitation period of eight (8) calendar days of receipt of the invoice, failing which the invoice shall be deemed irrevocably accepted.</span><span data-t="it">Tutti i prezzi indicati sono IVA esclusa. Le fatture sono pagabili entro quattordici (14) giorni dalla data di fattura. In caso di mancato pagamento, sono dovuti interessi di mora e un risarcimento forfettario del 10% (min. €75,00), senza pregiudizio per ulteriori costi giudiziali e stragiudiziali.</span><span data-t="fr">Tous les prix indiqués sont hors TVA. Les factures sont payables dans les quatorze (14) jours de la date de facturation. En cas de non-paiement, des intérêts de retard et une indemnité forfaitaire de 10% (min. €75,00) sont dus de plein droit, sans préjudice des frais judiciaires et extrajudiciaires supplémentaires.</span><span data-t="de">Alle angegebenen Preise verstehen sich zzgl. MwSt. Rechnungen sind innerhalb von vierzehn (14) Kalendertagen ab Rechnungsdatum zahlbar. Bei Zahlungsverzug sind von Rechts wegen Verzugszinsen sowie eine Pauschale von 10% (mind. €75,00) fällig, unbeschadet weiterer Kosten.</span></p>
+
+    <h3><span data-t="nl" class="on">5. Levering, risico-overdracht en conformiteit</span><span data-t="en">5. Delivery, transfer of risk and conformity</span><span data-t="it">5. Consegna, trasferimento del rischio e conformità</span><span data-t="fr">5. Livraison, transfert de risque et conformité</span><span data-t="de">5. Lieferung, Risikoübergang und Konformität</span></h3>
+    <p><span data-t="nl" class="on">Levertijden zijn steeds indicatief en niet-bindend, tenzij partijen uitdrukkelijk een resultaatsverbintenis zijn overeengekomen. Overschrijding van de levertermijn geeft de Opdrachtgever geenszins het recht de overeenkomst te ontbinden, schadevergoeding te vorderen of betaling op te schorten, behoudens in geval van bewezen opzettelijke tekortkoming of grove nalatigheid vanwege A-one. A-one is niet aansprakelijk voor vertraging of niet-uitvoering ten gevolge van overmacht, waaronder doch niet beperkt tot: stakingen, lockouts, brand, overstroming, pandemieën, aardbevingen, oorlog, terrorisme, embargo's, overheidsmaatregelen, logistieke verstoringen, storingen bij vervoerders, douanevertraging of tekort aan grondstoffen bij leveranciers. Het risico van verlies of beschadiging van de goederen gaat over op de Opdrachtgever op het ogenblik van de levering aan diens adres of bij afhaling. Op maat gemaakte of gepersonaliseerde producten zijn onder geen enkel beding retourneerbaar noch terugbetaalbaar.</span><span data-t="en">Delivery times are always indicative and non-binding, unless the parties have expressly agreed on an obligation of result. Exceeding the delivery period does not in any way entitle the Client to dissolve the agreement, claim damages or suspend payment, except in the event of proven intentional failure or gross negligence on the part of A-one. A-one is not liable for delay or non-performance as a result of force majeure, including but not limited to: strikes, lockouts, fire, flooding, pandemics, earthquakes, war, terrorism, embargoes, government measures, logistical disruptions, carrier failures, customs delays or shortage of raw materials at suppliers. The risk of loss or damage to the goods transfers to the Client at the moment of delivery to their address or upon collection. Custom-made or personalised products are under no circumstances returnable or refundable.</span><span data-t="it">I tempi di consegna sono sempre indicativi. A-one non è responsabile per ritardi dovuti a forza maggiore. Il rischio si trasferisce al Cliente al momento della consegna. I prodotti personalizzati non sono restituibili né rimborsabili in nessun caso.</span><span data-t="fr">Les délais de livraison sont toujours indicatifs. A-one n'est pas responsable des retards dus à la force majeure. Le risque se transfère au Client au moment de la livraison. Les produits personnalisés ne sont en aucun cas retournables ni remboursables.</span><span data-t="de">Lieferzeiten sind stets unverbindlich. A-one haftet nicht für Verzögerungen durch höhere Gewalt. Das Risiko geht bei Lieferung auf den Auftraggeber über. Maßgefertigte oder personalisierte Produkte sind unter keinen Umständen rückgabe- oder erstattungsfähig.</span></p>
+
+    <h3><span data-t="nl" class="on">6. Garantie, non-conformiteit en beperking van aansprakelijkheid</span><span data-t="en">6. Warranty, non-conformity and limitation of liability</span><span data-t="it">6. Garanzia, non conformità e limitazione di responsabilità</span><span data-t="fr">6. Garantie, non-conformité et limitation de responsabilité</span><span data-t="de">6. Gewährleistung, Nichtkonformität und Haftungsbeschränkung</span></h3>
+    <p><span data-t="nl" class="on">A-one verleent een garantie van twaalf (12) maanden op materiële fabricagefouten bij normaal en conform gebruik van de geleverde producten, te rekenen vanaf de leveringsdatum. Deze garantie dekt uitdrukkelijk geen gebreken die het gevolg zijn van normale slijtage, foutief gebruik, onoordeelkundige behandeling, externe invloeden, ongeoorloofde wijzigingen of montage door derden. Elke melding van niet-conformiteit of verborgen gebrek dient, op straffe van verval, schriftelijk en gemotiveerd ter kennis te worden gebracht van A-one binnen acht (8) kalenderdagen na ontdekking en uiterlijk binnen zes (6) maanden na levering. De aansprakelijkheid van A-one is in alle gevallen beperkt tot de netto factuurwaarde van de geleverde producten of diensten waarop de aansprakelijkheid betrekking heeft. A-one is in geen geval aansprakelijk voor indirecte schade, gevolgschade, gederfde winst, gemiste besparingen of schade aan derden. De Opdrachtgever staat in voor de naleving van alle toepasselijke voorschriften met betrekking tot de installatie en het gebruik van de producten.</span><span data-t="en">A-one provides a warranty of twelve (12) months against material manufacturing defects under normal and compliant use of the delivered products, calculated from the delivery date. This warranty expressly does not cover defects resulting from normal wear and tear, misuse, improper handling, external influences, unauthorised modifications or installation by third parties. Any notification of non-conformity or latent defect must, on pain of forfeiture, be communicated in writing and with reasons to A-one within eight (8) calendar days of discovery and at the latest within six (6) months of delivery. A-one's liability is in all cases limited to the net invoice value of the delivered products or services to which the liability relates. A-one is in no case liable for indirect damage, consequential damage, lost profits, missed savings or damage to third parties. The Client is responsible for compliance with all applicable regulations regarding the installation and use of the products.</span><span data-t="it">A-one offre una garanzia di dodici (12) mesi contro difetti di fabbricazione materiali nell'uso normale dei prodotti consegnati. La responsabilità di A-one è in ogni caso limitata al valore netto della fattura. A-one non è in nessun caso responsabile per danni indiretti o consequenziali.</span><span data-t="fr">A-one offre une garantie de douze (12) mois contre les défauts de fabrication matériels lors d'une utilisation normale des produits livrés. La responsabilité d'A-one est en tout cas limitée à la valeur nette de la facture. A-one n'est en aucun cas responsable des dommages indirects ou consécutifs.</span><span data-t="de">A-one gewährt eine Garantie von zwölf (12) Monaten gegen materielle Herstellungsfehler bei normalem und bestimmungsgemäßem Gebrauch. Die Haftung von A-one ist in allen Fällen auf den Nettorechnungswert begrenzt. A-one haftet in keinem Fall für indirekte Schäden oder Folgeschäden.</span></p>
+
+    <h3><span data-t="nl" class="on">7. Intellectuele eigendom en vertrouwelijkheid</span><span data-t="en">7. Intellectual property and confidentiality</span><span data-t="it">7. Proprietà intellettuale e riservatezza</span><span data-t="fr">7. Propriété intellectuelle et confidentialité</span><span data-t="de">7. Geistiges Eigentum und Vertraulichkeit</span></h3>
+    <p><span data-t="nl" class="on">Alle intellectuele eigendomsrechten met betrekking tot de door A-one vervaardigde documenten, ontwerpen, offertes, methodologieën en andere prestaties berusten uitsluitend bij A-one, tenzij schriftelijk anders overeengekomen. De Opdrachtgever verkrijgt slechts een niet-exclusief, niet-overdraagbaar gebruiksrecht voor de duur en het doel van de specifieke overeenkomst. Beide partijen verbinden zich ertoe de door de andere partij meegedeelde vertrouwelijke informatie niet aan derden te verstrekken of voor eigen doeleinden te gebruiken, noch tijdens noch na de duur van de overeenkomst, behoudens uitdrukkelijke schriftelijke toestemming.</span><span data-t="en">All intellectual property rights relating to documents, designs, quotes, methodologies and other deliverables produced by A-one rest exclusively with A-one, unless otherwise agreed in writing. The Client obtains only a non-exclusive, non-transferable right of use for the duration and purpose of the specific agreement. Both parties undertake not to disclose to third parties or use for their own purposes the confidential information communicated by the other party, neither during nor after the duration of the agreement, except with express written consent.</span><span data-t="it">Tutti i diritti di proprietà intellettuale relativi ai documenti, progetti e preventivi prodotti da A-one spettano esclusivamente ad A-one. Il Cliente ottiene solo un diritto d'uso non esclusivo e non trasferibile per la durata dello specifico accordo.</span><span data-t="fr">Tous les droits de propriété intellectuelle relatifs aux documents, conceptions et devis produits par A-one appartiennent exclusivement à A-one. Le Client obtient uniquement un droit d'utilisation non exclusif et non transférable pour la durée de l'accord spécifique.</span><span data-t="de">Alle Rechte des geistigen Eigentums an von A-one erstellten Dokumenten, Entwürfen und Angeboten stehen ausschließlich A-one zu. Der Auftraggeber erhält nur ein nicht ausschließliches, nicht übertragbares Nutzungsrecht für die Dauer und den Zweck der spezifischen Vereinbarung.</span></p>
+
+    <h3><span data-t="nl" class="on">8. Toepasselijk recht, bevoegde rechter en alternatieve geschillenbeslechting</span><span data-t="en">8. Applicable law, jurisdiction and alternative dispute resolution</span><span data-t="it">8. Legge applicabile, foro competente e risoluzione alternativa delle controversie</span><span data-t="fr">8. Droit applicable, juridiction compétente et résolution alternative des litiges</span><span data-t="de">8. Anwendbares Recht, zuständiges Gericht und alternative Streitbeilegung</span></h3>
+    <p><span data-t="nl" class="on">Op alle overeenkomsten en rechtsverhoudingen waarbij A-one partij is, is uitsluitend het Belgisch recht van toepassing, met uitsluiting van de bepalingen van internationaal privaatrecht die zouden leiden tot de toepassing van een ander rechtsstelsel. In geval van betwisting zijn uitsluitend de rechtbanken van het gerechtelijk arrondissement Hasselt bevoegd, onverminderd het recht van A-one om naar eigen keuze een andere bevoegde rechter aan te spreken. Partijen verbinden zich ertoe om elk geschil in eerste instantie te trachten te regelen door middel van onderhandeling en, zo nodig, bemiddeling overeenkomstig de Belgische wet van 18 juni 2018 betreffende de buitengerechtelijke bemiddeling in burgerlijke en handelszaken.</span><span data-t="en">All agreements and legal relationships to which A-one is a party are governed exclusively by Belgian law, to the exclusion of the provisions of private international law that would lead to the application of another legal system. In the event of a dispute, only the courts of the judicial district of Hasselt shall have jurisdiction, without prejudice to A-one's right to choose another competent court. The parties undertake to first attempt to resolve any dispute through negotiation and, if necessary, mediation in accordance with the Belgian Act of 18 June 2018 on extrajudicial mediation in civil and commercial matters.</span><span data-t="it">Tutti gli accordi sono disciplinati esclusivamente dalla legge belga. In caso di controversia, sono competenti esclusivamente i tribunali del distretto giudiziario di Hasselt. Le parti si impegnano a tentare in primo luogo di risolvere qualsiasi controversia tramite negoziazione e, se necessario, mediazione.</span><span data-t="fr">Tous les accords sont régis exclusivement par le droit belge. En cas de litige, seuls les tribunaux de l'arrondissement judiciaire de Hasselt sont compétents. Les parties s'engagent à tenter en premier lieu de régler tout litige par négociation et, si nécessaire, par médiation.</span><span data-t="de">Alle Vereinbarungen unterliegen ausschließlich belgischem Recht. Im Streitfall sind ausschließlich die Gerichte des Gerichtsbezirks Hasselt zuständig. Die Parteien verpflichten sich, jeden Streit zunächst durch Verhandlung und, falls erforderlich, durch Mediation beizulegen.</span></p>
+
+    <p style="font-size:.72rem;color:rgba(255,255,255,.25);margin-top:2.5rem;border-top:1px solid rgba(255,255,255,.08);padding-top:1rem">
+      <span data-t="nl" class="on">Maatschappelijke zetel / Exploitatiezetel: Schemmersheide 28, 3600 Genk, België. BE 0768.925.136. BTW BE0768925136. Versie AV: 2026.</span>
+      <span data-t="en">Registered / operational address: Schemmersheide 28, 3600 Genk, Belgium. BE 0768.925.136. VAT BE0768925136. GTC version: 2026.</span>
+      <span data-t="it">Sede legale / operativa: Schemmersheide 28, 3600 Genk, Belgio. BE 0768.925.136. IVA BE0768925136. Versione CG: 2026.</span>
+      <span data-t="fr">Siège social / exploitation: Schemmersheide 28, 3600 Genk, Belgique. BE 0768.925.136. TVA BE0768925136. Version CG: 2026.</span>
+      <span data-t="de">Gesellschaftssitz / Betriebssitz: Schemmersheide 28, 3600 Genk, Belgien. BE 0768.925.136. USt BE0768925136. AGB-Version: 2026.</span>
+    </p>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notif" id="notif"></div>
+
+<!-- COOKIE BANNER -->
+<div class="cookie" id="cookieBanner">
+  <p class="cookie-text">
+    <span data-t="nl" class="on">Wij gebruiken alleen functionele cookies (taalkeuze, sessie). Geen tracking. Meer info: <a onclick="openLegal('cookies')">cookiebeleid</a> &amp; <a onclick="openLegal('privacy')">privacyverklaring</a>.</span>
+    <span data-t="en">We only use functional cookies (language, session). No tracking. More info: <a onclick="openLegal('cookies')">cookie policy</a> &amp; <a onclick="openLegal('privacy')">privacy policy</a>.</span>
+    <span data-t="it">Utilizziamo solo cookie funzionali. Nessun tracciamento. Vedi: <a onclick="openLegal('cookies')">cookie</a> &amp; <a onclick="openLegal('privacy')">privacy</a>.</span>
+    <span data-t="fr">Nous utilisons uniquement des cookies fonctionnels. Pas de suivi. Voir: <a onclick="openLegal('cookies')">cookies</a> &amp; <a onclick="openLegal('privacy')">confidentialité</a>.</span>
+    <span data-t="de">Wir verwenden nur funktionale Cookies. Kein Tracking. Mehr: <a onclick="openLegal('cookies')">Cookies</a> &amp; <a onclick="openLegal('privacy')">Datenschutz</a>.</span>
+  </p>
+  <div class="cookie-btns">
+    <button class="btn-ca" onclick="acceptCookies()"><span data-t="nl" class="on">Accepteren</span><span data-t="en">Accept</span><span data-t="it">Accetta</span><span data-t="fr">Accepter</span><span data-t="de">Akzeptieren</span></button>
+    <button class="btn-cd" onclick="declineCookies()"><span data-t="nl" class="on">Weigeren</span><span data-t="en">Decline</span><span data-t="it">Rifiuta</span><span data-t="fr">Refuser</span><span data-t="de">Ablehnen</span></button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#home" class="logo-link">
+    <img src="images/logo.png" alt="A-one" class="logo-img">
+    <div class="logo-text">
+      <span class="logo-name">A-one</span>
+      <span class="logo-sub">Church Services</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-links" id="navLinks">
+      <a href="#products"><span data-t="nl" class="on">Producten</span><span data-t="en">Products</span><span data-t="it">Prodotti</span><span data-t="fr">Produits</span><span data-t="de">Produkte</span></a>
+      <a href="#story"><span data-t="nl" class="on">Ons verhaal</span><span data-t="en">Our story</span><span data-t="it">La nostra storia</span><span data-t="fr">Notre histoire</span><span data-t="de">Unsere Geschichte</span></a>
+      <a href="#consulting"><span data-t="nl" class="on">Advies</span><span data-t="en">Consulting</span><span data-t="it">Consulenza</span><span data-t="fr">Conseil</span><span data-t="de">Beratung</span></a>
+      <a href="#testimonials"><span data-t="nl" class="on">Reviews</span><span data-t="en">Reviews</span><span data-t="it">Recensioni</span><span data-t="fr">Avis</span><span data-t="de">Bewertungen</span></a>
+      <a href="#contact">Contact</a>
+      <!-- Mobile-only: lang switcher inside menu -->
+      <div class="nav-lang-mobile">
+        <span onclick="setLang('nl');toggleMenu()" class="nav-lang-opt">🇳🇱 NL</span>
+        <span onclick="setLang('en');toggleMenu()" class="nav-lang-opt">🇬🇧 EN</span>
+        <span onclick="setLang('it');toggleMenu()" class="nav-lang-opt">🇮🇹 IT</span>
+        <span onclick="setLang('fr');toggleMenu()" class="nav-lang-opt">🇫🇷 FR</span>
+        <span onclick="setLang('de');toggleMenu()" class="nav-lang-opt">🇩🇪 DE</span>
+      </div>
+    </div>
+    <!-- Language dropdown (desktop only) -->
+    <div class="lang-wrap" id="langWrap">
+      <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+        <span class="lang-flag" id="langFlagCurrent">🇳🇱</span>
+        <span class="lang-name" id="langNameCurrent" style="font-size:.78rem">NL</span>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <div class="lang-option active" onclick="setLang('nl')" data-lang="nl"><span class="lang-option-flag">🇳🇱</span> Nederlands</div>
+        <div class="lang-option" onclick="setLang('en')" data-lang="en"><span class="lang-option-flag">🇬🇧</span> English</div>
+        <div class="lang-option" onclick="setLang('it')" data-lang="it"><span class="lang-option-flag">🇮🇹</span> Italiano</div>
+        <div class="lang-option" onclick="setLang('fr')" data-lang="fr"><span class="lang-option-flag">🇫🇷</span> Français</div>
+        <div class="lang-option" onclick="setLang('de')" data-lang="de"><span class="lang-option-flag">🇩🇪</span> Deutsch</div>
+      </div>
+    </div>
+    <a href="#contact" class="cta-top"><span data-t="nl" class="on">Offerte</span><span data-t="en">Get Quote</span><span data-t="it">Preventivo</span><span data-t="fr">Devis</span><span data-t="de">Angebot</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-image"></div>
+  <div class="hero-orb" style="width:600px;height:600px;top:-100px;left:-150px;--dur:25s;--dx:40px;--dy:-30px"></div>
+  <div class="hero-orb" style="width:400px;height:400px;bottom:0;right:10%;--dur:18s;--dx:-30px;--dy:20px"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">A-one Church Services</span>
+    <h1 class="hero-h1">
+      <span data-t="nl" class="on">Uw kerk verdient het <em class="hero-rw" data-lang="nl">beste</em>.</span>
+      <span data-t="en">Your church deserves the <em class="hero-rw" data-lang="en">best</em>.</span>
+      <span data-t="it">La vostra chiesa merita il <span style="white-space:nowrap"><em class="hero-rw" data-lang="it">meglio</em>.</span></span>
+      <span data-t="fr">Votre église mérite le <em class="hero-rw" data-lang="fr">meilleur</em>.</span>
+      <span data-t="de">Ihre Kirche verdient das <em class="hero-rw" data-lang="de">Beste</em>.</span>
+    </h1>
+    <p class="hero-sub">
+      <span data-t="nl" class="on">Stoelen op maat, LED-borden en digitaal advies voor uw kerk. Betaalbaar, kwalitatief, persoonlijk.</span>
+      <span data-t="en">Custom chairs, LED signs and digital consulting for your church. Affordable, quality, personal.</span>
+      <span data-t="it">Sedie su misura, insegne LED e consulenza digitale per la vostra chiesa. Conveniente, di qualità, personale.</span>
+      <span data-t="fr">Chaises sur mesure, enseignes LED et conseil digital pour votre église. Abordable, de qualité, personnel.</span>
+      <span data-t="de">Maßstühle, LED-Schilder und digitale Beratung für Ihre Kirche. Erschwinglich, qualitativ, persönlich.</span>
+    </p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-p"><span data-t="nl" class="on">Bekijk producten</span><span data-t="en">View Products</span><span data-t="it">Vedi Prodotti</span><span data-t="fr">Voir Produits</span><span data-t="de">Produkte ansehen</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+      <a href="#contact" class="btn-s"><span data-t="nl" class="on">Gratis offerte</span><span data-t="en">Free Quote</span><span data-t="it">Preventivo Gratuito</span><span data-t="fr">Devis Gratuit</span><span data-t="de">Kostenloses Angebot</span></a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">50+</div><div class="stat-lbl"><span data-t="nl" class="on">Kerken</span><span data-t="en">Churches</span><span data-t="it">Chiese</span><span data-t="fr">Églises</span><span data-t="de">Kirchen</span></div></div>
+      <div><div class="stat-num">6+</div><div class="stat-lbl"><span data-t="nl" class="on">Landen</span><span data-t="en">Countries</span><span data-t="it">Paesi</span><span data-t="fr">Pays</span><span data-t="de">Länder</span></div></div>
+      <div><div class="stat-num">100%</div><div class="stat-lbl"><span data-t="nl" class="on">Op maat</span><span data-t="en">Custom</span><span data-t="it">Su misura</span><span data-t="fr">Sur mesure</span><span data-t="de">Maßgefertigt</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><svg class="trust-icon" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M12 2L4 7v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V7l-8-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-t="nl" class="on">100% op maat</span><span data-t="en">100% custom made</span><span data-t="it">100% su misura</span><span data-t="fr">100% sur mesure</span><span data-t="de">100% maßgefertigt</span></div>
+  <div class="trust-item"><svg class="trust-icon" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg><span data-t="nl" class="on">6+ Europese landen</span><span data-t="en">6+ European countries</span><span data-t="it">6+ paesi europei</span><span data-t="fr">6+ pays européens</span><span data-t="de">6+ europäische Länder</span></div>
+  <div class="trust-item"><svg class="trust-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>CCINE-partner</div>
+  <div class="trust-item"><svg class="trust-icon" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V7l8-4 8 4v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-t="nl" class="on">Belgisch bedrijf</span><span data-t="en">Belgian company</span><span data-t="it">Azienda belga</span><span data-t="fr">Société belge</span><span data-t="de">Belgisches Unternehmen</span></div>
+</div>
+
+<!-- STORY -->
+<section class="story-section" id="story">
+  <div class="mw story-grid">
+    <div>
+      <div class="lbl rev"><span data-t="nl" class="on">Ons verhaal</span><span data-t="en">Our story</span><span data-t="it">La nostra storia</span><span data-t="fr">Notre histoire</span><span data-t="de">Unsere Geschichte</span></div>
+      <h2 class="h2 rev d1"><span data-t="nl" class="on">Ontstaan uit geloof. Gegroeid door <em>vertrouwen</em>.</span><span data-t="en">Born from faith. Grown through <em>trust</em>.</span><span data-t="it">Nato dalla fede. Cresciuto con la <em>fiducia</em>.</span><span data-t="fr">Né de la foi. Grandi dans la <em>confiance</em>.</span><span data-t="de">Aus Glauben entstanden. Durch <em>Vertrauen</em> gewachsen.</span></h2>
+      <blockquote class="story-quote">
+        <span data-t="nl" class="on">"Ik voelde dat onze kerk meer zorg verdiende, en ik wist: daar kan ik iets aan doen."</span>
+        <span data-t="en">"I felt that our church deserved more care, and I knew: I could do something about that."</span>
+        <span data-t="it">"Ho sentito che la nostra chiesa meritava più cura, e sapevo: potevo fare qualcosa."</span>
+        <span data-t="fr">"J'ai senti que notre église méritait plus de soin, et je savais: je pouvais faire quelque chose."</span>
+        <span data-t="de">"Ich spürte, dass unsere Kirche mehr Fürsorge verdiente, und ich wusste: ich kann etwas tun."</span>
+      </blockquote>
+      <p class="lead rev d2">
+        <span data-t="nl" class="on">Alessio Pavone begon met het zoeken naar de beste oplossingen voor zijn eigen gemeente. Al snel merkten andere kerken de transformatie, en zo groeide A-one tot een betrouwbare partner voor Europese kerken.</span>
+        <span data-t="en">Alessio Pavone began searching for the best solutions for his own congregation. Other churches soon noticed the transformation, and A-one grew into a trusted partner for European churches.</span>
+        <span data-t="it">Alessio Pavone ha iniziato cercando le migliori soluzioni per la propria chiesa. Presto altre chiese hanno notato la trasformazione, e A-one è cresciuto come partner affidabile.</span>
+        <span data-t="fr">Alessio Pavone a commencé par chercher les meilleures solutions pour sa propre congrégation. D'autres églises ont remarqué la transformation, et A-one est devenu un partenaire de confiance.</span>
+        <span data-t="de">Alessio Pavone suchte zunächst Lösungen für seine eigene Gemeinde. Bald bemerkten andere Kirchen die Transformation, und A-one wuchs zu einem vertrauenswürdigen Partner.</span>
+      </p>
+    </div>
+    <div class="story-visual rev d2">
+      <img src="images/kerk-genk-stoelen.jpg" alt="Kerk Genk stoelen" class="story-img-big" loading="lazy">
+      <img src="images/chair-handle-detail.jpg" alt="Stoeldetail" class="story-img-sm" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="prod-header">
+    <div class="lbl lt rev"><span data-t="nl" class="on">Wat wij aanbieden</span><span data-t="en">What we offer</span><span data-t="it">Cosa offriamo</span><span data-t="fr">Ce que nous offrons</span><span data-t="de">Was wir anbieten</span></div>
+    <h2 class="h2 lt rev d1"><span data-t="nl" class="on">Alles wat uw kerk nodig heeft.</span><span data-t="en">Everything your church needs.</span><span data-t="it">Tutto ciò di cui la vostra chiesa ha bisogno.</span><span data-t="fr">Tout ce dont votre église a besoin.</span><span data-t="de">Alles, was Ihre Kirche braucht.</span></h2>
+    <p class="lead lt rev d2"><span data-t="nl" class="on">Volledig op uw wensen geconfigureerd, van stoelen tot buitenborden.</span><span data-t="en">Fully configured to your wishes, from chairs to outdoor signs.</span><span data-t="it">Completamente configurato secondo i vostri desideri, dalle sedie alle insegne esterne.</span><span data-t="fr">Entièrement configuré selon vos souhaits, des chaises aux enseignes extérieures.</span><span data-t="de">Vollständig nach Ihren Wünschen konfiguriert, von Stühlen bis Außenschildern.</span></p>
+  </div>
+  <div class="prod-grid">
+  <!-- Card 1: Chairs - graphic on warm background -->
+  <div class="prod-card rev" data-cursor>
+    <div class="prod-anim">
+      <div class="pa-chair-graphic">
+        <img src="images/stoelgraphic.png" alt="Kerkstoel" class="pa-chair-graphic-img">
+      </div>
+    </div>
+    <div class="prod-card-ov"></div>
+    <div class="prod-card-body">
+      <div class="prod-cat"><span data-t="nl" class="on">Populairste product</span><span data-t="en">Most popular</span><span data-t="it">Più popolare</span><span data-t="fr">Le plus populaire</span><span data-t="de">Beliebtestes</span></div>
+      <h3 class="prod-title"><span data-t="nl" class="on">Kerkstoelen op maat</span><span data-t="en">Custom church chairs</span><span data-t="it">Sedie su misura</span><span data-t="fr">Chaises d'église sur mesure</span><span data-t="de">Maßkirchenst&uuml;hle</span></h3>
+      <p class="prod-desc"><span data-t="nl" class="on">Comfortabel, stapelbaar, 30+ stoffen en 20+ framekleuren. Kies uw opties voor de perfecte stoel.</span><span data-t="en">Comfortable, stackable, 30+ fabrics and 20+ frame colors. Choose your options for the perfect chair.</span><span data-t="it">Comode, impilabili, 30+ tessuti e 20+ colori telaio.</span><span data-t="fr">Confortables, empilables, 30+ tissus et 20+ couleurs de cadre.</span><span data-t="de">Bequem, stapelbar, 30+ Stoffe und 20+ Rahmenfarben.</span></p>
+      <a href="#contact" class="prod-link"><span data-t="nl" class="on">Offerte aanvragen</span><span data-t="en">Request quote</span><span data-t="it">Richiedi preventivo</span><span data-t="fr">Demander devis</span><span data-t="de">Angebot anfragen</span> →</a>
+    </div>
+  </div>
+  <!-- Card 2: LED signs - real installed photo with glow -->
+  <div class="prod-card rev d1" data-cursor>
+    <div class="prod-anim">
+      <div class="pa-led-photo" style="background-image:url('images/led-installed-1.jpg')"></div>
+      <div class="pa-led-glow"></div>
+      <div class="pa-led-scan"></div>
+    </div>
+    <div class="prod-card-ov"></div>
+    <div class="prod-card-body">
+      <div class="prod-cat"><span data-t="nl" class="on">Verlichte borden</span><span data-t="en">Illuminated signs</span><span data-t="it">Insegne luminose</span><span data-t="fr">Enseignes lumineuses</span><span data-t="de">Beleuchtete Schilder</span></div>
+      <h3 class="prod-title"><span data-t="nl" class="on">LED-borden op maat</span><span data-t="en">Custom LED signs</span><span data-t="it">Insegne LED su misura</span><span data-t="fr">Enseignes LED sur mesure</span><span data-t="de">LED-Schilder nach Maß</span></h3>
+      <p class="prod-desc"><span data-t="nl" class="on">Uw logo, kleuren en boodschap. Weerbestendig voor buiten, elegant voor binnen.</span><span data-t="en">Your logo, colors and message. Weather-resistant for outdoors, elegant for indoors.</span><span data-t="it">Il vostro logo, colori e messaggio. Resistente per esterno, elegante per interno.</span><span data-t="fr">Votre logo, couleurs et message. Résistant pour l'extérieur, élégant pour l'intérieur.</span><span data-t="de">Ihr Logo, Farben und Botschaft. Wetterfest, elegant.</span></p>
+      <a href="#contact" class="prod-link"><span data-t="nl" class="on">Offerte aanvragen</span><span data-t="en">Request quote</span><span data-t="it">Richiedi preventivo</span><span data-t="fr">Demander devis</span><span data-t="de">Angebot anfragen</span> →</a>
+    </div>
+  </div>
+  <!-- Card 3: Website building - mini web mockup animation -->
+  <div class="prod-card rev d2" data-cursor>
+    <div class="prod-anim pa-other-bg">
+      <div class="pa-web-mini">
+        <div class="web-mockup">
+          <div class="wm-bar">
+            <span class="wm-dot"></span><span class="wm-dot"></span><span class="wm-dot"></span>
+            <div class="wm-url">www.uwkerk.be</div>
+          </div>
+          <div class="wm-body">
+            <div class="wm-hero-blk"></div>
+            <div class="wm-rows">
+              <div class="wm-ln h"></div>
+              <div class="wm-ln m"></div>
+              <div class="wm-ln s"></div>
+            </div>
+            <div class="wm-cards-row">
+              <div class="wm-crd"><div class="wm-crd-img"></div><div></div><div></div></div>
+              <div class="wm-crd"><div class="wm-crd-img"></div><div></div><div></div></div>
+              <div class="wm-crd"><div class="wm-crd-img"></div><div></div><div></div></div>
+            </div>
+          </div>
+          <div class="wm-cursor"></div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card-ov"></div>
+    <div class="prod-card-body">
+      <div class="prod-cat"><span data-t="nl" class="on">Kerkwebsites</span><span data-t="en">Church websites</span><span data-t="it">Siti per chiese</span><span data-t="fr">Sites pour églises</span><span data-t="de">Kirchenwebsites</span></div>
+      <h3 class="prod-title"><span data-t="nl" class="on">Websites voor kerken</span><span data-t="en">Websites for churches</span><span data-t="it">Siti web per chiese</span><span data-t="fr">Sites web pour églises</span><span data-t="de">Websites für Kirchen</span></h3>
+      <p class="prod-desc"><span data-t="nl" class="on">Professionele kerkwebsites die gemeenten helpen groeien en bezoekers aantrekken. Modern, snel en op maat.</span><span data-t="en">Professional church websites that help congregations grow and attract visitors. Modern, fast and custom.</span><span data-t="it">Siti web professionali per chiese. Moderni, veloci e su misura.</span><span data-t="fr">Sites web professionnels pour les églises. Modernes, rapides et sur mesure.</span><span data-t="de">Professionelle Kirchenwebsites. Modern, schnell und maßgefertigt.</span></p>
+      <a href="#contact" class="prod-link"><span data-t="nl" class="on">Meer informatie</span><span data-t="en">Learn more</span><span data-t="it">Ulteriori informazioni</span><span data-t="fr">En savoir plus</span><span data-t="de">Mehr erfahren</span> →</a>
+    </div>
+  </div>
+  <!-- Card 4: Other materials on request -->
+  <div class="prod-card rev d3" data-cursor>
+    <div class="prod-anim pa-other-bg">
+      <div class="pa-mat-grid">
+        <div class="pa-mat-item" style="--d:0s">
+          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Meubilair</span><span data-t="en">Furniture</span><span data-t="it">Arredamento</span><span data-t="fr">Mobilier</span><span data-t="de">Möbel</span></div>
+        </div>
+        <div class="pa-mat-item" style="--d:.9s">
+          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2M12 12v3M9 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Prefab gebouwen</span><span data-t="en">Prefab buildings</span><span data-t="it">Edifici prefabbricati</span><span data-t="fr">Bâtiments préfabriqués</span><span data-t="de">Fertiggebäude</span></div>
+        </div>
+        <div class="pa-mat-item" style="--d:1.8s">
+          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Andere goederen op aanvraag</span><span data-t="en">Other goods on request</span><span data-t="it">Altri beni su richiesta</span><span data-t="fr">Autres biens sur demande</span><span data-t="de">Andere Waren auf Anfrage</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card-ov"></div>
+    <div class="prod-card-body">
+      <div class="prod-cat"><span data-t="nl" class="on">Op aanvraag</span><span data-t="en">On request</span><span data-t="it">Su richiesta</span><span data-t="fr">Sur demande</span><span data-t="de">Auf Anfrage</span></div>
+      <h3 class="prod-title"><span data-t="nl" class="on">Andere materialen</span><span data-t="en">Other materials</span><span data-t="it">Altri materiali</span><span data-t="fr">Autres matériaux</span><span data-t="de">Andere Materialien</span></h3>
+      <p style="font-size:.8rem;color:rgba(255,255,255,.85);line-height:1.5;margin-top:.4rem"><span data-t="nl" class="on">Meubilair, prefab gebouwen of andere noden? Vul het contactformulier in en wij vinden de beste oplossing voor uw kerk.</span><span data-t="en">Furniture, prefab buildings or other needs? Fill in the contact form and we'll find the best solution for your church.</span><span data-t="it">Arredamento, edifici prefabbricati o altre esigenze? Compilate il modulo di contatto e troveremo la soluzione migliore.</span><span data-t="fr">Mobilier, bâtiments préfabriqués ou autres besoins? Remplissez le formulaire de contact et nous trouverons la meilleure solution.</span><span data-t="de">Möbel, Fertiggebäude oder andere Bedürfnisse? Füllen Sie das Kontaktformular aus und wir finden die beste Lösung.</span></p>
+      <p class="prod-desc"><span data-t="nl" class="on">Wij zoeken de beste en betrouwbaarste oplossingen zodat kerken gerust kunnen zijn.</span><span data-t="en">We find the best and most reliable solutions so churches can have peace of mind.</span><span data-t="it">Troviamo le migliori soluzioni affinché le chiese siano tranquille.</span><span data-t="fr">Nous trouvons les meilleures solutions pour que les églises soient sereines.</span><span data-t="de">Wir finden die besten Lösungen, damit Kirchen in Ruhe sind.</span></p>
+      <a href="#contact" class="prod-link"><span data-t="nl" class="on">Contactformulier invullen</span><span data-t="en">Fill in contact form</span><span data-t="it">Compila il modulo</span><span data-t="fr">Remplir le formulaire</span><span data-t="de">Kontaktformular ausfüllen</span> →</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CHAIR CONFIGURATOR -->
+<section class="chair-section" id="chairs">
+  <!-- Unified section header -->
+  <div class="chair-hd">
+    <div class="lbl rev"><span data-t="nl" class="on">Kerkstoelen op maat</span><span data-t="en">Custom church chairs</span><span data-t="it">Sedie su misura</span><span data-t="fr">Chaises d'église sur mesure</span><span data-t="de">Kirchenstühle nach Maß</span></div>
+    <h2 class="h2 rev d1"><span data-t="nl" class="on">Elke detail. <em>Uw keuze.</em></span><span data-t="en">Every detail. <em>Your choice.</em></span><span data-t="it">Ogni dettaglio. <em>La vostra scelta.</em></span><span data-t="fr">Chaque détail. <em>Votre choix.</em></span><span data-t="de">Jedes Detail. <em>Ihre Wahl.</em></span></h2>
+    <p class="lead rev d2"><span data-t="nl" class="on">Kies uw stofkleur, framekleur en opties. Wij leveren stoelen die perfect passen bij uw kerk.</span><span data-t="en">Choose your fabric, frame color and options. We deliver chairs that perfectly match your church.</span><span data-t="it">Scegliete tessuto, colore telaio e opzioni. Consegniamo sedie perfette per la vostra chiesa.</span><span data-t="fr">Choisissez tissu, couleur de cadre et options. Nous livrons des chaises parfaites pour votre église.</span><span data-t="de">Wählen Sie Stoff, Rahmenfarbe und Optionen. Wir liefern Stühle, die perfekt zu Ihrer Kirche passen.</span></p>
+  </div>
+
+  <!-- Two-column configurator -->
+  <div class="chair-cfg-grid">
+    <!-- Left: single hero photo + swatch picker -->
+    <div class="chair-cfg-left">
+      <div class="chair-materials rev">
+        <div class="cm-header">
+          <span class="cm-eyebrow"><span data-t="nl" class="on">Vakmanschap in elk detail</span><span data-t="en">Craftsmanship in every detail</span><span data-t="it">Artigianalità in ogni dettaglio</span><span data-t="fr">Artisanat dans chaque détail</span><span data-t="de">Handwerk in jedem Detail</span></span>
+        </div>
+        <div class="cm-grid">
+          <div class="cm-item">
+            <div class="cm-img-wrap"><img src="images/fabric.png" alt="Fabric" loading="lazy"></div>
+            <div class="cm-item-body">
+              <div class="cm-item-title"><span data-t="nl" class="on">Stof</span><span data-t="en">Fabric</span><span data-t="it">Tessuto</span><span data-t="fr">Tissu</span><span data-t="de">Stoff</span></div>
+              <p class="cm-item-desc"><span data-t="nl" class="on">Hoogwaardige stoffen voor maximaal comfort en duurzaamheid</span><span data-t="en">High quality fabric for maximum comfort and durability</span><span data-t="it">Tessuto di alta qualità per massimo comfort e durata</span><span data-t="fr">Tissu haute qualité pour confort et durabilité maximaux</span><span data-t="de">Hochwertige Stoffe für maximalen Komfort und Langlebigkeit</span></p>
+            </div>
+          </div>
+          <div class="cm-item">
+            <div class="cm-img-wrap"><img src="images/foam.png" alt="Foam" loading="lazy"></div>
+            <div class="cm-item-body">
+              <div class="cm-item-title"><span data-t="nl" class="on">Schuim</span><span data-t="en">Foam</span><span data-t="it">Schiuma</span><span data-t="fr">Mousse</span><span data-t="de">Schaum</span></div>
+              <p class="cm-item-desc"><span data-t="nl" class="on">50kg/m³ high-density schuim voor langdurig zitcomfort</span><span data-t="en">50kg/m³ high density foam for long-lasting seating comfort</span><span data-t="it">Schiuma ad alta densità 50kg/m³ per comfort duraturo</span><span data-t="fr">Mousse haute densité 50kg/m³ pour un confort durable</span><span data-t="de">50kg/m³ High-Density-Schaum für dauerhaften Sitzkomfort</span></p>
+            </div>
+          </div>
+          <div class="cm-item">
+            <div class="cm-img-wrap"><img src="images/steeltubes.png" alt="Steel tubes" loading="lazy"></div>
+            <div class="cm-item-body">
+              <div class="cm-item-title"><span data-t="nl" class="on">Staal</span><span data-t="en">Steel</span><span data-t="it">Acciaio</span><span data-t="fr">Acier</span><span data-t="de">Stahl</span></div>
+              <p class="cm-item-desc"><span data-t="nl" class="on">25×25×1,5mm stalen buizen voor stevigheid en lang gebruik</span><span data-t="en">25×25×1.5mm steel tubes for sturdiness and long service life</span><span data-t="it">Tubi in acciaio 25×25×1,5mm per robustezza e lunga durata</span><span data-t="fr">Tubes acier 25×25×1,5mm pour solidité et longue durée de vie</span><span data-t="de">25×25×1,5mm Stahlrohre für Stabilität und lange Lebensdauer</span></p>
+            </div>
+          </div>
+          <div class="cm-item">
+            <div class="cm-img-wrap"><img src="images/Plywood.png" alt="Plywood" loading="lazy"></div>
+            <div class="cm-item-body">
+              <div class="cm-item-title"><span data-t="nl" class="on">Multiplex</span><span data-t="en">Plywood</span><span data-t="it">Compensato</span><span data-t="fr">Contreplaqué</span><span data-t="de">Sperrholz</span></div>
+              <p class="cm-item-desc"><span data-t="nl" class="on">9mm multiplex voor uniforme sterkte en krasbestendigheid</span><span data-t="en">9mm plywood for uniform strength and resistance to warping</span><span data-t="it">Compensato 9mm per resistenza uniforme e stabilità</span><span data-t="fr">Contreplaqué 9mm pour résistance uniforme et stabilité</span><span data-t="de">9mm Sperrholz für gleichmäßige Festigkeit und Formstabilität</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swatch-section rev d2">
+        <div class="swatch-tabs">
+          <button class="swatch-tab active" onclick="switchTab('fabric')" id="tab-fabric">
+            <span data-t="nl" class="on">Stoffen</span><span data-t="en">Fabrics</span><span data-t="it">Tessuti</span><span data-t="fr">Tissus</span><span data-t="de">Stoffe</span>
+          </button>
+          <button class="swatch-tab" onclick="switchTab('frame')" id="tab-frame">
+            <span data-t="nl" class="on">Poten</span><span data-t="en">Frames</span><span data-t="it">Telai</span><span data-t="fr">Pieds</span><span data-t="de">Gestell</span>
+          </button>
+        </div>
+        <div class="swatch-panel active" id="panel-fabric">
+          <div class="swatch-img-wrap" onclick="openLB('images/fabric-new.jpg')">
+            <img src="images/fabric-new.jpg" alt="30+ stofkleuren" loading="lazy">
+            <div class="swatch-zoom-hint"><span data-t="nl" class="on">Klik om in te zoomen</span><span data-t="en">Click to zoom</span><span data-t="it">Clicca per ingrandire</span><span data-t="fr">Cliquer pour zoomer</span><span data-t="de">Zum Zoomen klicken</span></div>
+          </div>
+          <p style="font-size:.78rem;color:var(--mid-gray);margin-top:.7rem"><span data-t="nl" class="on">30+ kleuren beschikbaar. Klik op de foto om in te zoomen.</span><span data-t="en">30+ colors available. Click photo to zoom in.</span><span data-t="it">30+ colori disponibili. Clicca sulla foto per ingrandire.</span><span data-t="fr">30+ couleurs disponibles. Cliquez sur la photo pour zoomer.</span><span data-t="de">30+ Farben verfügbar. Foto anklicken zum Vergrößern.</span></p>
+        </div>
+        <div class="swatch-panel" id="panel-frame">
+          <div class="swatch-img-wrap" onclick="openLB('images/frame-colors-new.jpg')">
+            <img src="images/frame-colors-new.jpg" alt="20+ framekleuren" loading="lazy">
+            <div class="swatch-zoom-hint"><span data-t="nl" class="on">Klik om in te zoomen</span><span data-t="en">Click to zoom</span><span data-t="it">Clicca per ingrandire</span><span data-t="fr">Cliquer pour zoomer</span><span data-t="de">Zum Zoomen klicken</span></div>
+          </div>
+          <p style="font-size:.78rem;color:var(--mid-gray);margin-top:.7rem"><span data-t="nl" class="on">20+ framekleuren: mat zwart, antraciet, goud, zilver, brons en meer. Klik op de foto.</span><span data-t="en">20+ frame colors: matte black, anthracite, gold, silver, bronze and more. Click photo.</span><span data-t="it">20+ colori telaio: nero opaco, antracite, oro, argento, bronzo e altri. Clicca sulla foto.</span><span data-t="fr">20+ couleurs de cadre: noir mat, anthracite, or, argent, bronze et plus. Cliquez.</span><span data-t="de">20+ Rahmenfarben: Mattschwarz, Anthrazit, Gold, Silber, Bronze und mehr. Foto anklicken.</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: spec panel -->
+    <div class="chair-spec-panel rev d1">
+      <div class="chair-product-hero">
+  <img src="images/chair-product-1.jpg" alt="Bestseller kerkstoel">
+  <div class="chair-product-badge"><span data-t="nl" class="on">Bestseller</span><span data-t="en">Best seller</span><span data-t="it">Più venduto</span><span data-t="fr">Best-seller</span><span data-t="de">Bestseller</span></div>
+</div>
+      <div class="chair-spec-tag"><span data-t="nl" class="on">Bouwkwaliteit</span><span data-t="en">Build quality</span><span data-t="it">Qualità costruttiva</span><span data-t="fr">Qualité de fabrication</span><span data-t="de">Bauqualität</span></div>
+      <h3 class="chair-spec-h"><span data-t="nl" class="on">Gemaakt om <em>jaren</em> mee te gaan.</span><span data-t="en">Built to last for <em>years</em>.</span><span data-t="it">Costruito per durare <em>anni</em>.</span><span data-t="fr">Conçu pour durer des <em>années</em>.</span><span data-t="de">Gebaut für <em>Jahre</em>.</span></h3>
+      <div class="quality-list">
+        <div class="q-item"><div class="q-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="q-content"><h4><span data-t="nl" class="on">Stevig metalen frame, 20+ kleuren</span><span data-t="en">Sturdy metal frame, 20+ colors</span><span data-t="it">Telaio metallico, 20+ colori</span><span data-t="fr">Cadre métallique, 20+ couleurs</span><span data-t="de">Metallrahmen, 20+ Farben</span></h4></div>
+        </div>
+        <div class="q-item"><div class="q-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="q-content"><h4><span data-t="nl" class="on">Comfort voor lange diensten</span><span data-t="en">Comfort for long services</span><span data-t="it">Comfort per lunghi servizi</span><span data-t="fr">Confort pour longs services</span><span data-t="de">Komfort für lange Gottesdienste</span></h4></div>
+        </div>
+        <div class="q-item"><div class="q-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="q-content"><h4><span data-t="nl" class="on">Premium slijtvaste stoffen, 30+ kleuren</span><span data-t="en">Premium wear-resistant fabrics, 30+ colors</span><span data-t="it">Tessuti resistenti all'usura, 30+ colori</span><span data-t="fr">Tissus résistants à l'usure, 30+ couleurs</span><span data-t="de">Verschleißfeste Stoffe, 30+ Farben</span></h4></div>
+        </div>
+        <div class="q-item"><div class="q-check"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="q-content"><h4><span data-t="nl" class="on">Stapelbaar tot 8 hoog</span><span data-t="en">Stackable up to 8 high</span><span data-t="it">Impilabile fino a 8</span><span data-t="fr">Empilable jusqu'à 8</span><span data-t="de">Bis zu 8 stapelbar</span></h4></div>
+        </div>
+      </div>
+      <!-- Inline accessories -->
+      <div class="chair-spec-extras">
+        <div class="chair-spec-extras-lbl"><span data-t="nl" class="on">Extra opties</span><span data-t="en">Extra options</span><span data-t="it">Opzioni extra</span><span data-t="fr">Options supplémentaires</span><span data-t="de">Zusatzoptionen</span></div>
+        <div class="chair-extras-grid">
+          <div class="chair-extra-pill"><svg viewBox="0 0 24 24" fill="none"><path d="M8 3v3a2 2 0 002 2h4a2 2 0 002-2V3M4 12h16v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>Flat hook</div>
+          <div class="chair-extra-pill"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h4l2-6 4 12 2-6h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Line hook</div>
+          <div class="chair-extra-pill"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span data-t="nl" class="on">Boekvak</span><span data-t="en">Book pocket</span><span data-t="it">Tasca</span><span data-t="fr">Poche</span><span data-t="de">Büchertasche</span></div>
+          <div class="chair-extra-pill"><svg viewBox="0 0 24 24" fill="none"><path d="M3 18h18M5 18V8h14v10M7 14h2M11 14h2M15 14h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span data-t="nl" class="on">Boekenrek</span><span data-t="en">Book rack</span><span data-t="it">Scaffale</span><span data-t="fr">Porte-livre</span><span data-t="de">Bücherablage</span></div>
+          <div class="chair-extra-pill"><svg viewBox="0 0 24 24" fill="none"><path d="M3 16h18l-2 4H5l-2-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 16V9c0-1 1-2 2-2h10c1 0 2 1 2 2v7" stroke="currentColor" stroke-width="1.5"/></svg><span data-t="nl" class="on">Knielkussen</span><span data-t="en">Kneeler</span><span data-t="it">Inginocchiatoio</span><span data-t="fr">Agenouilloir</span><span data-t="de">Kniebrett</span></div>
+          <div class="chair-extra-pill"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="3" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M5 9v8M19 9v8M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 13h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span data-t="nl" class="on">Schrijfplank</span><span data-t="en">Writing board</span><span data-t="it">Tavoletta</span><span data-t="fr">Tablette</span><span data-t="de">Schreibbrett</span></div>
+        </div>
+      </div>
+      <a href="#contact" class="chair-spec-cta"><span data-t="nl" class="on">Offerte aanvragen</span><span data-t="en">Request a quote</span><span data-t="it">Richiedi preventivo</span><span data-t="fr">Demander un devis</span><span data-t="de">Angebot anfragen</span> →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- LED -->
+<section class="led-section" id="led">
+  <div class="led-grid">
+    <div>
+      <div class="lbl lt rev"><span data-t="nl" class="on">Verlichte borden</span><span data-t="en">Illuminated signs</span><span data-t="it">Insegne luminose</span><span data-t="fr">Enseignes lumineuses</span><span data-t="de">Beleuchtete Schilder</span></div>
+      <h2 class="h2 lt rev d1"><span data-t="nl" class="on">Laat uw kerk <span class="led-glow-word">opvallen</span>.</span><span data-t="en">Make your church <span class="led-glow-word">stand out</span>.</span><span data-t="it">Fate <span class="led-glow-word">risaltare</span> la vostra chiesa.</span><span data-t="fr">Faites <span class="led-glow-word">ressortir</span> votre église.</span><span data-t="de">Lassen Sie Ihre Kirche <span class="led-glow-word">auffallen</span>.</span></h2>
+      <p class="lead lt rev d2"><span data-t="nl" class="on">LED-borden volledig op maat, weerbestendig voor buiten, elegant voor binnen.</span><span data-t="en">Fully custom LED signs, weather-resistant for outdoors, elegant for indoors.</span><span data-t="it">Insegne LED completamente personalizzate, resistenti per esterno, eleganti per interno.</span><span data-t="fr">Enseignes LED sur mesure, résistantes pour l'extérieur, élégantes pour l'intérieur.</span><span data-t="de">LED-Schilder nach Maß, wetterfest für außen, elegant für innen.</span></p>
+      <div class="led-types rev d3">
+        <div class="led-type"><span class="led-type-ico">✦</span><span data-t="nl" class="on">Frontlit en backlit borden</span><span data-t="en">Frontlit and backlit signs</span><span data-t="it">Insegne frontlit e backlit</span><span data-t="fr">Enseignes frontlit et backlit</span><span data-t="de">Frontlit und Backlit Schilder</span></div>
+        <div class="led-type"><span class="led-type-ico">✦</span><span data-t="nl" class="on">Verlichte lichtbakken, enkel- &amp; dubbelzijdig</span><span data-t="en">Illuminated lightboxes, single &amp; double-sided</span><span data-t="it">Lightbox illuminati, singolo e doppio lato</span><span data-t="fr">Caissons lumineux, simple &amp; double face</span><span data-t="de">Beleuchtete Leuchtkästen, ein- &amp; zweiseitig</span></div>
+        <div class="led-type"><span class="led-type-ico">✦</span><span data-t="nl" class="on">Acryl verlichte borden op maat</span><span data-t="en">Acrylic lighted custom signs</span><span data-t="it">Insegne acriliche illuminate su misura</span><span data-t="fr">Enseignes acryliques éclairées sur mesure</span><span data-t="de">Beleuchtete Acryl-Schilder nach Maß</span></div>
+        <div class="led-type"><span class="led-type-ico">✦</span><span data-t="nl" class="on">Elk formaat, elke kleur, uw logo</span><span data-t="en">Any size, any color, your logo</span><span data-t="it">Qualsiasi formato, colore, logo vostro</span><span data-t="fr">Tout format, toute couleur, votre logo</span><span data-t="de">Jede Größe, Farbe, Ihr Logo</span></div>
+      </div>
+    </div>
+    <div class="led-visual rev d2">
+      <img src="images/led-installed-2.jpg" alt="LED-bord geïnstalleerd" style="object-position:65% center">
+      <div class="led-tag"><span data-t="nl" class="on">Echte klant: MiC</span><span data-t="en">Real client: MiC</span><span data-t="it">Cliente reale: MiC</span><span data-t="fr">Client réel: MiC</span><span data-t="de">Echter Kunde: MiC</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="mw">
+    <div style="max-width:1280px;margin:0 auto 3.5rem">
+      <div class="lbl rev"><span data-t="nl" class="on">Waarom A-one</span><span data-t="en">Why A-one</span><span data-t="it">Perché A-one</span><span data-t="fr">Pourquoi A-one</span><span data-t="de">Warum A-one</span></div>
+      <h2 class="h2 rev d1"><span data-t="nl" class="on">Gemaakt voor kerken, door een <em>christen</em>.</span><span data-t="en">Made for churches, by a <em>Christian</em>.</span><span data-t="it">Fatto per le chiese, da un <em>cristiano</em>.</span><span data-t="fr">Fait pour les églises, par un <em>chrétien</em>.</span><span data-t="de">Für Kirchen gemacht, von einem <em>Christen</em>.</span></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-item rev"><div class="feat-num">01</div><h3 class="feat-title"><span data-t="nl" class="on">Eerlijke prijzen</span><span data-t="en">Fair prices</span><span data-t="it">Prezzi onesti</span><span data-t="fr">Prix justes</span><span data-t="de">Faire Preise</span></h3><p class="feat-text"><span data-t="nl" class="on">Geen winstjacht. Uw budget gaat naar mensen, niet naar marges.</span><span data-t="en">No profit-chasing. Your budget goes to people, not margins.</span><span data-t="it">Nessuna caccia al profitto. Il vostro budget va alle persone.</span><span data-t="fr">Pas de course au profit. Votre budget va aux personnes.</span><span data-t="de">Kein Gewinnstreben. Ihr Budget geht an Menschen, nicht Margen.</span></p></div>
+      <div class="feat-item rev d1"><div class="feat-num">02</div><h3 class="feat-title"><span data-t="nl" class="on">Volledig op maat</span><span data-t="en">Fully custom</span><span data-t="it">Completamente su misura</span><span data-t="fr">Entièrement sur mesure</span><span data-t="de">Vollständig maßgefertigt</span></h3><p class="feat-text"><span data-t="nl" class="on">Elke kleur, maat en optie. 100% geconfigureerd naar uw wensen.</span><span data-t="en">Every color, size and option. 100% configured to your wishes.</span><span data-t="it">Ogni colore, misura e opzione. 100% configurato.</span><span data-t="fr">Chaque couleur, taille et option. 100% configuré.</span><span data-t="de">Jede Farbe, Größe und Option. 100% konfiguriert.</span></p></div>
+      <div class="feat-item rev d2"><div class="feat-num">03</div><h3 class="feat-title"><span data-t="nl" class="on">Bewezen kwaliteit</span><span data-t="en">Proven quality</span><span data-t="it">Qualità provata</span><span data-t="fr">Qualité prouvée</span><span data-t="de">Bewährte Qualität</span></h3><p class="feat-text"><span data-t="nl" class="on">Kerken in Europa vertrouwen A-one al jaren.</span><span data-t="en">Churches across Europe have trusted A-one for years.</span><span data-t="it">Chiese in Europa si fidano di A-one da anni.</span><span data-t="fr">Des églises en Europe font confiance à A-one depuis des années.</span><span data-t="de">Kirchen in Europa vertrauen A-one seit Jahren.</span></p></div>
+      <div class="feat-item rev d3"><div class="feat-num">04</div><h3 class="feat-title"><span data-t="nl" class="on">Persoonlijk contact</span><span data-t="en">Personal contact</span><span data-t="it">Contatto personale</span><span data-t="fr">Contact personnel</span><span data-t="de">Persönlicher Kontakt</span></h3><p class="feat-text"><span data-t="nl" class="on">U spreekt rechtstreeks met Alessio. Geen callcenter, geen tussenpersonen.</span><span data-t="en">You speak directly with Alessio. No call center, no intermediaries.</span><span data-t="it">Parlerete direttamente con Alessio. Nessun intermediario.</span><span data-t="fr">Vous parlez directement avec Alessio. Pas d'intermédiaires.</span><span data-t="de">Sie sprechen direkt mit Alessio. Kein Callcenter, keine Vermittler.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL CONSULTING -->
+<section class="consult-section" id="consulting">
+  <div class="consult-grid">
+    <div>
+      <div class="lbl lt rev"><span data-t="nl" class="on">Digitaal advies voor kerken</span><span data-t="en">Digital advice for churches</span><span data-t="it">Consulenza digitale per chiese</span><span data-t="fr">Conseil numérique pour les églises</span><span data-t="de">Digitale Beratung für Kirchen</span></div>
+      <h2 class="h2 lt rev d1"><span data-t="nl" class="on">Uw boodschap zichtbaar <em>in de wereld van vandaag.</em></span><span data-t="en">Your message visible <em>in today's world.</em></span><span data-t="it">Il vostro messaggio visibile <em>nel mondo di oggi.</em></span><span data-t="fr">Votre message visible <em>dans le monde d'aujourd'hui.</em></span><span data-t="de">Ihre Botschaft sichtbar <em>in der heutigen Welt.</em></span></h2>
+      <p class="lead lt rev d2"><span data-t="nl" class="on">Kerken zijn er niet om zichzelf te promoten, maar om het evangelie te delen. Ik help uw gemeente zichtbaar te worden voor de mensen in uw omgeving, met bescheidenheid maar met impact.</span><span data-t="en">Churches are not there to promote themselves, but to share the gospel. I help your congregation become visible to the people around you, with humility but with impact.</span><span data-t="it">Le chiese non esistono per promuovere se stesse, ma per condividere il vangelo. Aiuto la vostra chiesa a diventare visibile alle persone intorno a voi, con umiltà ma con impatto.</span><span data-t="fr">Les églises ne sont pas là pour se promouvoir, mais pour partager l'évangile. J'aide votre congrégation à devenir visible pour les personnes qui vous entourent, avec humilité mais avec impact.</span><span data-t="de">Kirchen sind nicht dazu da, sich selbst zu bewerben, sondern das Evangelium zu teilen. Ich helfe Ihrer Gemeinde, für die Menschen in Ihrer Umgebung sichtbar zu werden, mit Bescheidenheit aber mit Wirkung.</span></p>
+      <div class="consult-services rev d3">
+        <div class="cs-item">
+          <div class="cs-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <h4 class="cs-title"><span data-t="nl" class="on">Websites voor kerken</span><span data-t="en">Websites for churches</span><span data-t="it">Siti web per chiese</span><span data-t="fr">Sites web pour les églises</span><span data-t="de">Websites für Kirchen</span></h4>
+          <p class="cs-text"><span data-t="nl" class="on">Een eenvoudige, professionele website zodat mensen uw kerk kunnen vinden en weten wie u bent en wat u gelooft.</span><span data-t="en">A simple, professional website so people can find your church and understand who you are and what you believe.</span><span data-t="it">Un sito web semplice e professionale perché le persone possano trovare la vostra chiesa e capire chi siete e cosa credete.</span><span data-t="fr">Un site web simple et professionnel pour que les gens puissent trouver votre église et comprendre qui vous êtes et ce que vous croyez.</span><span data-t="de">Eine einfache, professionelle Website, damit Menschen Ihre Kirche finden und verstehen, wer Sie sind und was Sie glauben.</span></p>
+        </div>
+        <div class="cs-item">
+          <div class="cs-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <h4 class="cs-title"><span data-t="nl" class="on">Digitaal adviesgesprek</span><span data-t="en">Digital consulting call</span><span data-t="it">Consulenza digitale</span><span data-t="fr">Appel de conseil numérique</span><span data-t="de">Digitales Beratungsgespräch</span></h4>
+          <p class="cs-text"><span data-t="nl" class="on">Een persoonlijk gesprek om te bespreken hoe uw kerk zichtbaar kan worden in uw buurt en regio, zonder de focus op evangelie te verliezen.</span><span data-t="en">A personal conversation to discuss how your church can become visible in your neighbourhood and region, without losing focus on the gospel.</span><span data-t="it">Una conversazione personale per discutere come la vostra chiesa può diventare visibile nel vostro quartiere e nella vostra regione, senza perdere il focus sul vangelo.</span><span data-t="fr">Une conversation personnelle pour discuter de comment votre église peut devenir visible dans votre quartier et votre région, sans perdre le focus sur l'évangile.</span><span data-t="de">Ein persönliches Gespräch darüber, wie Ihre Kirche in Ihrer Nachbarschaft und Region sichtbar werden kann, ohne den Fokus auf das Evangelium zu verlieren.</span></p>
+        </div>
+      </div>
+      <div style="margin-top:2rem" class="rev d4">
+        <a href="#contact" class="btn-p"><span data-t="nl" class="on">Vraag adviesgesprek aan</span><span data-t="en">Request consulting call</span><span data-t="it">Richiedi consulenza</span><span data-t="fr">Demander un conseil</span><span data-t="de">Beratungsgespräch anfragen</span> →</a>
+      </div>
+    </div>
+    <div class="consult-visual rev d2">
+      <div class="web-mockup">
+        <div class="wm-bar">
+          <span class="wm-dot"></span><span class="wm-dot"></span><span class="wm-dot"></span>
+          <div class="wm-url">www.uwkerk.be</div>
+        </div>
+        <div class="wm-body">
+          <div class="wm-hero-blk"></div>
+          <div class="wm-rows">
+            <div class="wm-ln h"></div>
+            <div class="wm-ln m"></div>
+            <div class="wm-ln s"></div>
+          </div>
+          <div class="wm-cards-row">
+            <div class="wm-crd"><div class="wm-crd-img"></div><div></div><div></div></div>
+            <div class="wm-crd"><div class="wm-crd-img"></div><div></div><div></div></div>
+            <div class="wm-crd"><div class="wm-crd-img"></div><div></div><div></div></div>
+          </div>
+        </div>
+        <div class="wm-cursor"></div>
+      </div>
+      <div class="consult-badge">
+        <div class="consult-badge-num">A-one</div>
+        <div class="consult-badge-lbl"><span data-t="nl" class="on">Digital</span><span data-t="en">Digital</span><span data-t="it">Digital</span><span data-t="fr">Digital</span><span data-t="de">Digital</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="mw">
+    <div style="margin-bottom:3.5rem">
+      <div class="lbl rev"><span data-t="nl" class="on">Hoe het werkt</span><span data-t="en">How it works</span><span data-t="it">Come funziona</span><span data-t="fr">Comment ça marche</span><span data-t="de">Wie es funktioniert</span></div>
+      <h2 class="h2 rev d1"><span data-t="nl" class="on">Van aanvraag tot levering.</span><span data-t="en">From request to delivery.</span><span data-t="it">Dalla richiesta alla consegna.</span><span data-t="fr">De la demande à la livraison.</span><span data-t="de">Von der Anfrage bis zur Lieferung.</span></h2>
+    </div>
+    <div class="process-steps">
+      <div class="proc-step rev"><div class="proc-num">1</div><h3 class="proc-title"><span data-t="nl" class="on">Neem contact op</span><span data-t="en">Get in touch</span><span data-t="it">Contattaci</span><span data-t="fr">Contactez-nous</span><span data-t="de">Kontakt aufnehmen</span></h3><p class="proc-text"><span data-t="nl" class="on">Beschrijf uw noden via het formulier of bel Alessio. Geen verplichtingen.</span><span data-t="en">Describe your needs via the form or call Alessio. No obligations.</span><span data-t="it">Descrivete le vostre esigenze o chiamate Alessio. Nessun obbligo.</span><span data-t="fr">Décrivez vos besoins ou appelez Alessio. Aucune obligation.</span><span data-t="de">Beschreiben Sie Ihre Bedürfnisse oder rufen Sie Alessio an.</span></p></div>
+      <div class="proc-step rev d1"><div class="proc-num">2</div><h3 class="proc-title"><span data-t="nl" class="on">Persoonlijke offerte</span><span data-t="en">Personal quote</span><span data-t="it">Preventivo personale</span><span data-t="fr">Devis personnel</span><span data-t="de">Persönliches Angebot</span></h3><p class="proc-text"><span data-t="nl" class="on">Beste prijs, beste kwaliteit. Gedetailleerde offerte binnen de kortst mogelijke tijd.</span><span data-t="en">Best price, best quality. Detailed quote in the shortest possible time.</span><span data-t="it">Miglior prezzo, migliore qualità. Preventivo dettagliato nel più breve tempo possibile.</span><span data-t="fr">Meilleur prix, meilleure qualité. Devis détaillé dans les meilleurs délais.</span><span data-t="de">Bester Preis, beste Qualität. Detailliertes Angebot schnellstmöglich.</span></p></div>
+      <div class="proc-step rev d2"><div class="proc-num">3</div><h3 class="proc-title"><span data-t="nl" class="on">Configuratie</span><span data-t="en">Configuration</span><span data-t="it">Configurazione</span><span data-t="fr">Configuration</span><span data-t="de">Konfiguration</span></h3><p class="proc-text"><span data-t="nl" class="on">U kiest kleuren, stoffen en opties. Op verzoek sturen wij een kleurstaal op.</span><span data-t="en">You choose colors, fabrics and options. We send color samples on request.</span><span data-t="it">Scegliete colori, tessuti e opzioni. Campioni disponibili su richiesta.</span><span data-t="fr">Vous choisissez couleurs, tissus et options. Échantillons envoyés sur demande.</span><span data-t="de">Sie wählen Farben, Stoffe und Optionen. Farbmuster auf Anfrage.</span></p></div>
+      <div class="proc-step rev d3"><div class="proc-num">4</div><h3 class="proc-title"><span data-t="nl" class="on">Productie &amp; levering</span><span data-t="en">Production &amp; delivery</span><span data-t="it">Produzione &amp; consegna</span><span data-t="fr">Production &amp; livraison</span><span data-t="de">Produktion &amp; Lieferung</span></h3><p class="proc-text"><span data-t="nl" class="on">Uw product wordt geproduceerd en aan uw deur geleverd. Volledige opvolging van A tot Z.</span><span data-t="en">Your product is produced and delivered to your door. Full follow-up from A to Z.</span><span data-t="it">Il vostro prodotto viene prodotto e consegnato. Seguiamo tutto dalla A alla Z.</span><span data-t="fr">Votre produit est produit et livré. Suivi complet de A à Z.</span><span data-t="de">Ihr Produkt wird produziert und geliefert. Vollständige Begleitung von A bis Z.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="test-section" id="testimonials">
+  <div class="test-header mw">
+    <div class="lbl lt rev"><span data-t="nl" class="on">Wat kerken zeggen</span><span data-t="en">What churches say</span><span data-t="it">Cosa dicono le chiese</span><span data-t="fr">Ce que disent les églises</span><span data-t="de">Was Kirchen sagen</span></div>
+    <h2 class="h2 lt rev d1"><span data-t="nl" class="on">Kerken in heel Europa vertrouwen <em>A-one</em>.</span><span data-t="en">Churches across Europe trust <em>A-one</em>.</span><span data-t="it">Chiese in tutta Europa si fidano di <em>A-one</em>.</span><span data-t="fr">Des églises à travers l'Europe font confiance à <em>A-one</em>.</span><span data-t="de">Kirchen in ganz Europa vertrauen <em>A-one</em>.</span></h2>
+  </div>
+  <div class="test-track">
+    <div class="test-card">
+      <div class="test-qm">"</div>
+      <div class="test-stars">★★★★★ · 9/10</div>
+      <p class="test-text">
+        <span data-t="nl" class="on">Wij zijn zeer tevreden. Als ik een score moet geven, zou ik 9 op 10 zeggen. Alessio volgde ons in elke fase op met grote professionaliteit.</span>
+        <span data-t="en">We are very satisfied. If I had to give a score, I'd say 9 out of 10. Alessio guided us through every step with great professionalism.</span>
+        <span data-t="it">Siamo molto soddisfatti. Se devo dare una quota direi 9 su 10. Alessio ci ha seguiti in ogni fase con grande professionalità.</span>
+        <span data-t="fr">Nous sommes très satisfaits. Si je devais donner une note, ce serait 9 sur 10. Alessio nous a accompagnés à chaque étape.</span>
+        <span data-t="de">Wir sind sehr zufrieden. Wenn ich eine Note geben müsste, dann 9 von 10. Alessio hat uns bei jedem Schritt begleitet.</span>
+      </p>
+      <div class="test-author"><div class="test-av">CC</div><div><div class="test-name">Chiesa di Châtelet</div><div class="test-church">Châtelet, Belgique · CCINE</div></div><span class="test-flag">🇧🇪</span></div>
+    </div>
+    <div class="test-card">
+      <div class="test-qm">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">
+        <span data-t="nl" class="on">Uitstekende kwaliteit en eerlijke prijs. Alessio volgde alles persoonlijk op. Wij zijn zeer tevreden met het eindresultaat.</span>
+        <span data-t="en">Excellent quality and fair price. Alessio followed up personally. We are very satisfied with the final result.</span>
+        <span data-t="it">Ottima qualità e prezzo onesto. Alessio ha seguito tutto personalmente. Molto soddisfatti del risultato finale.</span>
+        <span data-t="fr">Excellente qualité et prix honnête. Alessio a suivi personnellement. Très satisfaits du résultat final.</span>
+        <span data-t="de">Ausgezeichnete Qualität und fairer Preis. Alessio hat persönlich nachgefasst. Sehr zufrieden mit dem Endergebnis.</span>
+      </p>
+      <div class="test-author"><div class="test-av">MC</div><div><div class="test-name">Maasmechelen In Christ</div><div class="test-church">Maasmechelen, België · CCINE</div></div><span class="test-flag">🇧🇪</span></div>
+    </div>
+    <div class="test-card">
+      <div class="test-qm">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">
+        <span data-t="nl" class="on">A-one gaf onze zaal een totaal nieuwe uitstraling. Comfortabele stoelen, perfecte afwerking, alles binnen budget. Onze gemeente straalt weer.</span>
+        <span data-t="en">A-one gave our hall a completely new look. Comfortable chairs, perfect finish, everything within budget. Our congregation shines again.</span>
+        <span data-t="it">A-one ha dato alla nostra sala un aspetto completamente nuovo. Sedie comode, finitura perfetta, tutto nel budget. La nostra chiesa brilla di nuovo.</span>
+        <span data-t="fr">A-one a donné un nouveau visage à notre salle. Chaises confortables, finition parfaite, dans le budget. Notre congrégation rayonne à nouveau.</span>
+        <span data-t="de">A-one gab unserem Saal ein völlig neues Aussehen. Bequeme Stühle, perfekte Verarbeitung, alles im Budget. Unsere Gemeinde strahlt wieder.</span>
+      </p>
+      <div class="test-author"><div class="test-av">GC</div><div><div class="test-name">Genk in Christ</div><div class="test-church">Genk, België · CCINE</div></div><span class="test-flag">🇧🇪</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission-section">
+  <div class="mission-content">
+
+    <h2 class="mission-h2 rev d1">
+      <span data-t="nl" class="on">"De kerk is een huis van God. Laten we het er ook zo laten uitzien."</span>
+      <span data-t="en">"The church is God's house. Let's make it look like one."</span>
+      <span data-t="it">"La chiesa è la casa di Dio. Rendiamola tale."</span>
+      <span data-t="fr">"L'église est la maison de Dieu. Faisons en sorte qu'elle y ressemble."</span>
+      <span data-t="de">"Die Kirche ist Gottes Haus. Lassen wir es so aussehen."</span>
+    </h2>
+    <p class="mission-text rev d2">
+      <span data-t="nl" class="on">A-one Church Services is geen gewone onderneming. Het is een missie om kerken te helpen er verzorgd uit te zien, zodat bezoekers zich welkom voelen en God de eer krijgt die Hem toekomt.</span>
+      <span data-t="en">A-one Church Services is not an ordinary company. It is a mission to help churches look well-cared-for, so visitors feel welcome and God receives the glory He deserves.</span>
+      <span data-t="it">A-one Church Services non è un'azienda ordinaria. È una missione per aiutare le chiese ad apparire curate, affinché i visitatori si sentano accolti e Dio riceva la gloria che merita.</span>
+      <span data-t="fr">A-one Church Services n'est pas une entreprise ordinaire. C'est une mission pour aider les églises à paraître soignées, afin que les visiteurs se sentent bienvenus et que Dieu reçoive la gloire qui Lui est due.</span>
+      <span data-t="de">A-one Church Services ist kein gewöhnliches Unternehmen. Es ist eine Mission, Kirchen zu helfen, gepflegt auszusehen, damit Besucher sich willkommen fühlen und Gott die Ehre erhält, die Ihm gebührt.</span>
+    </p>
+    <div class="mission-sig rev d3">Alessio Pavone, <span data-t="nl" class="on">oprichter</span><span data-t="en">founder</span><span data-t="it">fondatore</span><span data-t="fr">fondateur</span><span data-t="de">Gründer</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="lbl lt">Contact</div>
+      <h2 class="h2 lt rev d1"><span data-t="nl" class="on">Laten we praten over uw <em>kerk</em>.</span><span data-t="en">Let's talk about your <em>church</em>.</span><span data-t="it">Parliamo della vostra <em>chiesa</em>.</span><span data-t="fr">Parlons de votre <em>église</em>.</span><span data-t="de">Sprechen wir über Ihre <em>Kirche</em>.</span></h2>
+      <p class="lead lt rev d2"><span data-t="nl" class="on">Geen verplichtingen, geen verkooppraatjes. Gewoon een eerlijk gesprek over uw noden.</span><span data-t="en">No obligations, no sales pitches. Just an honest conversation about your needs.</span><span data-t="it">Nessun obbligo, nessun discorso di vendita. Solo una conversazione onesta.</span><span data-t="fr">Aucune obligation. Juste une conversation honnête sur vos besoins.</span><span data-t="de">Keine Verpflichtungen. Nur ein ehrliches Gespräch über Ihre Bedürfnisse.</span></p>
+      <div class="contact-info rev d3">
+        <div class="c-item"><div class="c-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7a2 2 0 012-2h14a2 2 0 012 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val"><a href="mailto:info@aone-group.com">info@aone-group.com</a></div></div></div>
+        <div class="c-item"><div class="c-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4a2 2 0 01-2 2A18 18 0 013 6a2 2 0 012-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><div class="c-lbl"><span data-t="nl" class="on">Telefoon &amp; WhatsApp</span><span data-t="en">Phone &amp; WhatsApp</span><span data-t="it">Telefono &amp; WhatsApp</span><span data-t="fr">Téléphone &amp; WhatsApp</span><span data-t="de">Telefon &amp; WhatsApp</span></div><div class="c-val"><a href="tel:+32484654624">+32 484 65 46 24</a></div></div></div>
+        <div class="c-item"><div class="c-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><div class="c-lbl"><span data-t="nl" class="on">Bedrijfsgegevens</span><span data-t="en">Company details</span><span data-t="it">Dati aziendali</span><span data-t="fr">Détails de l'entreprise</span><span data-t="de">Unternehmensdaten</span></div><div class="c-val">A-one, Alessio Pavone<br>BE 0768.925.136</div></div></div>
+      </div>
+    </div>
+    <form class="contact-form rev d2" id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+      <div class="frow">
+        <div class="fgroup"><label class="flbl"><span data-t="nl" class="on">Naam</span><span data-t="en">Name</span><span data-t="it">Nome</span><span data-t="fr">Nom</span><span data-t="de">Name</span></label><input type="text" class="finput" name="name" required placeholder="Mario Rossi"></div>
+        <div class="fgroup"><label class="flbl">Email</label><input type="email" class="finput" name="email" required placeholder="info@kerk.be"></div>
+      </div>
+      <div class="frow">
+        <div class="fgroup"><label class="flbl"><span data-t="nl" class="on">Kerk / Organisatie</span><span data-t="en">Church / Organization</span><span data-t="it">Chiesa / Organizzazione</span><span data-t="fr">Église / Organisation</span><span data-t="de">Kirche / Organisation</span></label><input type="text" class="finput" name="organization" placeholder="Mijn Kerk"></div>
+        <div class="fgroup"><label class="flbl"><span data-t="nl" class="on">Land</span><span data-t="en">Country</span><span data-t="it">Paese</span><span data-t="fr">Pays</span><span data-t="de">Land</span></label>
+          <select class="fselect" name="country"><option value="">—</option><option value="BE">🇧🇪 België / Belgique</option><option value="NL">🇳🇱 Nederland</option><option value="IT">🇮🇹 Italia</option><option value="FR">🇫🇷 France</option><option value="DE">🇩🇪 Deutschland</option><option value="CH">🇨🇭 Schweiz</option><option value="AT">🇦🇹 Österreich</option><option value="LU">🇱🇺 Luxembourg</option><option value="OTHER">Other</option></select>
+        </div>
+      </div>
+      <div class="fgroup"><label class="flbl" id="lbl-interest"><span data-t="nl" class="on">Interesse in</span><span data-t="en">Interested in</span><span data-t="it">Interessato a</span><span data-t="fr">Intéressé par</span><span data-t="de">Interessiert an</span></label>
+        <select class="fselect" name="interest" id="interestSelect">
+          <option value="">—</option>
+          <option value="chairs">Kerkstoelen</option>
+          <option value="led">LED-borden</option>
+          <option value="consulting">Kerkadvies / digitalisering</option>
+          <option value="both">Meerdere producten</option>
+        </select>
+      </div>
+      <div class="fgroup"><label class="flbl"><span data-t="nl" class="on">Bericht</span><span data-t="en">Message</span><span data-t="it">Messaggio</span><span data-t="fr">Message</span><span data-t="de">Nachricht</span></label><textarea class="ftextarea" name="message" placeholder="..." required></textarea></div>
+      <div class="fcheck">
+        <input type="checkbox" id="pc" name="privacy" required>
+        <label class="fcheck-lbl" for="pc">
+          <span data-t="nl" class="on">Ik ga akkoord met de <a onclick="openLegal('privacy')">privacyverklaring</a> en <a onclick="openLegal('terms')">algemene voorwaarden</a> en geef toestemming voor verwerking van mijn gegevens conform AVG/GDPR.</span>
+          <span data-t="en">I agree to the <a onclick="openLegal('privacy')">privacy policy</a> and <a onclick="openLegal('terms')">terms &amp; conditions</a> and consent to processing of my data under GDPR.</span>
+          <span data-t="it">Acconsento alla <a onclick="openLegal('privacy')">privacy</a> e ai <a onclick="openLegal('terms')">termini</a> e al trattamento dei miei dati ai sensi del GDPR.</span>
+          <span data-t="fr">J'accepte la <a onclick="openLegal('privacy')">politique de confidentialité</a> et les <a onclick="openLegal('terms')">conditions générales</a> et consens au traitement de mes données.</span>
+          <span data-t="de">Ich stimme der <a onclick="openLegal('privacy')">Datenschutzerklärung</a> und den <a onclick="openLegal('terms')">AGB</a> zu und willige in die Datenverarbeitung gemäß DSGVO ein.</span>
+        </label>
+      </div>
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span data-t="nl" class="on">Stuur aanvraag</span><span data-t="en">Send request</span><span data-t="it">Invia richiesta</span><span data-t="fr">Envoyer</span><span data-t="de">Anfrage senden</span> →
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="privacy-anchor">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <img src="images/logo.png" alt="A-one" class="footer-logo">
+          <div class="footer-brand-name">A-one Church Services</div>
+        </div>
+        <div class="footer-tagline">
+          <span data-t="nl" class="on">Stoelen, LED-borden en digitaal advies voor kerken in Europa. Één vertrouwde partner voor alles.</span>
+          <span data-t="en">Chairs, LED signs and digital consulting for churches in Europe. One trusted partner for everything.</span>
+          <span data-t="it">Sedie, insegne LED e consulenza digitale per chiese in Europa.</span>
+          <span data-t="fr">Chaises, enseignes LED et conseil digital pour les églises en Europe.</span>
+          <span data-t="de">Stühle, LED-Schilder und digitale Beratung für Kirchen in Europa.</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4><span data-t="nl" class="on">Producten</span><span data-t="en">Products</span><span data-t="it">Prodotti</span><span data-t="fr">Produits</span><span data-t="de">Produkte</span></h4>
+        <a href="#chairs"><span data-t="nl" class="on">Kerkstoelen</span><span data-t="en">Church chairs</span><span data-t="it">Sedie per chiesa</span><span data-t="fr">Chaises d'église</span><span data-t="de">Kirchenstühle</span></a>
+        <a href="#led"><span data-t="nl" class="on">LED-borden</span><span data-t="en">LED signs</span><span data-t="it">Insegne LED</span><span data-t="fr">Enseignes LED</span><span data-t="de">LED-Schilder</span></a>
+        <a href="#consulting"><span data-t="nl" class="on">Kerkadvies</span><span data-t="en">Consulting</span><span data-t="it">Consulenza</span><span data-t="fr">Conseil</span><span data-t="de">Beratung</span></a>
+      </div>
+      <div class="footer-col">
+        <h4><span data-t="nl" class="on">Navigatie</span><span data-t="en">Navigation</span><span data-t="it">Navigazione</span><span data-t="fr">Navigation</span><span data-t="de">Navigation</span></h4>
+        <a href="#story"><span data-t="nl" class="on">Ons verhaal</span><span data-t="en">Our story</span><span data-t="it">La nostra storia</span><span data-t="fr">Notre histoire</span><span data-t="de">Unsere Geschichte</span></a>
+        <a href="#testimonials"><span data-t="nl" class="on">Reviews</span><span data-t="en">Reviews</span><span data-t="it">Recensioni</span><span data-t="fr">Avis</span><span data-t="de">Bewertungen</span></a>
+        <a href="#contact">Contact</a>
+        <a href="https://aone-group.com" target="_blank">aone-group.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <button class="legal-link" onclick="openLegal('privacy')"><span data-t="nl" class="on">Privacyverklaring</span><span data-t="en">Privacy policy</span><span data-t="it">Privacy</span><span data-t="fr">Confidentialité</span><span data-t="de">Datenschutz</span></button>
+        <button class="legal-link" onclick="openLegal('cookies')"><span data-t="nl" class="on">Cookiebeleid</span><span data-t="en">Cookie policy</span><span data-t="it">Cookie</span><span data-t="fr">Cookies</span><span data-t="de">Cookies</span></button>
+        <button class="legal-link" onclick="openLegal('terms')"><span data-t="nl" class="on">Algemene voorwaarden</span><span data-t="en">Terms &amp; conditions</span><span data-t="it">Termini</span><span data-t="fr">Conditions générales</span><span data-t="de">AGB</span></button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        &copy; 2026 A-one Church Services &middot; Alessio Pavone &middot;
+        <span data-t="nl" class="on">Belgisch bedrijf, ondernemingsnummer 0768.925.136, BTW BE0768925136</span>
+        <span data-t="en">Belgian company, business number 0768.925.136, VAT BE0768925136</span>
+        <span data-t="it">Azienda belga, numero d'impresa 0768.925.136, IVA BE0768925136</span>
+        <span data-t="fr">Société belge, numéro d'entreprise 0768.925.136, TVA BE0768925136</span>
+        <span data-t="de">Belgisches Unternehmen, Unternehmensnummer 0768.925.136, USt BE0768925136</span>
+        <br><span style="font-size:.68rem;color:rgba(255,255,255,.2)">
+          <span data-t="nl" class="on">Persoonsgegevens verwerkt conform AVG (EU) 2016/679. Belgisch recht van toepassing. Bevoegde rechtbank: Hasselt.</span>
+          <span data-t="en">Personal data processed under GDPR (EU) 2016/679. Belgian law applies. Jurisdiction: Hasselt.</span>
+          <span data-t="it">Dati trattati ai sensi del GDPR (UE) 2016/679. Legge belga applicabile.</span>
+          <span data-t="fr">Données traitées conformément au RGPD (UE) 2016/679. Droit belge applicable.</span>
+          <span data-t="de">Daten gem. DSGVO (EU) 2016/679. Belgisches Recht. Gerichtsstand: Hasselt.</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== CURSOR (instantaneous, no lerp) =====
+const isD = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(isD){
+  const cur = document.createElement('div'); cur.className='cursor'; document.body.appendChild(cur);
+  const ring = document.createElement('div'); ring.className='cursor-ring'; document.body.appendChild(ring);
+  document.addEventListener('mousemove', e => {
+    const x = e.clientX, y = e.clientY;
+    cur.style.left = x+'px'; cur.style.top = y+'px';
+    ring.style.left = x+'px'; ring.style.top = y+'px';
+  });
+  document.querySelectorAll('a,button,input,select,textarea').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.classList.add('state-btn'); ring.classList.add('state-btn'); });
+    el.addEventListener('mouseleave', () => { cur.classList.remove('state-btn','state-card'); ring.classList.remove('state-btn','state-card'); });
+  });
+  document.querySelectorAll('[data-cursor]').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.classList.add('state-card'); ring.classList.add('state-card'); });
+    el.addEventListener('mouseleave', () => { cur.classList.remove('state-btn','state-card'); ring.classList.remove('state-btn','state-card'); });
+  });
+}
+
+// ===== SCROLL PROGRESS =====
+const _sp = document.getElementById('scrollProgress');
+if(_sp){
+  window.addEventListener('scroll', () => {
+    const st = window.scrollY;
+    const dh = document.documentElement.scrollHeight - window.innerHeight;
+    _sp.style.width = (dh > 0 ? (st / dh * 100) : 0) + '%';
+  }, {passive:true});
+}
+
+// ===== LANGUAGE =====
+const LANGS = {
+  nl: { flag: '🇳🇱', name: 'NL' },
+  en: { flag: '🇬🇧', name: 'EN' },
+  it: { flag: '🇮🇹', name: 'IT' },
+  fr: { flag: '🇫🇷', name: 'FR' },
+  de: { flag: '🇩🇪', name: 'DE' }
+};
+let lang = localStorage.getItem('aone-lang') || 'nl';
+
+// ===== INTEREST SELECT TEXTS (defined before setLang is called) =====
+const interestTexts = {
+  nl: ['—','Kerkstoelen','LED-borden','Kerkadvies / digitalisering','Meerdere producten'],
+  en: ['—','Church chairs','LED signs','Church consulting / digital','Multiple products'],
+  it: ['—','Sedie per chiesa','Insegne LED','Consulenza / digitalizzazione','Più prodotti'],
+  fr: ['—',"Chaises d'église",'Enseignes LED','Conseil / digitalisation','Plusieurs produits'],
+  de: ['—','Kirchenstühle','LED-Schilder','Beratung / Digitalisierung','Mehrere Produkte']
+};
+const interestVals = ['','chairs','led','consulting','both'];
+
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('aone-lang', l);
+  document.querySelectorAll('[data-t]').forEach(el => el.classList.toggle('on', el.getAttribute('data-t') === l));
+  document.querySelectorAll('.lang-option').forEach(opt => opt.classList.toggle('active', opt.getAttribute('data-lang') === l));
+  document.getElementById('langFlagCurrent').textContent = LANGS[l].flag;
+  document.getElementById('langNameCurrent').textContent = LANGS[l].name;
+  document.documentElement.lang = l;
+  updateInterestSelect(l);
+  closeLangMenu();
+}
+setLang(lang);
+
+function toggleLangMenu() {
+  document.getElementById('langWrap').classList.toggle('open');
+}
+function closeLangMenu() {
+  document.getElementById('langWrap').classList.remove('open');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('#langWrap')) closeLangMenu();
+});
+
+// ===== MOBILE MENU =====
+function toggleMenu() {
+  document.getElementById('menuToggle').classList.toggle('active');
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
+  document.getElementById('menuToggle').classList.remove('active');
+  document.getElementById('navLinks').classList.remove('open');
+}));
+
+// ===== SCROLL REVEAL =====
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rev,.rev-l,.rev-r,.rev-sc').forEach(el => obs.observe(el));
+
+// ===== WORD ROTATOR =====
+const heroWords = {
+  nl: ['beste', 'meest betrouwbare', 'meest persoonlijke', 'perfecte'],
+  en: ['best', 'most reliable', 'most personal', 'perfect'],
+  it: ['meglio', 'più affidabile', 'tocco personale', 'perfetto'],
+  fr: ['meilleur', 'plus fiable', 'plus personnel', 'parfait'],
+  de: ['Beste', 'Zuverlässigste', 'Persönlichste', 'Perfekte']
+};
+let rwIdx = 0;
+setInterval(() => {
+  rwIdx = (rwIdx + 1) % 4;
+  document.querySelectorAll('.hero-rw').forEach(el => {
+    const l = el.getAttribute('data-lang');
+    el.classList.remove('flip');
+    void el.offsetWidth;
+    el.textContent = heroWords[l][rwIdx];
+    el.classList.add('flip');
+  });
+}, 3200);
+
+// ===== INTEREST SELECT (per language) =====
+function updateInterestSelect(l) {
+  const sel = document.getElementById('interestSelect');
+  if (!sel) return;
+  const cur = sel.value;
+  const texts = interestTexts[l] || interestTexts.nl;
+  sel.innerHTML = texts.map((t, i) => `<option value="${interestVals[i]}">${t}</option>`).join('');
+  sel.value = cur;
+}
+
+// ===== COOKIES =====
+function showCookieBanner() {
+  if(!localStorage.getItem('aone-cookies')) setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 2000);
+}
+function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('aone-cookies','accepted'); }
+function declineCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('aone-cookies','declined'); }
+showCookieBanner();
+
+// ===== LEGAL MODALS =====
+function openLegal(type) {
+  document.getElementById('modal-'+type).classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setLang(lang);
+}
+function closeLegal(type) {
+  document.getElementById('modal-'+type).classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.legal-overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if(e.target === ov) { ov.classList.remove('open'); document.body.style.overflow=''; } });
+});
+
+// ===== LIGHTBOX =====
+function openLB(src) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ===== CHAIR VARIANTS =====
+function swapVariant(src) {
+  document.getElementById('variantMain').src = src;
+}
+
+// ===== SWATCH TABS =====
+function switchTab(tab) {
+  document.querySelectorAll('.swatch-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.swatch-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+
+// ===== FORM =====
+const FORMSPREE_ID = 'xgodzlgg';
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target, btn = document.getElementById('submitBtn');
+  if(!form.checkValidity()){ form.reportValidity(); return; }
+  const orig = btn.innerHTML;
+  btn.disabled = true; btn.innerHTML = '⟳ Sending…';
+  const d = new FormData(form);
+  const payload = {
+    name: d.get('name')||'',
+    email: d.get('email')||'',
+    organization: d.get('organization')||'',
+    country: d.get('country')||'',
+    interest: d.get('interest')||'',
+    message: d.get('message')||'',
+    _subject: 'A-one Church Services: Aanvraag van '+(d.get('name')||''),
+    _replyto: d.get('email')||''
+  };
+  fetch('https://formspree.io/f/'+FORMSPREE_ID, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify(payload)
+  }).then(r => {
+    if(r.ok){
+      const labels={nl:'✓ Aanvraag verzonden!',en:'✓ Request sent!',it:'✓ Richiesta inviata!',fr:'✓ Demande envoyée!',de:'✓ Anfrage gesendet!'};
+      btn.innerHTML = labels[lang]||labels.en;
+      const msgs={nl:'✓ Uw aanvraag is ontvangen. Alessio neemt zo snel mogelijk contact met u op.',en:'✓ Your request has been received. Alessio will contact you as soon as possible.',it:'✓ La vostra richiesta è stata ricevuta. Alessio vi contatterà il prima possibile.',fr:'✓ Votre demande a été reçue. Alessio vous contactera dans les plus brefs délais.',de:'✓ Ihre Anfrage wurde empfangen. Alessio wird sich so schnell wie möglich melden.'};
+      const n = document.getElementById('notif');
+      n.textContent = msgs[lang]||msgs.en; n.classList.add('show');
+      setTimeout(() => n.classList.remove('show'), 6000);
+      setTimeout(() => { form.reset(); btn.disabled=false; btn.innerHTML=orig; setLang(lang); }, 2500);
+    } else {
+      btn.disabled=false; btn.innerHTML=orig;
+      alert('Er is iets misgegaan. Stuur uw aanvraag rechtstreeks naar info@aone-group.com');
+    }
+  }).catch(() => {
+    btn.disabled=false; btn.innerHTML=orig;
+    alert('Verbindingsfout. Stuur uw aanvraag naar info@aone-group.com');
+  });
+}
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const h = a.getAttribute('href');
+    if(h.length > 1) {
+      const t = document.querySelector(h);
+      if(t){ e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top+window.pageYOffset-58, behavior:'smooth' }); }
+    }
+  });
+});
+
+// Mobile product cards
+if(!isD) {
+  document.querySelectorAll('.prod-card').forEach(c => {
+    c.addEventListener('click', e => {
+      if(e.target.closest('a')) return;
+      document.querySelectorAll('.prod-card').forEach(x => x !== c && x.classList.remove('t'));
+      c.classList.toggle('t');
+    });
+  });
+}
+
+// ===== STAT COUNTER =====
+const statNums = document.querySelectorAll('.stat-num');
+const statObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    const el = e.target;
+    const text = el.textContent;
+    const num = parseInt(text);
+    if(isNaN(num)) return;
+    const suffix = text.replace(String(num),'');
+    let start=0, dur=1400, step=16;
+    const inc = num/Math.floor(dur/step);
+    const t = setInterval(() => {
+      start = Math.min(start+inc, num);
+      el.textContent = Math.floor(start)+suffix;
+      if(start>=num) clearInterval(t);
+    }, step);
+    statObs.unobserve(el);
+  });
+}, {threshold:.5});
+statNums.forEach(el => statObs.observe(el));
+</script>
+</body>
+</html>

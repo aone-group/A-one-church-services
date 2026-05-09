@@ -1458,11 +1458,11 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
       <div class="fcheck">
         <input type="checkbox" id="pc" name="privacy" required>
         <label class="fcheck-lbl" for="pc">
-          <span data-t="nl" class="on">Ik ga akkoord met de <a onclick="openLegal('privacy')">privacyverklaring</a> en <a href="verkoopvoorwaarden.html" target="_blank">verkoopvoorwaarden</a> en geef toestemming voor verwerking van mijn gegevens conform AVG/GDPR.</span>
-          <span data-t="en">I agree to the <a onclick="openLegal('privacy')">privacy policy</a> and <a href="verkoopvoorwaarden.html" target="_blank">terms of sale</a> and consent to processing of my data under GDPR.</span>
-          <span data-t="it">Acconsento alla <a onclick="openLegal('privacy')">privacy</a> e alle <a href="verkoopvoorwaarden.html" target="_blank">condizioni di vendita</a> e al trattamento dei miei dati ai sensi del GDPR.</span>
-          <span data-t="fr">J'accepte la <a onclick="openLegal('privacy')">politique de confidentialité</a> et les <a href="verkoopvoorwaarden.html" target="_blank">conditions de vente</a> et consens au traitement de mes données.</span>
-          <span data-t="de">Ich stimme der <a onclick="openLegal('privacy')">Datenschutzerklärung</a> und den <a href="verkoopvoorwaarden.html" target="_blank">Verkaufsbedingungen</a> zu und willige in die Datenverarbeitung gemäß DSGVO ein.</span>
+          <span data-t="nl" class="on">Ik ga akkoord met de <a onclick="openLegal('privacy')">privacyverklaring</a> en <a onclick="openLegal('terms')">algemene voorwaarden</a> en geef toestemming voor verwerking van mijn gegevens conform AVG/GDPR.</span>
+          <span data-t="en">I agree to the <a onclick="openLegal('privacy')">privacy policy</a> and <a onclick="openLegal('terms')">terms &amp; conditions</a> and consent to processing of my data under GDPR.</span>
+          <span data-t="it">Acconsento alla <a onclick="openLegal('privacy')">privacy</a> e ai <a onclick="openLegal('terms')">termini</a> e al trattamento dei miei dati ai sensi del GDPR.</span>
+          <span data-t="fr">J'accepte la <a onclick="openLegal('privacy')">politique de confidentialité</a> et les <a onclick="openLegal('terms')">conditions générales</a> et consens au traitement de mes données.</span>
+          <span data-t="de">Ich stimme der <a onclick="openLegal('privacy')">Datenschutzerklärung</a> und den <a onclick="openLegal('terms')">AGB</a> zu und willige in die Datenverarbeitung gemäß DSGVO ein.</span>
         </label>
       </div>
       <button type="submit" class="btn-submit" id="submitBtn">
@@ -1506,8 +1506,7 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
         <h4>Legal</h4>
         <button class="legal-link" onclick="openLegal('privacy')"><span data-t="nl" class="on">Privacyverklaring</span><span data-t="en">Privacy policy</span><span data-t="it">Privacy</span><span data-t="fr">Confidentialité</span><span data-t="de">Datenschutz</span></button>
         <button class="legal-link" onclick="openLegal('cookies')"><span data-t="nl" class="on">Cookiebeleid</span><span data-t="en">Cookie policy</span><span data-t="it">Cookie</span><span data-t="fr">Cookies</span><span data-t="de">Cookies</span></button>
-        <button class="legal-link" onclick="openLegal('terms')"><span data-t="nl" class="on">Websitevoorwaarden</span><span data-t="en">Website terms</span><span data-t="it">Termini sito</span><span data-t="fr">Conditions du site</span><span data-t="de">Website-Nutzung</span></button>
-        <a class="legal-link" href="verkoopvoorwaarden.html" target="_blank"><span data-t="nl" class="on">Verkoopvoorwaarden</span><span data-t="en">Terms of sale</span><span data-t="it">Condizioni di vendita</span><span data-t="fr">Conditions de vente</span><span data-t="de">Verkaufsbedingungen</span></a>
+        <button class="legal-link" onclick="openLegal('terms')"><span data-t="nl" class="on">Algemene voorwaarden</span><span data-t="en">Terms &amp; conditions</span><span data-t="it">Termini</span><span data-t="fr">Conditions générales</span><span data-t="de">AGB</span></button>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1569,7 +1568,7 @@ const LANGS = {
   fr: { flag: '🇫🇷', name: 'FR' },
   de: { flag: '🇩🇪', name: 'DE' }
 };
-let lang = localStorage.getItem('aone-lang') || 'nl';
+let lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('aone-lang') || 'nl';
 
 // ===== INTEREST SELECT TEXTS (defined before setLang is called) =====
 const interestTexts = {

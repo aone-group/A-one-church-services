@@ -794,8 +794,9 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
 /* ===== PROCESS STEP HOVER ===== */
 .proc-step{transition:transform .3s var(--ease)}
 .proc-step:hover{transform:translateY(-4px)}
-.proc-num{transition:transform .3s cubic-bezier(0.34,1.56,0.64,1),background .2s,color .2s}
-.proc-step:hover .proc-num{transform:scale(1.1);background:var(--gold);color:var(--charcoal)}
+.proc-num{transition:transform .4s cubic-bezier(0.34,1.56,0.64,1),background .45s var(--ease),color .35s var(--ease),box-shadow .45s var(--ease)}
+.proc-num.done{background:var(--gold);color:var(--charcoal);box-shadow:0 0 0 5px rgba(201,168,76,.18)}
+.proc-step:hover .proc-num{transform:scale(1.1)}
 
 /* ===== LED VISUAL AMBIENT ===== */
 .led-visual::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 70% 35% at 50% 10%,rgba(201,168,76,.14),transparent 60%);pointer-events:none;animation:ledVisGlow 3.5s ease-in-out infinite}
@@ -1110,15 +1111,15 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
     <div class="prod-anim pa-other-bg">
       <div class="pa-mat-grid">
         <div class="pa-mat-item">
-          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="11" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 9h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12 15v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 20h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
           <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Meubilair</span><span data-t="en">Furniture</span><span data-t="it">Arredamento</span><span data-t="fr">Mobilier</span><span data-t="de">Möbel</span></div>
         </div>
         <div class="pa-mat-item">
-          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2M12 12v3M9 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Prefab gebouwen</span><span data-t="en">Prefab buildings</span><span data-t="it">Edifici prefabbricati</span><span data-t="fr">Bâtiments préfabriqués</span><span data-t="de">Fertiggebäude</span></div>
         </div>
         <div class="pa-mat-item">
-          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
           <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Andere goederen op aanvraag</span><span data-t="en">Other goods on request</span><span data-t="it">Altri beni su richiesta</span><span data-t="fr">Autres biens sur demande</span><span data-t="de">Andere Waren auf Anfrage</span></div>
         </div>
       </div>
@@ -1619,6 +1620,17 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
 }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.rev,.rev-l,.rev-r,.rev-sc').forEach(el => obs.observe(el));
+
+// ===== PROCESS STEPS SCROLL PROGRESS =====
+const procObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelector('.proc-num').classList.add('done');
+      procObs.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.55, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.proc-step').forEach(s => procObs.observe(s));
 
 // ===== WORD ROTATOR =====
 const heroWords = {

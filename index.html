@@ -141,19 +141,14 @@ section{padding:6.5rem 4vw}
 .prod-header{max-width:1280px;margin:0 auto 3.5rem}
 .prod-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
 .prod-card{position:relative;height:500px;overflow:hidden;background:#1a1a1a}
-.prod-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .65s var(--ease),filter .4s var(--ease)}
-.prod-card:hover .prod-card-bg{transform:scale(1.08);filter:blur(5px)}
-.prod-card.t .prod-card-bg{transform:scale(1.08);filter:blur(7px)}
-.prod-card-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(8,8,8,.95) 0%,rgba(8,8,8,.35) 55%,transparent 100%);transition:background .35s}
-.prod-card:hover .prod-card-ov{background:linear-gradient(to top,rgba(8,8,8,.97) 0%,rgba(8,8,8,.6) 60%,rgba(8,8,8,.15) 100%)}
-.prod-card.t .prod-card-ov{background:linear-gradient(to top,rgba(6,6,6,.98) 0%,rgba(6,6,6,.82) 50%,rgba(6,6,6,.55) 100%)}
+.prod-card-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(6,6,10,.98) 0%,rgba(6,6,10,.94) 45%,rgba(6,6,10,.65) 68%,rgba(6,6,10,.2) 85%,transparent 100%)}
 .prod-card-body{position:absolute;bottom:0;left:0;right:0;padding:2.2rem 1.8rem;z-index:2}
 .prod-cat{font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
 .prod-title{font-family:var(--font-d);font-size:1.45rem;font-weight:600;color:white;line-height:1.2;margin-bottom:.7rem}
-.prod-desc{font-size:.86rem;color:rgba(255,255,255,.68);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .45s var(--ease),opacity .35s,margin .35s;opacity:0}
-.prod-card:hover .prod-desc,.prod-card.t .prod-desc{max-height:150px;opacity:1;margin-top:.4rem}
-.prod-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--gold);font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:1rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s}
-.prod-card:hover .prod-link,.prod-card.t .prod-link{opacity:1;transform:translateY(0)}
+.prod-desc{font-size:.86rem;color:rgba(255,255,255,.68);line-height:1.6;max-height:0;overflow:hidden;opacity:0}
+.prod-card.active .prod-desc{max-height:150px;opacity:1;margin-top:.4rem;transition:max-height .45s var(--ease),opacity .35s,margin .35s}
+.prod-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--gold);font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:1rem;opacity:0;transform:translateY(6px);pointer-events:none}
+.prod-card.active .prod-link{opacity:1;transform:translateY(0);transition:opacity .25s,transform .25s;pointer-events:auto}
 
 /* ===== CHAIR CONFIGURATOR SECTION ===== */
 .chair-section{background:#F2EFE9;padding:6.5rem 4vw}
@@ -487,7 +482,7 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
 </style>
 <style>
 /* ===== PRODUCT CARD ANIMATIONS ===== */
-.prod-anim{position:absolute;inset:0;overflow:hidden}
+.prod-anim{position:absolute;inset:0;overflow:hidden;transition:transform .55s var(--ease)}
 /* Chair */
 .pa-chair{background:linear-gradient(155deg,#1c1510 0%,#2c1e0e 60%,#1a1208 100%)}
 .pa-seat-rows{position:absolute;top:12%;left:50%;transform:translateX(-50%);width:88%;display:flex;flex-direction:column;gap:10px}
@@ -520,11 +515,8 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
 @keyframes svcFloat{0%,100%{transform:translateY(0);border-color:rgba(255,255,255,.07)}50%{transform:translateY(-5px);border-color:rgba(201,168,76,.3)}}
 
 /* ===== MATERIALS CARD ===== */
-.pa-mat-grid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1.2rem;padding:10% 10% 42%}
-.pa-mat-item{display:flex;align-items:center;gap:1rem;width:100%}
-.pa-mat-item-ico{width:44px;height:44px;flex-shrink:0;border-radius:8px;background:rgba(201,168,76,.25);border:1px solid rgba(201,168,76,.65);display:flex;align-items:center;justify-content:center}
-.pa-mat-item svg{width:20px;height:20px;color:rgba(201,168,76,1)}
-.pa-mat-item-lbl{font-size:.68rem;letter-spacing:.08em;color:rgba(255,255,255,1);text-transform:uppercase;line-height:1.3;font-weight:600}
+.pa-plus{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.pa-plus svg{width:160px;height:160px;color:rgba(201,168,76,.14);filter:drop-shadow(0 0 28px rgba(201,168,76,.12))}
 
 /* ===== CHAIR SECTION REDESIGN ===== */
 .chair-section{background:#F2EFE9;padding:6.5rem 4vw}
@@ -709,10 +701,9 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
 /* ===== MISSION SIG STYLE ===== */
 .mission-sig { opacity:.7; font-size:1rem; }
 
-/* ===== PROD CARD OVERLAY ===== */
-.prod-card-ov{background:linear-gradient(to top,rgba(4,4,4,.92) 0%,rgba(4,4,4,.08) 44%,transparent 100%)}
-.prod-card:hover .prod-card-ov{background:linear-gradient(to top,rgba(4,4,4,.95) 0%,rgba(4,4,4,.32) 58%,rgba(4,4,4,.04) 100%)}
-.prod-card.t .prod-card-ov{background:rgba(0,2,12,.70)!important;backdrop-filter:blur(18px) saturate(0.6);-webkit-backdrop-filter:blur(18px) saturate(0.6)}
+/* ===== PROD CARD ACTIVE OVERLAY ===== */
+.prod-card.active .prod-card-ov{background:rgba(6,6,10,.88)!important;backdrop-filter:blur(22px)!important;-webkit-backdrop-filter:blur(22px)!important;transition:background .35s ease,backdrop-filter .35s ease,-webkit-backdrop-filter .35s ease}
+.prod-card.active .prod-anim{transform:scale(1.06)}
 
 /* ===== CHAIR GRAPHIC CARD (products section) ===== */
 .pa-chair-graphic{position:absolute;inset:0;background:linear-gradient(155deg,#142034 0%,#1e2e48 100%);overflow:hidden}
@@ -1108,19 +1099,10 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
   <!-- Card 4: Other materials on request -->
   <div class="prod-card rev d3" data-cursor>
     <div class="prod-anim pa-other-bg">
-      <div class="pa-mat-grid">
-        <div class="pa-mat-item" style="--d:0s">
-          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Meubilair</span><span data-t="en">Furniture</span><span data-t="it">Arredamento</span><span data-t="fr">Mobilier</span><span data-t="de">Möbel</span></div>
-        </div>
-        <div class="pa-mat-item" style="--d:.9s">
-          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2M12 12v3M9 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Prefab gebouwen</span><span data-t="en">Prefab buildings</span><span data-t="it">Edifici prefabbricati</span><span data-t="fr">Bâtiments préfabriqués</span><span data-t="de">Fertiggebäude</span></div>
-        </div>
-        <div class="pa-mat-item" style="--d:1.8s">
-          <div class="pa-mat-item-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div class="pa-mat-item-lbl"><span data-t="nl" class="on">Andere goederen op aanvraag</span><span data-t="en">Other goods on request</span><span data-t="it">Altri beni su richiesta</span><span data-t="fr">Autres biens sur demande</span><span data-t="de">Andere Waren auf Anfrage</span></div>
-        </div>
+      <div class="pa-plus">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 6v68M6 40h68" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
       </div>
     </div>
     <div class="prod-card-ov"></div>
@@ -1749,16 +1731,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Mobile product cards
-if(!isD) {
-  document.querySelectorAll('.prod-card').forEach(c => {
+// Product cards — unified hover (desktop) + tap (mobile)
+document.querySelectorAll('.prod-card').forEach(c => {
+  if(isD) {
+    c.addEventListener('mouseenter', () => c.classList.add('active'));
+    c.addEventListener('mouseleave', () => c.classList.remove('active'));
+  } else {
     c.addEventListener('click', e => {
-      if(e.target.closest('a')) return;
-      document.querySelectorAll('.prod-card').forEach(x => x !== c && x.classList.remove('t'));
-      c.classList.toggle('t');
+      if(e.target.closest('.prod-link')) return;
+      const isOpen = c.classList.contains('active');
+      document.querySelectorAll('.prod-card').forEach(x => x.classList.remove('active'));
+      if(!isOpen) c.classList.add('active');
     });
-  });
-}
+  }
+});
 
 // ===== STAT COUNTER =====
 const statNums = document.querySelectorAll('.stat-num');

@@ -45,15 +45,15 @@ a{text-decoration:none}
 .lang-wrap{position:relative}
 .lang-btn{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:.4rem .75rem;color:white;font-size:.8rem;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s;white-space:nowrap}
 .lang-btn:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.08)}
-.lang-btn svg{width:14px;height:14px;opacity:.6;transition:transform .25s}
-.lang-wrap.open .lang-btn svg{transform:rotate(180deg)}
-.lang-flag{font-size:1rem}
+.lang-btn > svg{width:14px;height:14px;opacity:.6;transition:transform .25s}
+.lang-wrap.open .lang-btn > svg{transform:rotate(180deg)}
+.lang-flag{display:inline-flex;align-items:center;line-height:0;border-radius:2px;overflow:hidden;flex-shrink:0}
 .lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:#1a1a1a;border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;min-width:160px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .2s,transform .2s;box-shadow:0 16px 40px rgba(0,0,0,.4)}
 .lang-wrap.open .lang-dropdown{opacity:1;pointer-events:all;transform:translateY(0)}
 .lang-option{display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem;color:rgba(255,255,255,.75);font-size:.82rem;font-weight:500;cursor:pointer;transition:background .15s,color .15s}
 .lang-option:hover{background:rgba(201,168,76,.1);color:var(--gold)}
 .lang-option.active{color:var(--gold);font-weight:600}
-.lang-option-flag{font-size:1.1rem}
+.lang-option-flag{display:inline-flex;align-items:center;line-height:0;border-radius:2px;overflow:hidden;flex-shrink:0}
 
 .nav-right{display:flex;align-items:center;gap:1.4rem}
 .nav-links{display:flex;gap:1.6rem;align-items:center}
@@ -79,7 +79,7 @@ a{text-decoration:none}
   .nav-lang-opt:hover{color:var(--gold);background:rgba(201,168,76,.08)}
   .menu-toggle{display:flex}
   .nav-right .lang-wrap{display:flex}
-  .nav-right .lang-wrap .lang-btn svg{display:none}
+  .nav-right .lang-wrap .lang-btn > svg{display:none}
   .nav-right .lang-wrap .lang-btn{padding:.35rem .45rem;gap:.1rem;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
   .nav-right .cta-top{display:inline-flex;font-size:.7rem;padding:.45rem .95rem;letter-spacing:.06em}
   .nav-right{gap:.45rem}
@@ -255,7 +255,7 @@ section{padding:6.5rem 4vw}
 .test-av{width:42px;height:42px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;color:var(--charcoal);flex-shrink:0}
 .test-name{font-weight:600;font-size:.88rem;color:white}
 .test-church{font-size:.75rem;color:rgba(255,255,255,.48);margin-top:1px}
-.test-flag{font-size:1.15rem;margin-left:auto}
+.test-flag{display:inline-flex;align-items:center;margin-left:auto;line-height:0;border-radius:2px;overflow:hidden}
 
 /* ===== MISSION ===== */
 .mission-section{background:var(--gold-pale);padding:5.5rem 4vw;text-align:center}
@@ -940,26 +940,26 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
       <a href="#contact">Contact</a>
       <!-- Mobile-only: lang switcher inside menu -->
       <div class="nav-lang-mobile">
-        <span onclick="setLang('nl');toggleMenu()" class="nav-lang-opt">🇳🇱 NL</span>
-        <span onclick="setLang('en');toggleMenu()" class="nav-lang-opt">🇬🇧 EN</span>
-        <span onclick="setLang('it');toggleMenu()" class="nav-lang-opt">🇮🇹 IT</span>
-        <span onclick="setLang('fr');toggleMenu()" class="nav-lang-opt">🇫🇷 FR</span>
-        <span onclick="setLang('de');toggleMenu()" class="nav-lang-opt">🇩🇪 DE</span>
+        <span onclick="setLang('nl');toggleMenu()" class="nav-lang-opt">NL</span>
+        <span onclick="setLang('en');toggleMenu()" class="nav-lang-opt">EN</span>
+        <span onclick="setLang('it');toggleMenu()" class="nav-lang-opt">IT</span>
+        <span onclick="setLang('fr');toggleMenu()" class="nav-lang-opt">FR</span>
+        <span onclick="setLang('de');toggleMenu()" class="nav-lang-opt">DE</span>
       </div>
     </div>
     <!-- Language dropdown (desktop only) -->
     <div class="lang-wrap" id="langWrap">
       <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
-        <span class="lang-flag" id="langFlagCurrent">🇳🇱</span>
+        <span class="lang-flag" id="langFlagCurrent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#21468B"/><rect width="20" height="9.33" fill="#fff"/><rect width="20" height="4.67" fill="#AE1C28"/></svg></span>
         <span class="lang-name" id="langNameCurrent" style="font-size:.78rem">NL</span>
         <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="lang-dropdown" id="langDropdown">
-        <div class="lang-option active" onclick="setLang('nl')" data-lang="nl"><span class="lang-option-flag">🇳🇱</span> Nederlands</div>
-        <div class="lang-option" onclick="setLang('en')" data-lang="en"><span class="lang-option-flag">🇬🇧</span> English</div>
-        <div class="lang-option" onclick="setLang('it')" data-lang="it"><span class="lang-option-flag">🇮🇹</span> Italiano</div>
-        <div class="lang-option" onclick="setLang('fr')" data-lang="fr"><span class="lang-option-flag">🇫🇷</span> Français</div>
-        <div class="lang-option" onclick="setLang('de')" data-lang="de"><span class="lang-option-flag">🇩🇪</span> Deutsch</div>
+        <div class="lang-option active" onclick="setLang('nl')" data-lang="nl"><span class="lang-option-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#21468B"/><rect width="20" height="9.33" fill="#fff"/><rect width="20" height="4.67" fill="#AE1C28"/></svg></span> Nederlands</div>
+        <div class="lang-option" onclick="setLang('en')" data-lang="en"><span class="lang-option-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#012169"/><line x1="0" y1="0" x2="20" y2="14" stroke="#fff" stroke-width="3.5"/><line x1="20" y1="0" x2="0" y2="14" stroke="#fff" stroke-width="3.5"/><line x1="0" y1="0" x2="20" y2="14" stroke="#C8102E" stroke-width="1.8"/><line x1="20" y1="0" x2="0" y2="14" stroke="#C8102E" stroke-width="1.8"/><rect x="0" y="5" width="20" height="4" fill="#fff"/><rect x="8" y="0" width="4" height="14" fill="#fff"/><rect x="0" y="5.7" width="20" height="2.6" fill="#C8102E"/><rect x="8.7" y="0" width="2.6" height="14" fill="#C8102E"/></svg></span> English</div>
+        <div class="lang-option" onclick="setLang('it')" data-lang="it"><span class="lang-option-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#CE2B37"/><rect width="13.33" height="14" fill="#fff"/><rect width="6.67" height="14" fill="#009246"/></svg></span> Italiano</div>
+        <div class="lang-option" onclick="setLang('fr')" data-lang="fr"><span class="lang-option-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#ED2939"/><rect width="13.33" height="14" fill="#fff"/><rect width="6.67" height="14" fill="#002395"/></svg></span> Français</div>
+        <div class="lang-option" onclick="setLang('de')" data-lang="de"><span class="lang-option-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#FFCE00"/><rect width="20" height="9.33" fill="#DD0000"/><rect width="20" height="4.67" fill="#000"/></svg></span> Deutsch</div>
       </div>
     </div>
     <a href="#contact" class="cta-top"><span data-t="nl" class="on">Offerte</span><span data-t="en">Get Quote</span><span data-t="it">Preventivo</span><span data-t="fr">Devis</span><span data-t="de">Angebot</span></a>
@@ -1375,7 +1375,7 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
         <span data-t="fr">Nous sommes très satisfaits. Si je devais donner une note, ce serait 9 sur 10. Alessio nous a accompagnés à chaque étape.</span>
         <span data-t="de">Wir sind sehr zufrieden. Wenn ich eine Note geben müsste, dann 9 von 10. Alessio hat uns bei jedem Schritt begleitet.</span>
       </p>
-      <div class="test-author"><div class="test-av">CC</div><div><div class="test-name">Chiesa di Châtelet</div><div class="test-church">Châtelet, Belgique · CCINE</div></div><span class="test-flag">🇧🇪</span></div>
+      <div class="test-author"><div class="test-av">CC</div><div><div class="test-name">Chiesa di Châtelet</div><div class="test-church">Châtelet, Belgique · CCINE</div></div><span class="test-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#EF3340"/><rect width="13.33" height="14" fill="#FAE042"/><rect width="6.67" height="14" fill="#000"/></svg></span></div>
     </div>
     <div class="test-card">
       <div class="test-qm">"</div>
@@ -1387,7 +1387,7 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
         <span data-t="fr">Excellente qualité et prix honnête. Alessio a suivi personnellement. Très satisfaits du résultat final.</span>
         <span data-t="de">Ausgezeichnete Qualität und fairer Preis. Alessio hat persönlich nachgefasst. Sehr zufrieden mit dem Endergebnis.</span>
       </p>
-      <div class="test-author"><div class="test-av">MC</div><div><div class="test-name">Maasmechelen In Christ</div><div class="test-church">Maasmechelen, België · CCINE</div></div><span class="test-flag">🇧🇪</span></div>
+      <div class="test-author"><div class="test-av">MC</div><div><div class="test-name">Maasmechelen In Christ</div><div class="test-church">Maasmechelen, België · CCINE</div></div><span class="test-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#EF3340"/><rect width="13.33" height="14" fill="#FAE042"/><rect width="6.67" height="14" fill="#000"/></svg></span></div>
     </div>
     <div class="test-card">
       <div class="test-qm">"</div>
@@ -1399,7 +1399,7 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
         <span data-t="fr">A-one a donné un nouveau visage à notre salle. Chaises confortables, finition parfaite, dans le budget. Notre congrégation rayonne à nouveau.</span>
         <span data-t="de">A-one gab unserem Saal ein völlig neues Aussehen. Bequeme Stühle, perfekte Verarbeitung, alles im Budget. Unsere Gemeinde strahlt wieder.</span>
       </p>
-      <div class="test-author"><div class="test-av">GC</div><div><div class="test-name">Genk in Christ</div><div class="test-church">Genk, België · CCINE</div></div><span class="test-flag">🇧🇪</span></div>
+      <div class="test-author"><div class="test-av">GC</div><div><div class="test-name">Genk in Christ</div><div class="test-church">Genk, België · CCINE</div></div><span class="test-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#EF3340"/><rect width="13.33" height="14" fill="#FAE042"/><rect width="6.67" height="14" fill="#000"/></svg></span></div>
     </div>
   </div>
 </section>
@@ -1447,7 +1447,7 @@ p[data-t].on,h1[data-t].on,h2[data-t].on,h3[data-t].on,h4[data-t].on,div[data-t]
       <div class="frow">
         <div class="fgroup"><label class="flbl"><span data-t="nl" class="on">Kerk / Organisatie</span><span data-t="en">Church / Organization</span><span data-t="it">Chiesa / Organizzazione</span><span data-t="fr">Église / Organisation</span><span data-t="de">Kirche / Organisation</span></label><input type="text" class="finput" name="organization" placeholder="Mijn Kerk"></div>
         <div class="fgroup"><label class="flbl"><span data-t="nl" class="on">Land</span><span data-t="en">Country</span><span data-t="it">Paese</span><span data-t="fr">Pays</span><span data-t="de">Land</span></label>
-          <select class="fselect" name="country"><option value="">—</option><option value="BE">🇧🇪 België / Belgique</option><option value="NL">🇳🇱 Nederland</option><option value="IT">🇮🇹 Italia</option><option value="FR">🇫🇷 France</option><option value="DE">🇩🇪 Deutschland</option><option value="CH">🇨🇭 Schweiz</option><option value="AT">🇦🇹 Österreich</option><option value="LU">🇱🇺 Luxembourg</option><option value="OTHER">Other</option></select>
+          <select class="fselect" name="country"><option value="">—</option><option value="BE">België / Belgique</option><option value="NL">Nederland</option><option value="IT">Italia</option><option value="FR">France</option><option value="DE">Deutschland</option><option value="CH">Schweiz</option><option value="AT">Österreich</option><option value="LU">Luxembourg</option><option value="OTHER">Other</option></select>
         </div>
       </div>
       <div class="fgroup"><label class="flbl" id="lbl-interest"><span data-t="nl" class="on">Interesse in</span><span data-t="en">Interested in</span><span data-t="it">Interessato a</span><span data-t="fr">Intéressé par</span><span data-t="de">Interessiert an</span></label>
@@ -1566,12 +1566,19 @@ if(_sp){
 }
 
 // ===== LANGUAGE =====
+const LANG_FLAGS = {
+  nl: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#21468B"/><rect width="20" height="9.33" fill="#fff"/><rect width="20" height="4.67" fill="#AE1C28"/></svg>',
+  en: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#012169"/><line x1="0" y1="0" x2="20" y2="14" stroke="#fff" stroke-width="3.5"/><line x1="20" y1="0" x2="0" y2="14" stroke="#fff" stroke-width="3.5"/><line x1="0" y1="0" x2="20" y2="14" stroke="#C8102E" stroke-width="1.8"/><line x1="20" y1="0" x2="0" y2="14" stroke="#C8102E" stroke-width="1.8"/><rect x="0" y="5" width="20" height="4" fill="#fff"/><rect x="8" y="0" width="4" height="14" fill="#fff"/><rect x="0" y="5.7" width="20" height="2.6" fill="#C8102E"/><rect x="8.7" y="0" width="2.6" height="14" fill="#C8102E"/></svg>',
+  it: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#CE2B37"/><rect width="13.33" height="14" fill="#fff"/><rect width="6.67" height="14" fill="#009246"/></svg>',
+  fr: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#ED2939"/><rect width="13.33" height="14" fill="#fff"/><rect width="6.67" height="14" fill="#002395"/></svg>',
+  de: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="20" height="14" style="display:block"><rect width="20" height="14" fill="#FFCE00"/><rect width="20" height="9.33" fill="#DD0000"/><rect width="20" height="4.67" fill="#000"/></svg>'
+};
 const LANGS = {
-  nl: { flag: '🇳🇱', name: 'NL' },
-  en: { flag: '🇬🇧', name: 'EN' },
-  it: { flag: '🇮🇹', name: 'IT' },
-  fr: { flag: '🇫🇷', name: 'FR' },
-  de: { flag: '🇩🇪', name: 'DE' }
+  nl: { name: 'NL' },
+  en: { name: 'EN' },
+  it: { name: 'IT' },
+  fr: { name: 'FR' },
+  de: { name: 'DE' }
 };
 let lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('aone-lang') || 'nl';
 
@@ -1590,7 +1597,7 @@ function setLang(l) {
   localStorage.setItem('aone-lang', l);
   document.querySelectorAll('[data-t]').forEach(el => el.classList.toggle('on', el.getAttribute('data-t') === l));
   document.querySelectorAll('.lang-option').forEach(opt => opt.classList.toggle('active', opt.getAttribute('data-lang') === l));
-  document.getElementById('langFlagCurrent').textContent = LANGS[l].flag;
+  document.getElementById('langFlagCurrent').innerHTML = LANG_FLAGS[l];
   document.getElementById('langNameCurrent').textContent = LANGS[l].name;
   document.documentElement.lang = l;
   updateInterestSelect(l);
